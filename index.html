@@ -2296,21 +2296,24 @@ const payload={
 user_id:
 currentUser.id,
 
-category:
+expert_type:
 $("expertCategory").value,
 
 region:
 $("expertRegion").value.trim(),
 
-office_name:
+business_name:
 $("expertOffice").value.trim(),
 
 license_no:
 $("expertLicense").value.trim(),
 
 bio:
-$("expertBio").value.trim()
+$("expertBio").value.trim(),
 
+approval_status: "pending",
+subscription_status: "inactive",
+is_visible: false
 };
 
 const {error}=
