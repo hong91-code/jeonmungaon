@@ -996,7 +996,26 @@ onclick="refreshDashboard()">
 </div>
 
 </div>
+<div id="subscriptionCard" class="card" style="margin:20px 0;">
+  <h3>전문가 월 이용권</h3>
 
+  <p id="subscriptionStatusText">
+    이용권 상태를 확인 중입니다.
+  </p>
+
+  <p>
+    <b>월 이용료 198,000원</b>
+  </p>
+
+  <button
+    id="subscriptionPayBtn"
+    class="btn primary"
+    type="button"
+    onclick="startSubscriptionPayment()"
+  >
+    월 이용권 결제하기
+  </button>
+</div>
 <div class="tabs">
 
 <button
