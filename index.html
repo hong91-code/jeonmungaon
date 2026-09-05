@@ -2164,7 +2164,7 @@ async function handleBillingResult() {
     }
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session } } = await sb.auth.getSession();
 
       if (!session || !currentUser?.id) {
         alert("로그인이 필요합니다.");
@@ -2182,7 +2182,7 @@ async function handleBillingResult() {
           body: JSON.stringify({
             authKey: authKey,
             customerKey: customerKey,
-            expertId: currentUser.id
+            expertId: currentExpert.id
           })
         }
       );
