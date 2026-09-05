@@ -1698,8 +1698,9 @@ await recordPendingSignupConsents();
 
 renderProfile();
 
-const approved=
-currentExpert?.approval_status==="approved";
+const approved =
+  currentExpert?.approval_status === "approved" &&
+  currentExpert?.subscription_status === "active";
 
 $("leadTab")
 .classList
