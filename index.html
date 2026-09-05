@@ -3012,9 +3012,7 @@ return;
 const {data}=
 await sb
 .from("experts")
-.select(
-"*,profiles(name)"
-)
+.select("*")
 .order(
 "created_at",
 {ascending:false}
