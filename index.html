@@ -1628,24 +1628,110 @@ onclick="markAllRead()">
 </div>
 
 <div
-id="dash-admin"
-class="card panel hidden">
+  id="dash-admin"
+  class="card panel hidden"
+>
 
-<div class="space">
+  <div class="admin-head">
+    <div>
+      <h2>전문가ON 관리자센터</h2>
+      <p>전문가 승인, 상담, 구독 및 결제 현황을 관리합니다.</p>
+    </div>
 
-<h3>
-전문가 승인 관리
-</h3>
+    <button
+      class="btn primary"
+      type="button"
+      onclick="loadAdminDashboard()"
+    >
+      전체 새로고침
+    </button>
+  </div>
 
-<button
-class="btn outline small"
-onclick="loadAdminExperts()">
-새로고침
-</button>
 
-</div>
+  <!-- 요약 통계 -->
+  <div class="admin-stats">
 
-<div id="adminExperts"></div>
+    <div class="admin-stat-card">
+      <span>승인 대기 전문가</span>
+      <strong id="adminPendingCount">0</strong>
+    </div>
+
+    <div class="admin-stat-card">
+      <span>승인 전문가</span>
+      <strong id="adminApprovedCount">0</strong>
+    </div>
+
+    <div class="admin-stat-card">
+      <span>전체 상담</span>
+      <strong id="adminConsultCount">0</strong>
+    </div>
+
+    <div class="admin-stat-card">
+      <span>활성 구독</span>
+      <strong id="adminActiveSubCount">0</strong>
+    </div>
+
+  </div>
+
+
+  <!-- 전문가 승인 관리 -->
+  <div class="admin-section">
+
+    <div class="admin-section-head">
+      <h3>전문가 승인 관리</h3>
+
+      <button
+        class="btn outline small"
+        type="button"
+        onclick="loadAdminExperts()"
+      >
+        새로고침
+      </button>
+    </div>
+
+    <div id="adminExperts"></div>
+
+  </div>
+
+
+  <!-- 상담 관리 -->
+  <div class="admin-section">
+
+    <div class="admin-section-head">
+      <h3>상담 신청 및 배정 현황</h3>
+
+      <button
+        class="btn outline small"
+        type="button"
+        onclick="loadAdminConsults()"
+      >
+        새로고침
+      </button>
+    </div>
+
+    <div id="adminConsults"></div>
+
+  </div>
+
+
+  <!-- 구독/결제 관리 -->
+  <div class="admin-section">
+
+    <div class="admin-section-head">
+      <h3>구독 · 결제 관리</h3>
+
+      <button
+        class="btn outline small"
+        type="button"
+        onclick="loadAdminSubscriptions()"
+      >
+        새로고침
+      </button>
+    </div>
+
+    <div id="adminSubscriptions"></div>
+
+  </div>
 
 </div>
 
@@ -3632,7 +3718,25 @@ await sb
 "created_at",
 {ascending:false}
 );
+const experts = data || [];
 
+$("adminTotalExperts").textContent =
+  experts.length;
+
+$("adminPendingExperts").textContent =
+  experts.filter(
+    e => e.approval_status === "pending"
+  ).length;
+
+$("adminApprovedExperts").textContent =
+  experts.filter(
+    e => e.approval_status === "approved"
+  ).length;
+
+$("adminRejectedExperts").textContent =
+  experts.filter(
+    e => e.approval_status === "rejected"
+  ).length;
 $("adminExperts").innerHTML=
 
 (data||[])
