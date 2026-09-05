@@ -3931,6 +3931,87 @@ adminSetExpert(
 .join("");
 
 }
+async function loadAdminConsults(){
+
+  if(currentProfile?.is_admin !== true){
+    return;
+  }
+
+  const { data, error } = await sb
+    .from("consult_requests")
+    .select(`
+      *,
+      experts:assigned_expert_id (
+        id,
+        business_name,
+        representative_name,
+        expert_type
+      )
+    `)
+    .order("created_at", { ascending:false });
+
+  if(error){
+    console.error("관리자 상담 목록 불러오기 오류:", error);
+
+    $("adminConsults").innerHTML = `
+      <div class="notice">
+        상담 목록을 불러오지 못했습니다.
+      </div>
+    `;
+
+    return;
+  }
+
+  const consults = data || [];
+
+  const consultCount = $("adminConsultCount");
+  if(consultCount){
+    consultCount.textContent = consults.length;
+  }
+
+  $("adminConsults").innerHTML = consults.length
+    ? consults.map(c => {
+
+        const expertName =
+          c.experts?.business_name ||
+          c.experts?.representative_name ||
+          "미배정";
+
+        return `
+          <div class="card request">
+
+            <b>
+              ${esc(c.title || "상담 신청")}
+            </b>
+
+            <div class="tiny" style="margin-top:6px;">
+              분야: ${esc(c.category || "-")}
+              /
+              지역: ${esc(c.region || "-")}
+            </div>
+
+            <div class="tiny" style="margin-top:6px;">
+              상태: ${esc(c.status || "-")}
+            </div>
+
+            <div class="tiny" style="margin-top:6px;">
+              배정 전문가: ${esc(expertName)}
+            </div>
+
+            <div style="margin-top:10px;">
+              ${esc(c.content || "")}
+            </div>
+
+          </div>
+        `;
+      }).join("")
+    : `
+      <div class="notice">
+        현재 등록된 상담 신청이 없습니다.
+      </div>
+    `;
+}
+  
 async function loadApprovedExperts(){
 
   const { data, error } = await sb
