@@ -3937,23 +3937,32 @@ async function loadAdminConsults(){
     return;
   }
 
-  const { data, error } = await sb
+  const adminConsults = $("adminConsults");
+
+  if(!adminConsults){
+    return;
+  }
+
+  adminConsults.innerHTML = `
+    <div class="notice">
+      상담 신청 내역을 불러오는 중입니다.
+    </div>
+  `;
+
+  /* 상담 신청 전체 조회 */
+  const { data: consultData, error: consultError } = await sb
     .from("consult_requests")
-    .select(`
-      *,
-      experts:assigned_expert_id (
-        id,
-        business_name,
-        representative_name,
-        expert_type
-      )
-    `)
+    .select("*")
     .order("created_at", { ascending:false });
 
-  if(error){
-    console.error("관리자 상담 목록 불러오기 오류:", error);
+  if(consultError){
 
-    $("adminConsults").innerHTML = `
+    console.error(
+      "관리자 상담 목록 불러오기 오류:",
+      consultError
+    );
+
+    adminConsults.innerHTML = `
       <div class="notice">
         상담 목록을 불러오지 못했습니다.
       </div>
@@ -3962,56 +3971,152 @@ async function loadAdminConsults(){
     return;
   }
 
-  const consults = data || [];
 
-  const consultCount = $("adminConsultCount");
-  if(consultCount){
-    consultCount.textContent = consults.length;
+  /* 전문가 목록 조회 */
+  const { data: expertData, error: expertError } = await sb
+    .from("experts")
+    .select(
+      "id,business_name,representative_name,expert_type"
+    );
+
+  if(expertError){
+    console.error(
+      "전문가 목록 불러오기 오류:",
+      expertError
+    );
   }
 
-  $("adminConsults").innerHTML = consults.length
-    ? consults.map(c => {
 
-        const expertName =
-          c.experts?.business_name ||
-          c.experts?.representative_name ||
-          "미배정";
+  const consults = consultData || [];
+  const experts = expertData || [];
 
-        return `
-          <div class="card request">
 
-            <b>
-              ${esc(c.title || "상담 신청")}
-            </b>
+  /* 전문가 ID → 전문가명 찾기 */
+  function getExpertName(expertId){
 
-            <div class="tiny" style="margin-top:6px;">
-              분야: ${esc(c.category || "-")}
-              /
-              지역: ${esc(c.region || "-")}
-            </div>
+    if(!expertId){
+      return "미배정";
+    }
 
-            <div class="tiny" style="margin-top:6px;">
-              상태: ${esc(c.status || "-")}
-            </div>
+    const expert = experts.find(
+      e => e.id === expertId
+    );
 
-            <div class="tiny" style="margin-top:6px;">
-              배정 전문가: ${esc(expertName)}
-            </div>
+    if(!expert){
+      return "미배정";
+    }
 
-            <div style="margin-top:10px;">
-              ${esc(c.content || "")}
-            </div>
+    return (
+      expert.business_name ||
+      expert.representative_name ||
+      expert.expert_type ||
+      "전문가"
+    );
+  }
 
-          </div>
-        `;
-      }).join("")
-    : `
+
+  if(consults.length === 0){
+
+    adminConsults.innerHTML = `
       <div class="notice">
         현재 등록된 상담 신청이 없습니다.
       </div>
     `;
+
+    return;
+  }
+
+
+  adminConsults.innerHTML = consults
+    .map(c => {
+
+      const expertName =
+        getExpertName(c.assigned_expert_id);
+
+      const createdAt =
+        c.created_at
+          ? new Date(c.created_at)
+              .toLocaleString("ko-KR")
+          : "-";
+
+      return `
+        <div class="card request">
+
+          <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:12px;
+            align-items:flex-start;
+          ">
+
+            <div>
+
+              <b style="font-size:17px;">
+                ${esc(c.title || "상담 신청")}
+              </b>
+
+              <div
+                class="tiny"
+                style="margin-top:8px;"
+              >
+                분야 :
+                ${esc(c.category || "-")}
+              </div>
+
+              <div
+                class="tiny"
+                style="margin-top:5px;"
+              >
+                지역 :
+                ${esc(c.region || "-")}
+              </div>
+
+              <div
+                class="tiny"
+                style="margin-top:5px;"
+              >
+                배정 전문가 :
+                ${esc(expertName)}
+              </div>
+
+              <div
+                class="tiny"
+                style="margin-top:5px;"
+              >
+                진행 상태 :
+                ${esc(c.status || "-")}
+              </div>
+
+              <div
+                class="tiny"
+                style="margin-top:5px;"
+              >
+                신청일 :
+                ${esc(createdAt)}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div
+            style="
+              margin-top:12px;
+              padding:12px;
+              background:#f8fafc;
+              border-radius:10px;
+            "
+          >
+            ${esc(c.content || "상담 내용 없음")}
+          </div>
+
+        </div>
+      `;
+
+    })
+    .join("");
 }
-  
 async function loadApprovedExperts(){
 
   const { data, error } = await sb
