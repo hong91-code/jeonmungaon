@@ -1649,29 +1649,33 @@ onclick="markAllRead()">
 
 
   <!-- 요약 통계 -->
-  <div class="admin-stats">
+<div class="admin-stats">
 
-    <div class="admin-stat-card">
-      <span>승인 대기 전문가</span>
-      <strong id="adminPendingCount">0</strong>
-    </div>
-
-    <div class="admin-stat-card">
-      <span>승인 전문가</span>
-      <strong id="adminApprovedCount">0</strong>
-    </div>
-
-    <div class="admin-stat-card">
-      <span>전체 상담</span>
-      <strong id="adminConsultCount">0</strong>
-    </div>
-
-    <div class="admin-stat-card">
-      <span>활성 구독</span>
-      <strong id="adminActiveSubCount">0</strong>
-    </div>
-
+  <div class="admin-stat-card">
+    <div class="admin-stat-icon">👥</div>
+    <div class="admin-stat-number" id="adminTotalExperts">0</div>
+    <div class="admin-stat-label">전체 전문가</div>
   </div>
+
+  <div class="admin-stat-card">
+    <div class="admin-stat-icon">⏳</div>
+    <div class="admin-stat-number" id="adminPendingExperts">0</div>
+    <div class="admin-stat-label">승인 대기</div>
+  </div>
+
+  <div class="admin-stat-card">
+    <div class="admin-stat-icon">✅</div>
+    <div class="admin-stat-number" id="adminApprovedExperts">0</div>
+    <div class="admin-stat-label">승인 완료</div>
+  </div>
+
+  <div class="admin-stat-card">
+    <div class="admin-stat-icon">❌</div>
+    <div class="admin-stat-number" id="adminRejectedExperts">0</div>
+    <div class="admin-stat-label">승인 거절</div>
+  </div>
+
+</div>
 
 
   <!-- 전문가 승인 관리 -->
