@@ -456,6 +456,7 @@ footer{
   .business{grid-template-columns:1fr}
 }
 </style>
+<script src="https://js.tosspayments.com/v2/standard"></script>
 </head>
 
 <body>
@@ -2126,6 +2127,30 @@ $("experts")
 .scrollIntoView();
 
 }
+async function startSubscriptionPayment() {
+  try {
+    const clientKey = "test_ck_ZLKGPx4M3MNJqKMdwBlqVBaWypv1";
+    const customerKey = currentUser.id;
+
+    const tossPayments = TossPayments(clientKey);
+    const payment = tossPayments.payment({
+      customerKey: customerKey
+    });
+
+    await payment.requestBillingAuth({
+      method: "CARD",
+      successUrl: window.location.origin + window.location.pathname + "?billing=success",
+      failUrl: window.location.origin + window.location.pathname + "?billing=fail",
+      customerEmail: currentUser.email || undefined,
+      customerName: currentProfile?.name || "전문가ON 전문가"
+    });
+
+  } catch (error) {
+    console.error("자동결제 카드 등록 오류:", error);
+    alert(error.message || "결제 카드 등록 중 오류가 발생했습니다.");
+  }
+}
+  
 function clearSelectedExpert(){
 
   $("selectedExpertId").value = "";
