@@ -2006,7 +2006,7 @@ const {data,error}=
 await sb
 .from("experts")
 .select(
-"id,user_id,category,region,office_name,bio,approval_status,profiles(name)"
+  "id,user_id,expert_type,region,business_name,bio,approval_status"
 )
 .eq(
 "approval_status",
@@ -2033,11 +2033,10 @@ if(q){
 arr=
 arr.filter(x=>
 [
-x.category,
+x.expert_type,
 x.region,
-x.office_name,
-x.bio,
-x.profiles?.name
+x.business_name,
+x.bio
 ]
 .join(" ")
 .toLowerCase()
@@ -2061,11 +2060,11 @@ arr.length
 <div class="expert-body">
 
 <h3>
-${esc(x.profiles?.name||"전문가")}
+${esc(x.business_name || "전문가")}
 </h3>
 
 <span class="pill">
-${esc(x.category)}
+${esc(x.expert_type)}
 </span>
 
 <span class="pill">
@@ -2086,8 +2085,8 @@ style="width:100%"
 onclick="
 selectExpert(
 '${x.id}',
-'${encodeURIComponent(x.profiles?.name||"전문가")}',
-'${encodeURIComponent(x.category)}'
+'${encodeURIComponent(x.business_name || "전문가")}',
+'${encodeURIComponent(x.expert_type)}'
 )
 ">
 이 전문가에게 상담
@@ -3086,7 +3085,21 @@ adminSetExpert(
 .join("");
 
 }
+async function loadApprovedExperts(){
 
+  const { data, error } = await sb
+    .from("experts")
+    .select("*")
+    .eq("approval_status", "approved")
+    .order("created_at", { ascending: false });
+
+  if(error){
+    console.error("승인 전문가 불러오기 오류:", error);
+    return [];
+  }
+
+  return data || [];
+}
 async function adminSetExpert(id, status){
 
   let rpcName = "";
