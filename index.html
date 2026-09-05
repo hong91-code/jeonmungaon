@@ -2170,22 +2170,31 @@ async function handleBillingResult() {
         alert("로그인이 필요합니다.");
         return;
       }
+const { data: billingExpert, error: billingExpertError } = await sb
+  .from("experts")
+  .select("id")
+  .eq("user_id", session.user.id)
+  .maybeSingle();
 
-      const response = await fetch(
-        SUPABASE_URL + "/functions/v1/toss-billing",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + session.access_token
-          },
-          body: JSON.stringify({
-            authKey: authKey,
-            customerKey: customerKey,
-            expertId: currentExpert.id
-          })
-        }
-      );
+if (billingExpertError || !billingExpert) {
+  throw new Error("전문가 정보를 찾을 수 없습니다.");
+}
+
+const response = await fetch(
+  SUPABASE_URL + "/functions/v1/toss-billing",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + session.access_token
+    },
+    body: JSON.stringify({
+      authKey: authKey,
+      customerKey: customerKey,
+      expertId: billingExpert.id
+    })
+  }
+);
 
       const result = await response.json();
 
