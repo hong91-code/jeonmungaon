@@ -470,7 +470,7 @@ footer{
 
 <div class="navlinks">
 <a href="#experts">전문가 찾기</a>
-<a href="#consult">상담신청</a>
+<a href="#consult" onclick="clearSelectedExpert()">상담신청</a>
 <a href="#expertJoin">전문가 가입</a>
 <a href="#" onclick="openLegal('guide');return false;">이용안내</a>
 <a href="#support">고객센터</a>
@@ -2106,7 +2106,17 @@ $("experts")
 .scrollIntoView();
 
 }
+function clearSelectedExpert(){
 
+  $("selectedExpertId").value = "";
+
+  $("selectedExpertNotice")
+    .classList
+    .add("hidden");
+
+  $("selectedExpertNotice").innerHTML = "";
+
+}
 function selectExpert(
 id,
 name,
