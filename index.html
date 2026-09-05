@@ -1729,7 +1729,7 @@ $("adminTab")
 .classList
 .toggle(
 "hidden",
-currentProfile?.role!=="admin"
+currentProfile?.is_admin !== true
 );
 
 await loadMyRequests();
@@ -3149,7 +3149,7 @@ async function refreshDashboard(){
 await syncUser();
 
 if(
-currentProfile?.role==="admin"
+currentProfile?.is_admin === true
 ){
 
 await loadAdminExperts();
