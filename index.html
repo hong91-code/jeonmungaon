@@ -3002,7 +3002,7 @@ Notification.requestPermission();
 async function loadAdminExperts(){
 
 if(
-currentProfile?.role!=="admin"
+  currentProfile?.is_admin !== true
 ){
 
 return;
@@ -3033,7 +3033,7 @@ ${esc(e.profiles?.name||"")}
 
 ·
 
-${esc(e.category)}
+${esc(e.expert_type)}
 
 ·
 
@@ -3043,7 +3043,7 @@ ${esc(e.region)}
 
 <span class="tiny">
 
-${esc(e.office_name)}
+${esc(e.business_name)}
 
 /
 
@@ -3062,8 +3062,8 @@ style="margin-top:8px">
 class="btn success small"
 onclick="
 adminSetExpert(
-'${e.id}',
-'approved'
+  '${e.user_id}',
+  'approved'
 )
 ">
 승인
@@ -3073,8 +3073,8 @@ adminSetExpert(
 class="btn danger small"
 onclick="
 adminSetExpert(
-'${e.id}',
-'rejected'
+  '${e.user_id}',
+  'rejected'
 )
 ">
 거절
@@ -3089,32 +3089,40 @@ adminSetExpert(
 
 }
 
-async function adminSetExpert(
-id,
-status
-){
+async function adminSetExpert(id, status){
 
-const {error}=
-await sb
-.from("experts")
-.update({
-approval_status:status
-})
-.eq(
-"id",
-id
-);
+  let rpcName = "";
 
-if(error){
+  if(status === "approved"){
+    rpcName = "approve_expert";
+  }
 
-return say(
-error.message
-);
+  if(status === "rejected"){
+    rpcName = "reject_expert";
+  }
 
-}
+  if(!rpcName){
+    return say("잘못된 처리 상태입니다.");
+  }
 
-await loadAdminExperts();
+  const { error } = await sb.rpc(
+    rpcName,
+    {
+      target_user_id: id
+    }
+  );
 
+  if(error){
+    return say(error.message);
+  }
+
+  say(
+    status === "approved"
+      ? "전문가 승인이 완료되었습니다."
+      : "전문가 신청이 거절되었습니다."
+  );
+
+  await loadAdminExperts();
 }
 
 function openDashboard(){
