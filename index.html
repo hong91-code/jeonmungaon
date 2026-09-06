@@ -1,52 +1,37 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
-
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b6fe3">
+
+<title>전문가ON | 필요한 순간, 전문가를 ON하다</title>
 
 <meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+  name="description"
+  content="세무사, 노무사, 손해사정사, 변호사, 법무사, 행정사, 공인중개사 등 전문가 검색·상담 매칭 플랫폼"
+>
 
-<meta
-name="theme-color"
-content="#0b6fe3">
-
-<title>
-전문가ON | 필요한 순간, 전문가를 ON하다
-</title>
-
-<meta
-name="description"
-content="세무사, 노무사, 손해사정사, 변호사, 법무사, 행정사, 공인중개사 등 전문가를 검색하고 상담을 요청하는 전문가 매칭 플랫폼">
-
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
-
-<script
-src="https://js.tosspayments.com/v2/standard">
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://js.tosspayments.com/v2/standard"></script>
 
 <style>
-
 :root{
-  --navy:#0b2a58;
+  --navy:#092b59;
   --blue:#0b6fe3;
-  --ink:#12263f;
-  --muted:#6e8297;
-  --line:#e3ecf5;
-  --bg:#f6f9fd;
-  --red:#df4b4b;
+  --blue2:#2789f7;
+  --ink:#13263f;
+  --muted:#6e8095;
+  --line:#dfe9f4;
+  --bg:#f5f8fc;
+  --white:#fff;
   --green:#11966d;
-  --shadow:0 14px 40px rgba(18,63,110,.09);
+  --red:#df4b4b;
+  --orange:#f59e0b;
+  --shadow:0 12px 34px rgba(18,63,110,.08);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
   scroll-behavior:smooth;
@@ -60,8 +45,8 @@ body{
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
 }
 
 button,
@@ -80,7 +65,7 @@ button{
 }
 
 .wrap{
-  width:min(1180px,calc(100% - 32px));
+  width:min(1180px,calc(100% - 30px));
   margin:auto;
 }
 
@@ -90,6 +75,7 @@ header{
   z-index:50;
   background:rgba(255,255,255,.97);
   border-bottom:1px solid var(--line);
+  backdrop-filter:blur(8px);
 }
 
 nav{
@@ -101,9 +87,10 @@ nav{
 }
 
 .logo{
-  font-size:29px;
+  font-size:28px;
   font-weight:950;
   color:var(--navy);
+  letter-spacing:-1px;
 }
 
 .logo b{
@@ -114,19 +101,25 @@ nav{
   display:flex;
   gap:20px;
   font-size:14px;
-  font-weight:800;
+  font-weight:850;
 }
 
 .nav-actions{
   display:flex;
   gap:8px;
+  align-items:center;
 }
 
 .btn{
   border:0;
   border-radius:11px;
-  padding:11px 16px;
+  padding:11px 15px;
   font-weight:850;
+  transition:.15s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
 }
 
 .primary{
@@ -136,13 +129,13 @@ nav{
 
 .outline{
   background:#fff;
-  border:1px solid #bfd7f5;
+  border:1px solid #bcd5ef;
   color:var(--blue);
 }
 
 .soft{
   background:#edf5ff;
-  color:#215f9e;
+  color:#235e9a;
 }
 
 .success{
@@ -155,6 +148,11 @@ nav{
   color:#fff;
 }
 
+.warning{
+  background:var(--orange);
+  color:#fff;
+}
+
 .small{
   padding:8px 11px;
   font-size:12px;
@@ -162,45 +160,61 @@ nav{
 
 .hero{
   background:
-    radial-gradient(
-      circle at 83% 26%,
-      rgba(11,111,227,.18),
-      transparent 34%
-    ),
-    linear-gradient(
-      135deg,
-      #f5fbff,
-      #e7f4ff 56%,
-      #fbfdff
-    );
+    radial-gradient(circle at 82% 22%,rgba(11,111,227,.20),transparent 34%),
+    linear-gradient(135deg,#f7fcff,#e4f2ff 58%,#fbfdff);
+  padding:62px 0 52px;
+}
 
-  padding:50px 0 35px;
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:35px;
+  align-items:center;
 }
 
 .hero h1{
-  font-size:clamp(42px,5.4vw,68px);
-  line-height:1.04;
+  margin:0 0 18px;
+  font-size:clamp(42px,5.5vw,70px);
+  line-height:1.02;
   letter-spacing:-3px;
-  margin:0 0 19px;
 }
 
 .hero h1 em{
-  font-style:normal;
   color:var(--blue);
+  font-style:normal;
 }
 
 .hero p{
-  font-size:19px;
+  color:#45627f;
   line-height:1.75;
-  color:#425d7a;
+  font-size:18px;
+}
+
+.hero-card{
+  background:#fff;
+  border:1px solid #dbe9f7;
+  padding:28px;
+  border-radius:25px;
+  box-shadow:var(--shadow);
+}
+
+.hero-card h3{
+  margin-top:0;
+}
+
+.hero-point{
+  padding:13px 0;
+  border-bottom:1px solid #edf2f7;
+  font-weight:750;
 }
 
 .search{
   display:flex;
   background:#fff;
-  border:2px solid #75b5ff;
+  border:2px solid #74b3fb;
   border-radius:15px;
   padding:7px;
+  max-width:650px;
 }
 
 .search input{
@@ -218,11 +232,12 @@ nav{
   margin-top:13px;
 }
 
-.tag{
-  background:#fff;
-  border:1px solid #d8e7f8;
-  padding:7px 10px;
+.tag,
+.pill{
+  display:inline-block;
+  background:#eef5fc;
   border-radius:999px;
+  padding:7px 10px;
   font-size:12px;
   font-weight:800;
 }
@@ -232,12 +247,13 @@ nav{
 }
 
 .section-title{
-  font-size:31px;
   margin:0 0 8px;
+  font-size:31px;
+  letter-spacing:-1px;
 }
 
 .section-desc{
-  margin:0 0 22px;
+  margin:0 0 23px;
   color:var(--muted);
 }
 
@@ -249,7 +265,7 @@ nav{
 }
 
 .panel{
-  padding:23px;
+  padding:24px;
 }
 
 .categories{
@@ -259,13 +275,18 @@ nav{
 }
 
 .category{
-  padding:22px;
+  padding:23px 15px;
   text-align:center;
+  cursor:pointer;
 }
 
-.category .ico{
+.category:hover{
+  border-color:#9dc7f5;
+}
+
+.ico{
   font-size:34px;
-  margin-bottom:7px;
+  margin-bottom:8px;
 }
 
 .category b{
@@ -279,7 +300,7 @@ nav{
 .grid2{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:17px;
 }
 
 .grid4{
@@ -293,48 +314,20 @@ nav{
 }
 
 .avatar{
-  height:165px;
-  background:#eef4fa;
+  height:150px;
+  background:linear-gradient(135deg,#edf5ff,#f8fbff);
   display:flex;
-  justify-content:center;
   align-items:center;
-  font-size:78px;
+  justify-content:center;
+  font-size:70px;
 }
 
 .expert-body{
   padding:17px;
 }
 
-.pill{
-  display:inline-block;
-  padding:6px 9px;
-  border-radius:999px;
-  background:#eef5fc;
-  font-size:11px;
-  font-weight:800;
-  margin:3px;
-}
-
-.muted{
-  color:var(--muted);
-}
-
-.tiny{
-  font-size:12px;
-}
-
-.notice{
-  background:#eaf4ff;
-  color:#225f9f;
-  border-radius:11px;
-  padding:12px 14px;
-  margin-bottom:15px;
-  font-size:13px;
-}
-
-.warn{
-  background:#fff6e6;
-  color:#7c5700;
+.expert-body h3{
+  margin:0 0 8px;
 }
 
 .field{
@@ -345,48 +338,149 @@ nav{
 
 .field label{
   font-size:13px;
-  font-weight:800;
+  font-weight:850;
 }
 
 .field input,
 .field select,
 .field textarea{
   width:100%;
-  border:1px solid #d7e3ef;
+  border:1px solid #d5e2ee;
   border-radius:11px;
   padding:12px;
+  outline:none;
+  background:#fff;
 }
 
 .field textarea{
-  min-height:115px;
+  min-height:110px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:#6aaef8;
+  box-shadow:0 0 0 3px rgba(11,111,227,.08);
+}
+
+.notice{
+  background:#eaf4ff;
+  color:#245e98;
+  border-radius:11px;
+  padding:13px 14px;
+  margin:10px 0 15px;
+  font-size:13px;
+}
+
+.notice.warn{
+  background:#fff6e6;
+  color:#765300;
+}
+
+.notice.good{
+  background:#eafaf3;
+  color:#187454;
+}
+
+.notice.bad{
+  background:#fff0f0;
+  color:#9c3434;
 }
 
 .check{
   display:flex;
+  align-items:flex-start;
   gap:9px;
-  margin:10px 0;
+  margin:12px 0;
   font-size:13px;
 }
 
 .row{
   display:flex;
   gap:8px;
-  align-items:center;
   flex-wrap:wrap;
+  align-items:center;
 }
 
 .space{
   display:flex;
   justify-content:space-between;
-  gap:12px;
   align-items:center;
+  gap:12px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.tiny{
+  font-size:12px;
+}
+
+.request{
+  padding:18px;
+  margin:11px 0;
+}
+
+.request h4{
+  margin:0 0 8px;
+  font-size:17px;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.status{
+  display:inline-flex;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:850;
+  background:#edf4fb;
+  color:#46617c;
+}
+
+.status.open{
+  background:#fff3d8;
+  color:#8a6300;
+}
+
+.status.matched{
+  background:#e6f1ff;
+  color:#1762ac;
+}
+
+.status.in_progress{
+  background:#e8f6ff;
+  color:#0875a5;
+}
+
+.status.done{
+  background:#e6f8ee;
+  color:#14724e;
+}
+
+.badge{
+  background:var(--red);
+  color:#fff;
+  border-radius:999px;
+  padding:2px 7px;
+  font-size:10px;
+}
+
+.dashboard-head{
+  margin-bottom:20px;
 }
 
 .tabs{
   display:flex;
-  gap:8px;
+  gap:7px;
   flex-wrap:wrap;
-  margin-bottom:15px;
+  margin:14px 0;
 }
 
 .tab{
@@ -399,1961 +493,1395 @@ nav{
   color:#fff;
 }
 
-.request{
-  padding:17px;
-  margin:10px 0;
-}
-
-.meta{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.badge{
-  background:var(--red);
-  color:#fff;
-  border-radius:999px;
-  padding:2px 7px;
-  font-size:10px;
-}
-
 .stat-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:16px;
+  gap:13px;
+  margin-bottom:18px;
 }
 
 .stat{
-  padding:17px;
+  padding:20px;
+  text-align:center;
 }
 
 .stat strong{
   display:block;
-  font-size:27px;
+  font-size:30px;
+  color:var(--blue);
+}
+
+.subscription-card{
+  padding:26px;
+  background:
+    radial-gradient(circle at 95% 5%,rgba(11,111,227,.15),transparent 35%),
+    #fff;
+}
+
+.subscription-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+}
+
+.subscription-price{
+  font-size:38px;
+  color:var(--blue);
+  font-weight:950;
+  letter-spacing:-2px;
+}
+
+.subscription-info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:18px 0;
+}
+
+.info-box{
+  padding:14px;
+  border-radius:13px;
+  background:#f6f9fc;
+}
+
+.info-box small{
+  display:block;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+.info-box b{
+  display:block;
+}
+
+.case-contact{
+  background:#edf8f4;
+  color:#1a644e;
+  border-radius:12px;
+  padding:14px;
+  margin:12px 0;
 }
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(5,21,40,.64);
   z-index:100;
+  background:rgba(5,21,40,.64);
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:17px;
+  padding:16px;
 }
 
 .modal-card{
-  width:min(720px,100%);
-  max-height:88vh;
+  width:min(520px,100%);
+  max-height:90vh;
   overflow:auto;
   padding:23px;
 }
 
 .legalbox{
   white-space:pre-wrap;
-  font-size:13px;
-  line-height:1.7;
-  background:#f9fbfd;
+  background:#f7f9fc;
   padding:16px;
   border-radius:12px;
-}
-
-.business{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  font-size:12px;
-  color:#60758a;
-  margin-top:15px;
-}
-
-footer{
-  background:#fff;
-  padding:34px 0;
-  border-top:1px solid var(--line);
-}
-
-/* ===============================
-   프리미엄
-================================ */
-
-.premium-payment-section{
-  max-width:1100px;
-  margin:32px auto;
-  padding:0 18px 40px;
-}
-
-.premium-plan-wrap{
-  display:grid;
-  grid-template-columns:1fr 1.5fr;
-  gap:18px;
-}
-
-.premium-price-card,
-.premium-benefits{
-  background:#fff;
-  border:1px solid #dbeafe;
-  border-radius:22px;
-  padding:30px;
-}
-
-.premium-price-card{
-  text-align:center;
-  border:2px solid #2383f4;
-  background:linear-gradient(180deg,#fff,#eef7ff);
-}
-
-.premium-badge{
-  display:inline-block;
-  padding:7px 18px;
-  background:#1670e8;
-  color:#fff;
-  border-radius:999px;
-  font-weight:800;
+  line-height:1.7;
   font-size:13px;
 }
 
-.premium-crown{
-  font-size:48px;
-  margin-top:12px;
-}
-
-.premium-price{
-  margin:22px 0;
-}
-
-.premium-price strong{
-  font-size:46px;
-  color:#1264d7;
-}
-
-.premium-benefit-title{
-  font-size:21px;
-  font-weight:900;
-  margin-bottom:18px;
-}
-
-.premium-benefit{
-  margin:14px 0;
-  font-weight:700;
-}
-
-.premium-status{
-  margin-bottom:14px;
-  padding:13px 16px;
-  border-radius:12px;
-  background:#f1f7ff;
-  color:#42607d;
-  font-weight:700;
-}
-
-.premium-pay-button{
-  width:100%;
-  margin-top:16px;
-  min-height:68px;
-  border:0;
+.admin-section{
+  margin-top:20px;
+  padding:22px;
+  background:#fff;
+  border:1px solid var(--line);
   border-radius:16px;
-  background:linear-gradient(90deg,#1670e8,#1386f7);
-  color:#fff;
-  font-size:21px;
-  font-weight:900;
 }
 
-.premium-pay-button:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-/* ===============================
-   관리자
-================================ */
-
-.admin-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  margin-bottom:24px;
+.admin-section h3{
+  margin-top:0;
 }
 
 .admin-stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin:22px 0 30px;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.admin-stat-card{
-  background:#fff;
-  border:1px solid #dbe7f5;
-  border-radius:18px;
-  padding:24px 18px;
+.admin-stat{
+  padding:20px;
   text-align:center;
 }
 
-.admin-stat-number{
-  font-size:34px;
-  font-weight:900;
-  color:#1670e8;
+.admin-stat strong{
+  display:block;
+  font-size:31px;
+  color:var(--blue);
 }
 
-.admin-stat-label{
-  font-size:14px;
-  font-weight:800;
-}
-
-.admin-section{
-  margin-top:24px;
-  padding:24px;
-  border:1px solid #e2e8f0;
-  border-radius:18px;
+footer{
   background:#fff;
+  border-top:1px solid var(--line);
+  padding:35px 0;
+  margin-top:30px;
 }
 
-.admin-section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:16px;
-  margin-bottom:18px;
+.footer-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  font-size:12px;
+  color:#64788d;
+  line-height:1.9;
 }
 
-@media(max-width:930px){
-
-  .navlinks{
-    display:none;
-  }
-
-  .grid2{
-    grid-template-columns:1fr;
-  }
-
-  .grid4{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .admin-stats{
-    grid-template-columns:repeat(2,1fr);
-  }
+@media(max-width:950px){
+  .navlinks{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .grid2{grid-template-columns:1fr}
+  .subscription-info{grid-template-columns:repeat(2,1fr)}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .admin-stats{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:620px){
-
-  .categories,
-  .grid4{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .premium-plan-wrap{
-    grid-template-columns:1fr;
-  }
-
-  .business{
-    grid-template-columns:1fr;
-  }
-
-  .admin-stats{
-    grid-template-columns:1fr;
-  }
+  .wrap{width:min(100% - 18px,1180px)}
+  nav{min-height:64px}
+  .logo{font-size:23px}
+  .nav-actions .outline:first-child{display:none}
+  .categories{grid-template-columns:1fr 1fr}
+  .grid4{grid-template-columns:1fr}
+  .subscription-top{display:block}
+  .subscription-info{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
+  <div class="wrap">
+    <nav>
 
-<div class="wrap">
+      <a href="#" class="logo">
+        전문가<b>ON</b>
+      </a>
 
-<nav>
+      <div class="navlinks">
+        <a href="#experts">전문가 찾기</a>
+        <a href="#consult" onclick="clearSelectedExpert()">상담신청</a>
+        <a href="#expertJoin">전문가 가입</a>
+        <a href="#support">이용안내</a>
+      </div>
 
-<a
-class="logo"
-href="#">
-전문가<b>ON</b>
-</a>
+      <div id="guestActions" class="nav-actions">
 
+        <button
+          class="btn outline"
+          onclick="openAuth('login')"
+        >
+          로그인
+        </button>
 
-<div class="navlinks">
+        <button
+          class="btn soft"
+          onclick="openExpertLogin()"
+        >
+          전문가 로그인
+        </button>
 
-<a href="#experts">
-전문가 찾기
-</a>
+        <button
+          class="btn primary"
+          onclick="openAuth('signup')"
+        >
+          회원가입
+        </button>
 
-<a
-href="#consult"
-onclick="clearSelectedExpert()">
-상담신청
-</a>
+      </div>
 
-<a href="#expertJoin">
-전문가 가입
-</a>
+      <div id="userActions" class="nav-actions hidden">
 
-<a
-href="#"
-onclick="openLegal('guide');return false;">
-이용안내
-</a>
+        <button
+          class="btn outline"
+          onclick="openDashboard()"
+        >
+          마이페이지
+          <span id="notifyBadge"></span>
+        </button>
 
-<a href="#support">
-고객센터
-</a>
+        <button
+          class="btn primary"
+          onclick="logout()"
+        >
+          로그아웃
+        </button>
 
-</div>
+      </div>
 
-
-<div
-id="guestActions"
-class="nav-actions">
-
-<button
-class="btn outline"
-onclick="openAuth('login')">
-로그인
-</button>
-
-<button
-class="btn primary"
-onclick="openAuth('signup')">
-회원가입
-</button>
-
-</div>
-
-
-<div
-id="userActions"
-class="nav-actions hidden">
-
-<button
-class="btn outline"
-onclick="openDashboard()">
-
-마이페이지
-
-<span id="notifyBadge"></span>
-
-</button>
-
-<button
-class="btn primary"
-onclick="logout()">
-로그아웃
-</button>
-
-</div>
-
-</nav>
-
-</div>
-
+    </nav>
+  </div>
 </header>
 
 
 <main>
 
-
 <section class="hero">
 
-<div class="wrap">
+  <div class="wrap hero-grid">
 
-<h1>
+    <div>
 
-필요한 순간,<br>
+      <h1>
+        필요한 순간,<br>
+        <em>전문가를 ON</em>하다
+      </h1>
 
-<em>
-전문가를 ON
-</em>하다
+      <p>
+        세무·노무·손해사정·법률·부동산까지.<br>
+        승인된 전문가를 찾고 바로 상담을 신청하세요.
+      </p>
 
-</h1>
+      <div class="search">
 
-<p>
-세무·노무·손해사정·법률·부동산까지.<br>
-검증된 전문가를 검색하고 바로 상담 요청하세요.
-</p>
+        <input
+          id="searchInput"
+          placeholder="예: 손해사정사, 보험금, 노무사"
+        >
 
+        <button
+          class="btn primary"
+          onclick="loadExperts()"
+        >
+          검색
+        </button>
 
-<div class="search">
+      </div>
 
-<input
-id="searchInput"
-placeholder="예: 세무사, 보험금청구, 임금체불">
+      <div class="tags">
+        <span class="tag">#보험금청구</span>
+        <span class="tag">#세무신고</span>
+        <span class="tag">#임금체불</span>
+        <span class="tag">#부동산</span>
+        <span class="tag">#법률상담</span>
+      </div>
 
-<button
-class="btn primary"
-onclick="loadExperts()">
-검색
-</button>
+    </div>
 
-</div>
+    <div class="hero-card">
 
+      <h3>전문가ON 이용 흐름</h3>
 
-<div class="tags">
+      <div class="hero-point">
+        ① 필요한 전문가를 검색합니다.
+      </div>
 
-<span class="tag">
-#세무신고
-</span>
+      <div class="hero-point">
+        ② 일반 매칭 또는 특정 전문가 상담을 신청합니다.
+      </div>
 
-<span class="tag">
-#보험금청구
-</span>
+      <div class="hero-point">
+        ③ 전문가가 상담을 수락하면 고객 연락처를 확인합니다.
+      </div>
 
-<span class="tag">
-#노동문제
-</span>
+      <div class="hero-point">
+        ④ 전문가와 직접 상담을 진행합니다.
+      </div>
 
-<span class="tag">
-#법률상담
-</span>
+    </div>
 
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <section class="section">
 
-<div class="wrap">
+  <div class="wrap">
 
-<h2 class="section-title">
-전문 분야
-</h2>
+    <h2 class="section-title">
+      전문 분야
+    </h2>
 
+    <p class="section-desc">
+      원하는 분야를 선택하세요.
+    </p>
 
-<div class="categories">
+    <div class="categories">
 
+      <div
+        class="card category"
+        onclick="pickCategory('세무사')"
+      >
+        <div class="ico">🧾</div>
+        <b>세무사</b>
+        <small>세금·절세</small>
+      </div>
 
-<div
-class="card category"
-onclick="pickCategory('세무사')">
+      <div
+        class="card category"
+        onclick="pickCategory('노무사')"
+      >
+        <div class="ico">👨‍💼</div>
+        <b>노무사</b>
+        <small>노동·인사</small>
+      </div>
 
-<div class="ico">🧾</div>
+      <div
+        class="card category"
+        onclick="pickCategory('손해사정사')"
+      >
+        <div class="ico">🛡️</div>
+        <b>손해사정사</b>
+        <small>보험금·손해사정</small>
+      </div>
 
-<b>세무사</b>
+      <div
+        class="card category"
+        onclick="pickCategory('변호사')"
+      >
+        <div class="ico">⚖️</div>
+        <b>변호사</b>
+        <small>법률·소송</small>
+      </div>
 
-<small>
-세금·절세
-</small>
+      <div
+        class="card category"
+        onclick="pickCategory('법무사')"
+      >
+        <div class="ico">📜</div>
+        <b>법무사</b>
+        <small>등기·상속</small>
+      </div>
 
-</div>
+      <div
+        class="card category"
+        onclick="pickCategory('행정사')"
+      >
+        <div class="ico">🗂️</div>
+        <b>행정사</b>
+        <small>민원·인허가</small>
+      </div>
 
+      <div
+        class="card category"
+        onclick="pickCategory('공인중개사')"
+      >
+        <div class="ico">🏠</div>
+        <b>공인중개사</b>
+        <small>매매·임대</small>
+      </div>
 
-<div
-class="card category"
-onclick="pickCategory('노무사')">
+      <div
+        class="card category"
+        onclick="pickCategory('기타')"
+      >
+        <div class="ico">🔎</div>
+        <b>기타</b>
+        <small>다양한 전문가</small>
+      </div>
 
-<div class="ico">👨‍💼</div>
+    </div>
 
-<b>노무사</b>
-
-<small>
-노동·인사
-</small>
-
-</div>
-
-
-<div
-class="card category"
-onclick="pickCategory('손해사정사')">
-
-<div class="ico">🛡️</div>
-
-<b>손해사정사</b>
-
-<small>
-보험금·손해사정
-</small>
-
-</div>
-
-
-<div
-class="card category"
-onclick="pickCategory('변호사')">
-
-<div class="ico">⚖️</div>
-
-<b>변호사</b>
-
-<small>
-법률·소송
-</small>
-
-</div>
-
-
-<div
-class="card category"
-onclick="pickCategory('법무사')">
-
-<div class="ico">📜</div>
-
-<b>법무사</b>
-
-<small>
-등기·상속
-</small>
-
-</div>
-
-
-<div
-class="card category"
-onclick="pickCategory('행정사')">
-
-<div class="ico">🗂️</div>
-
-<b>행정사</b>
-
-<small>
-인허가·민원
-</small>
-
-</div>
-
-
-<div
-class="card category"
-onclick="pickCategory('공인중개사')">
-
-<div class="ico">🏠</div>
-
-<b>공인중개사</b>
-
-<small>
-매매·임대
-</small>
-
-</div>
-
-
-<div
-class="card category"
-onclick="pickCategory('기타')">
-
-<div class="ico">🔎</div>
-
-<b>기타 전문가</b>
-
-<small>
-더 많은 분야
-</small>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <section
-class="section"
-id="experts">
+  class="section"
+  id="experts"
+>
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="space">
+    <div class="space">
 
-<div>
+      <div>
+        <h2 class="section-title">
+          활동 중인 전문가
+        </h2>
 
-<h2 class="section-title">
-활동 중인 전문가
-</h2>
+        <p class="section-desc">
+          관리자 승인과 이용권 활성화를 완료한 전문가입니다.
+        </p>
+      </div>
 
-<p class="section-desc">
-관리자 승인 + 프리미엄 이용권 활성 전문가만 노출됩니다.
-</p>
+      <button
+        class="btn outline"
+        onclick="loadExperts()"
+      >
+        새로고침
+      </button>
 
-</div>
+    </div>
 
-<button
-class="btn outline"
-onclick="loadExperts()">
-새로고침
-</button>
+    <div
+      id="expertList"
+      class="grid4"
+    ></div>
 
-</div>
-
-<div
-id="expertList"
-class="grid4">
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <section
-class="section"
-id="consult">
+  class="section"
+  id="consult"
+>
 
-<div class="wrap">
+  <div class="wrap">
 
-<h2 class="section-title">
-상담 신청
-</h2>
+    <h2 class="section-title">
+      상담 신청
+    </h2>
 
-<p class="section-desc">
-일반 매칭 또는 특정 전문가에게 직접 상담을 신청할 수 있습니다.
-</p>
+    <p class="section-desc">
+      일반 매칭 또는 특정 전문가를 지정할 수 있습니다.
+    </p>
 
+    <div class="card panel">
 
-<div class="card panel">
+      <div
+        id="selectedExpertNotice"
+        class="notice hidden"
+      ></div>
 
-<div
-id="selectedExpertNotice"
-class="notice hidden">
-</div>
+      <form id="consultForm">
 
+        <input
+          id="selectedExpertId"
+          type="hidden"
+        >
 
-<form id="consultForm">
+        <div class="grid2">
 
+          <div class="field">
 
-<input
-id="selectedExpertId"
-type="hidden">
+            <label>
+              전문 분야
+            </label>
 
+            <select
+              id="consultCategory"
+              required
+            >
+              <option value="">선택</option>
+              <option>세무사</option>
+              <option>노무사</option>
+              <option>손해사정사</option>
+              <option>변호사</option>
+              <option>법무사</option>
+              <option>행정사</option>
+              <option>공인중개사</option>
+              <option>기타</option>
+            </select>
 
-<div class="grid2">
+          </div>
 
+          <div class="field">
 
-<div class="field">
+            <label>
+              지역
+            </label>
 
-<label>
-전문 분야
-</label>
+            <input
+              id="consultRegion"
+              placeholder="예: 전주"
+              required
+            >
 
-<select
-id="consultCategory"
-required>
+          </div>
 
-<option value="">
-선택하세요
-</option>
+        </div>
 
-<option>세무사</option>
-<option>노무사</option>
-<option>손해사정사</option>
-<option>변호사</option>
-<option>법무사</option>
-<option>행정사</option>
-<option>공인중개사</option>
-<option>기타</option>
 
-</select>
+        <div class="grid2">
 
-</div>
+          <div class="field">
 
+            <label>
+              연락처
+            </label>
 
-<div class="field">
+            <input
+              id="consultPhone"
+              placeholder="010-0000-0000"
+              required
+            >
 
-<label>
-지역
-</label>
+          </div>
 
-<input
-id="consultRegion"
-placeholder="예: 서울 강남구"
-required>
+          <div class="field">
 
-</div>
+            <label>
+              선호 연락방법
+            </label>
 
+            <select id="consultContact">
+              <option>전화</option>
+              <option>문자</option>
+              <option>카카오톡</option>
+              <option>이메일</option>
+            </select>
 
-</div>
+          </div>
 
+        </div>
 
-<div class="grid2">
 
+        <div class="field">
 
-<div class="field">
+          <label>
+            상담 제목
+          </label>
 
-<label>
-연락처
-</label>
+          <input
+            id="consultTitle"
+            required
+          >
 
-<input
-id="consultPhone"
-placeholder="010-0000-0000"
-required>
+        </div>
 
-</div>
 
+        <div class="field">
 
-<div class="field">
+          <label>
+            상담 내용
+          </label>
 
-<label>
-선호 연락방법
-</label>
+          <textarea
+            id="consultContent"
+            required
+            placeholder="상담 내용을 입력하세요. 주민등록번호, 계좌번호 등 불필요한 민감정보는 입력하지 마세요."
+          ></textarea>
 
-<select id="consultContact">
+        </div>
 
-<option>전화</option>
-<option>문자</option>
-<option>카카오톡</option>
-<option>이메일</option>
 
-</select>
+        <div class="notice warn">
+          상담이 배정되면 선택 또는 수락한 전문가에게 연락처와 상담정보가 제공됩니다.
+        </div>
 
-</div>
 
+        <label class="check">
 
-</div>
+          <input
+            id="consultPrivacy"
+            type="checkbox"
+            required
+          >
 
+          <span>
+            [필수] 상담 처리를 위한 개인정보 수집·이용에 동의합니다.
+          </span>
 
-<div class="field">
+        </label>
 
-<label>
-상담 제목
-</label>
 
-<input
-id="consultTitle"
-required>
+        <label class="check">
 
-</div>
+          <input
+            id="consultThirdParty"
+            type="checkbox"
+            required
+          >
 
+          <span>
+            [필수] 상담을 담당하는 전문가에게 정보 제공에 동의합니다.
+          </span>
 
-<div class="field">
+        </label>
 
-<label>
-상담 내용
-</label>
 
-<textarea
-id="consultContent"
-required
-placeholder="주민등록번호, 계좌번호 등 불필요한 민감정보는 입력하지 마세요.">
-</textarea>
+        <button
+          class="btn primary"
+          type="submit"
+        >
+          상담 신청하기
+        </button>
 
-</div>
+      </form>
 
+    </div>
 
-<div class="notice warn">
-
-상담 내용은 상담 진행에 필요한 범위에서 배정 전문가에게 제공될 수 있습니다.
-
-</div>
-
-
-<label class="check">
-
-<input
-type="checkbox"
-id="consultPrivacy"
-required>
-
-<span>
-
-<b>[필수]</b>
-
-개인정보 수집·이용에 동의합니다.
-
-</span>
-
-</label>
-
-
-<label class="check">
-
-<input
-type="checkbox"
-id="consultThirdParty"
-required>
-
-<span>
-
-<b>[필수]</b>
-
-배정 전문가에게 상담정보 및 연락처가 제공되는 것에 동의합니다.
-
-</span>
-
-</label>
-
-
-<button
-class="btn primary"
-type="submit">
-
-상담 신청하기
-
-</button>
-
-
-</form>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <section
-class="section"
-id="expertJoin">
+  class="section"
+  id="expertJoin"
+>
 
-<div class="wrap">
+  <div class="wrap">
 
-<h2 class="section-title">
-전문가 가입
-</h2>
+    <h2 class="section-title">
+      전문가 가입
+    </h2>
 
-<p class="section-desc">
-전문가 정보 제출 후 관리자 승인을 받아야 합니다.
-</p>
+    <p class="section-desc">
+      정보 제출 후 관리자 승인과 이용권 활성화를 거쳐 활동할 수 있습니다.
+    </p>
 
+    <div class="card panel">
 
-<div class="card panel">
+      <form id="expertForm">
 
+        <div class="grid2">
 
-<form id="expertForm">
+          <div class="field">
 
+            <label>
+              전문가 유형
+            </label>
 
-<div class="grid2">
+            <select
+              id="expertCategory"
+              required
+            >
+              <option value="">선택</option>
+              <option>세무사</option>
+              <option>노무사</option>
+              <option>손해사정사</option>
+              <option>변호사</option>
+              <option>법무사</option>
+              <option>행정사</option>
+              <option>공인중개사</option>
+              <option>기타</option>
+            </select>
 
+          </div>
 
-<div class="field">
+          <div class="field">
 
-<label>
-전문가 유형
-</label>
+            <label>
+              활동 지역
+            </label>
 
-<select
-id="expertCategory"
-required>
+            <input
+              id="expertRegion"
+              required
+            >
 
-<option value="">
-선택
-</option>
+          </div>
 
-<option>세무사</option>
-<option>노무사</option>
-<option>손해사정사</option>
-<option>변호사</option>
-<option>법무사</option>
-<option>행정사</option>
-<option>공인중개사</option>
-<option>기타</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>
-활동 지역
-</label>
-
-<input
-id="expertRegion"
-required>
-
-</div>
+        </div>
 
 
-</div>
+        <div class="grid2">
+
+          <div class="field">
+
+            <label>
+              사무소 / 상호명
+            </label>
+
+            <input
+              id="expertOffice"
+              required
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              자격번호
+            </label>
+
+            <input
+              id="expertLicense"
+              required
+            >
+
+          </div>
+
+        </div>
 
 
-<div class="grid2">
+        <div class="field">
+
+          <label>
+            전문가 소개
+          </label>
+
+          <textarea
+            id="expertBio"
+            required
+          ></textarea>
+
+        </div>
 
 
-<div class="field">
+        <label class="check">
 
-<label>
-사무소/상호명
-</label>
+          <input
+            id="expertTerms"
+            type="checkbox"
+            required
+          >
 
-<input
-id="expertOffice"
-required>
+          <span>
+            [필수] 전문가 이용약관 및 개인정보 보호정책에 동의합니다.
+          </span>
 
-</div>
-
-
-<div class="field">
-
-<label>
-자격증 번호
-</label>
-
-<input
-id="expertLicense"
-required>
-
-</div>
+        </label>
 
 
-</div>
+        <button
+          class="btn primary"
+          type="submit"
+        >
+          전문가 승인 요청
+        </button>
 
+      </form>
 
-<div class="field">
+    </div>
 
-<label>
-전문가 소개
-</label>
-
-<textarea
-id="expertBio"
-required>
-</textarea>
-
-</div>
-
-
-<label class="check">
-
-<input
-type="checkbox"
-id="expertTerms"
-required>
-
-<span>
-
-<b>[필수]</b>
-
-전문가 이용약관 및 운영정책에 동의합니다.
-
-</span>
-
-</label>
-
-
-<button
-class="btn primary"
-type="submit">
-
-전문가 승인 요청
-
-</button>
-
-
-</form>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <section
-class="section"
-id="support">
+  class="section"
+  id="support"
+>
 
-<div class="wrap">
+  <div class="wrap">
 
-<h2 class="section-title">
-고객센터
-</h2>
+    <h2 class="section-title">
+      이용안내
+    </h2>
 
+    <div class="grid2">
 
-<div class="card panel">
+      <div class="card panel">
 
-<form id="supportForm">
+        <h3>고객 이용방법</h3>
 
+        <p class="muted">
+          전문가 검색 → 상담신청 → 전문가 수락 → 상담 진행 순서로 이용합니다.
+        </p>
 
-<div class="field">
+      </div>
 
-<label>
-문의 유형
-</label>
+      <div class="card panel">
 
-<select id="supportType">
+        <h3>전문가 이용방법</h3>
 
-<option>이용문의</option>
-<option>전문가 신고</option>
-<option>개인정보</option>
-<option>결제/환불</option>
-<option>기타</option>
+        <p class="muted">
+          회원가입 → 전문가 신청 → 관리자 승인 → 이용권 결제 → 상담 수락 및 고객 연결 순서입니다.
+        </p>
 
-</select>
+      </div>
 
-</div>
+    </div>
 
-
-<div class="field">
-
-<label>
-제목
-</label>
-
-<input
-id="supportTitle"
-required>
-
-</div>
-
-
-<div class="field">
-
-<label>
-내용
-</label>
-
-<textarea
-id="supportContent"
-required>
-</textarea>
-
-</div>
-
-
-<button
-class="btn primary"
-type="submit">
-
-문의 접수
-
-</button>
-
-
-</form>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <section
-class="section hidden"
-id="dashboard">
+  class="section hidden"
+  id="dashboard"
+>
+
+  <div class="wrap">
+
+    <div class="dashboard-head space">
+
+      <div>
+
+        <h2 class="section-title">
+          마이페이지
+        </h2>
+
+        <p
+          id="dashWelcome"
+          class="section-desc"
+        ></p>
+
+      </div>
+
+      <button
+        class="btn outline"
+        onclick="refreshDashboard()"
+      >
+        전체 새로고침
+      </button>
+
+    </div>
+
+
+    <div
+      id="expertStats"
+      class="stat-grid hidden"
+    >
+
+      <div class="card stat">
+        <strong id="statNew">0</strong>
+        <span>신규 요청</span>
+      </div>
+
+      <div class="card stat">
+        <strong id="statMine">0</strong>
+        <span>내 상담</span>
+      </div>
+
+      <div class="card stat">
+        <strong id="statProgress">0</strong>
+        <span>상담중</span>
+      </div>
+
+      <div class="card stat">
+        <strong id="statDone">0</strong>
+        <span>완료</span>
+      </div>
+
+    </div>
+
+
+    <div class="tabs">
 
-<div class="wrap">
+      <button
+        class="btn tab active"
+        onclick="switchDash('profile',this)"
+      >
+        내 정보
+      </button>
 
+      <button
+        class="btn tab"
+        onclick="switchDash('customer',this)"
+      >
+        내 상담신청
+      </button>
 
-<div class="space">
+      <button
+        id="subscriptionTab"
+        class="btn tab hidden"
+        onclick="switchDash('subscription',this)"
+      >
+        이용권
+      </button>
 
-<div>
+      <button
+        id="leadTab"
+        class="btn tab hidden"
+        onclick="switchDash('leads',this)"
+      >
+        신규 요청
+      </button>
 
-<h2 class="section-title">
-마이페이지
-</h2>
+      <button
+        id="myCasesTab"
+        class="btn tab hidden"
+        onclick="switchDash('cases',this)"
+      >
+        내 상담 DB
+      </button>
 
-<p
-class="section-desc"
-id="dashWelcome">
-</p>
+      <button
+        class="btn tab"
+        onclick="switchDash('notifications',this)"
+      >
+        알림
+        <span id="dashNotifyBadge"></span>
+      </button>
 
-</div>
+      <button
+        id="adminTab"
+        class="btn tab hidden"
+        onclick="switchDash('admin',this)"
+      >
+        관리자
+      </button>
 
+    </div>
 
-<button
-class="btn outline"
-onclick="refreshDashboard()">
 
-전체 새로고침
+    <div
+      id="dash-profile"
+      class="card panel"
+    ></div>
 
-</button>
 
-</div>
+    <div
+      id="dash-customer"
+      class="card panel hidden"
+    >
+      <div id="myRequests"></div>
+    </div>
 
 
-<div
-id="expertStats"
-class="stat-grid hidden">
+    <div
+      id="dash-subscription"
+      class="hidden"
+    >
 
+      <div class="card subscription-card">
 
-<div class="card stat">
+        <div class="subscription-top">
 
-<strong id="statNew">
-0
-</strong>
+          <div>
 
-<span>
-신규 요청
-</span>
+            <span class="pill">
+              전문가 전용
+            </span>
 
-</div>
+            <h2>
+              전문가ON 프리미엄
+            </h2>
 
+            <p class="muted">
+              상담 요청 확인, 고객 연락처 열람, 프로필 노출 기능을 이용합니다.
+            </p>
 
-<div class="card stat">
+          </div>
 
-<strong id="statMine">
-0
-</strong>
+          <div>
 
-<span>
-내 상담
-</span>
+            <div class="subscription-price">
+              월 198,000원
+            </div>
 
-</div>
+            <div class="tiny muted">
+              부가세 포함
+            </div>
 
+          </div>
 
-<div class="card stat">
+        </div>
 
-<strong id="statProgress">
-0
-</strong>
 
-<span>
-상담중
-</span>
+        <div
+          id="subscriptionStatusBox"
+          class="subscription-info"
+        ></div>
 
-</div>
 
+        <div
+          id="subscriptionMessage"
+          class="notice"
+        ></div>
 
-<div class="card stat">
 
-<strong id="statDone">
-0
-</strong>
+        <button
+          id="subscriptionPayBtn"
+          class="btn primary"
+          type="button"
+          onclick="startSubscriptionPayment()"
+        >
+          월 198,000원 이용권 결제
+        </button>
 
-<span>
-완료
-</span>
+      </div>
 
-</div>
+    </div>
 
 
-</div>
+    <div
+      id="dash-leads"
+      class="card panel hidden"
+    >
 
+      <div class="notice">
+        같은 전문분야의 미배정 상담입니다. 수락하면 고객 연락처를 확인할 수 있습니다.
+      </div>
 
-<section
-id="subscriptionCard"
-class="premium-payment-section hidden">
+      <div id="leadList"></div>
 
+    </div>
 
-<div
-id="subscriptionStatusText"
-class="premium-status">
 
-이용권 상태를 확인하고 있습니다.
+    <div
+      id="dash-cases"
+      class="card panel hidden"
+    >
 
-</div>
+      <div class="space">
 
+        <h3>
+          내 상담 DB
+        </h3>
 
-<div class="premium-plan-wrap">
+        <button
+          class="btn outline small"
+          onclick="loadMyCases()"
+        >
+          새로고침
+        </button>
 
+      </div>
 
-<div class="premium-price-card">
+      <div id="caseList"></div>
 
-<div class="premium-badge">
-전문가 전용
-</div>
+    </div>
 
-<div class="premium-crown">
-👑
-</div>
 
-<h2>
-프리미엄 플랜
-</h2>
+    <div
+      id="dash-notifications"
+      class="card panel hidden"
+    >
 
-<p>
-전문가ON의 모든 상담 기능을 이용할 수 있는 월 정액 이용권
-</p>
+      <div class="space">
 
-<div class="premium-price">
+        <h3>
+          알림
+        </h3>
 
-월
+        <button
+          class="btn outline small"
+          onclick="markAllRead()"
+        >
+          모두 읽음
+        </button>
 
-<strong>
-198,000원
-</strong>
+      </div>
 
-</div>
+      <div id="notifications"></div>
 
-<p class="tiny muted">
-부가세 포함
-</p>
+    </div>
 
-</div>
 
+    <div
+      id="dash-admin"
+      class="hidden"
+    >
 
-<div class="premium-benefits">
+      <div class="admin-stats">
 
-<div class="premium-benefit-title">
-프리미엄 혜택
-</div>
+        <div class="card admin-stat">
+          <strong id="adminTotalExperts">0</strong>
+          전체 전문가
+        </div>
 
-<div class="premium-benefit">
-✅ 신규 상담 요청 확인
-</div>
+        <div class="card admin-stat">
+          <strong id="adminPendingExperts">0</strong>
+          승인 대기
+        </div>
 
-<div class="premium-benefit">
-✅ 고객 상담 매칭
-</div>
+        <div class="card admin-stat">
+          <strong id="adminActiveExperts">0</strong>
+          활성 전문가
+        </div>
 
-<div class="premium-benefit">
-✅ 배정 고객 연락처 확인
-</div>
+        <div class="card admin-stat">
+          <strong id="adminTotalConsults">0</strong>
+          전체 상담
+        </div>
 
-<div class="premium-benefit">
-✅ 전문가 프로필 노출
-</div>
+      </div>
 
-<div class="premium-benefit">
-✅ 내 상담 DB
-</div>
 
-<div class="premium-benefit">
-✅ 상담 진행상태 관리
-</div>
+      <div class="admin-section">
 
-</div>
+        <div class="space">
 
+          <h3>
+            전문가 승인 관리
+          </h3>
 
-</div>
+          <button
+            class="btn outline small"
+            onclick="loadAdminExperts()"
+          >
+            새로고침
+          </button>
 
+        </div>
 
-<button
-id="subscriptionPayBtn"
-class="premium-pay-button"
-onclick="startSubscriptionPayment()">
+        <div id="adminExperts"></div>
 
-🔒 월 198,000원 결제하기
+      </div>
 
-</button>
 
+      <div class="admin-section">
+
+        <div class="space">
+
+          <h3>
+            상담 신청 및 배정
+          </h3>
+
+          <button
+            class="btn outline small"
+            onclick="loadAdminConsults()"
+          >
+            새로고침
+          </button>
+
+        </div>
+
+        <div id="adminConsults"></div>
+
+      </div>
+
+
+      <div class="admin-section">
+
+        <div class="space">
+
+          <h3>
+            구독 현황
+          </h3>
+
+          <button
+            class="btn outline small"
+            onclick="loadAdminSubscriptions()"
+          >
+            새로고침
+          </button>
+
+        </div>
+
+        <div id="adminSubscriptions"></div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
-
-
-<div class="tabs">
-
-
-<button
-class="btn tab active"
-onclick="switchDash('profile',this)">
-
-내 정보
-
-</button>
-
-
-<button
-class="btn tab"
-onclick="switchDash('customer',this)">
-
-내 상담신청
-
-</button>
-
-
-<button
-class="btn tab hidden"
-id="leadTab"
-onclick="switchDash('leads',this)">
-
-신규 요청
-
-</button>
-
-
-<button
-class="btn tab hidden"
-id="myCasesTab"
-onclick="switchDash('cases',this)">
-
-내 상담 DB
-
-</button>
-
-
-<button
-class="btn tab"
-onclick="switchDash('notifications',this)">
-
-알림
-
-<span id="dashNotifyBadge"></span>
-
-</button>
-
-
-<button
-class="btn tab hidden"
-id="adminTab"
-onclick="switchDash('admin',this)">
-
-관리자
-
-</button>
-
-
-</div>
-
-
-<div
-id="dash-profile"
-class="card panel">
-</div>
-
-
-<div
-id="dash-customer"
-class="card panel hidden">
-
-<div id="myRequests">
-</div>
-
-</div>
-
-
-<div
-id="dash-leads"
-class="card panel hidden">
-
-<div class="notice">
-
-내 전문분야의 미배정 상담 요청입니다.
-
-</div>
-
-<div id="leadList">
-</div>
-
-</div>
-
-
-<div
-id="dash-cases"
-class="card panel hidden">
-
-<div class="space">
-
-<h3>
-내게 배정된 상담 DB
-</h3>
-
-<button
-class="btn outline small"
-onclick="loadMyCases()">
-
-새로고침
-
-</button>
-
-</div>
-
-<div id="caseList">
-</div>
-
-</div>
-
-
-<div
-id="dash-notifications"
-class="card panel hidden">
-
-<div class="space">
-
-<h3>
-알림
-</h3>
-
-<button
-class="btn outline small"
-onclick="markAllRead()">
-
-모두 읽음
-
-</button>
-
-</div>
-
-<div id="notifications">
-</div>
-
-</div>
-
-
-<div
-id="dash-admin"
-class="card panel hidden">
-
-
-<div class="admin-head">
-
-<div>
-
-<h2>
-전문가ON 관리자센터
-</h2>
-
-<p>
-전문가 승인, 상담, 구독 및 결제 현황을 관리합니다.
-</p>
-
-</div>
-
-
-<button
-class="btn primary"
-onclick="loadAdminDashboard()">
-
-전체 새로고침
-
-</button>
-
-</div>
-
-
-<div class="admin-stats">
-
-
-<div class="admin-stat-card">
-
-<div class="admin-stat-number"
-id="adminTotalExperts">
-0
-</div>
-
-<div class="admin-stat-label">
-전체 전문가
-</div>
-
-</div>
-
-
-<div class="admin-stat-card">
-
-<div class="admin-stat-number"
-id="adminPendingExperts">
-0
-</div>
-
-<div class="admin-stat-label">
-승인 대기
-</div>
-
-</div>
-
-
-<div class="admin-stat-card">
-
-<div class="admin-stat-number"
-id="adminApprovedExperts">
-0
-</div>
-
-<div class="admin-stat-label">
-승인 완료
-</div>
-
-</div>
-
-
-<div class="admin-stat-card">
-
-<div class="admin-stat-number"
-id="adminRejectedExperts">
-0
-</div>
-
-<div class="admin-stat-label">
-승인 거절
-</div>
-
-</div>
-
-
-<div class="admin-stat-card">
-
-<div class="admin-stat-number"
-id="adminConsultCount">
-0
-</div>
-
-<div class="admin-stat-label">
-전체 상담
-</div>
-
-</div>
-
-
-<div class="admin-stat-card">
-
-<div class="admin-stat-number"
-id="adminActiveSubCount">
-0
-</div>
-
-<div class="admin-stat-label">
-활성 구독
-</div>
-
-</div>
-
-
-</div>
-
-
-<div class="admin-section">
-
-<div class="admin-section-head">
-
-<h3>
-전문가 승인 관리
-</h3>
-
-<button
-class="btn outline small"
-onclick="loadAdminExperts()">
-
-새로고침
-
-</button>
-
-</div>
-
-<div id="adminExperts">
-</div>
-
-</div>
-
-
-<div class="admin-section">
-
-<div class="admin-section-head">
-
-<h3>
-상담 신청 및 배정 현황
-</h3>
-
-<button
-class="btn outline small"
-onclick="loadAdminConsults()">
-
-새로고침
-
-</button>
-
-</div>
-
-<div id="adminConsults">
-</div>
-
-</div>
-
-
-<div class="admin-section">
-
-<div class="admin-section-head">
-
-<h3>
-구독 · 결제 관리
-</h3>
-
-<button
-class="btn outline small"
-onclick="loadAdminSubscriptions()">
-
-새로고침
-
-</button>
-
-</div>
-
-<div id="adminSubscriptions">
-</div>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</section>
-
 
 </main>
 
 
 <div
-id="authModal"
-class="modal hidden">
+  id="authModal"
+  class="modal hidden"
+>
 
-<div
-class="card modal-card"
-style="max-width:460px">
+  <div class="card modal-card">
 
+    <div class="space">
 
-<div class="space">
+      <h2 id="authTitle">
+        로그인
+      </h2>
 
-<h2 id="authTitle">
-로그인
-</h2>
+      <button
+        class="btn outline small"
+        onclick="closeAuth()"
+      >
+        닫기
+      </button>
 
-<button
-class="btn outline small"
-onclick="closeAuth()">
+    </div>
 
-닫기
+    <div
+      id="expertLoginNotice"
+      class="notice hidden"
+    >
+      전문가 계정으로 로그인하면 전문가 마이페이지로 이동합니다.
+    </div>
 
-</button>
+    <div
+      id="authNameWrap"
+      class="field hidden"
+    >
 
-</div>
+      <label>
+        이름
+      </label>
 
+      <input id="authName">
 
-<div
-id="authNameWrap"
-class="field hidden">
+    </div>
 
-<label>
-이름
-</label>
+    <div class="field">
 
-<input id="authName">
+      <label>
+        이메일
+      </label>
 
-</div>
+      <input
+        id="authEmail"
+        type="email"
+      >
 
+    </div>
 
-<div class="field">
+    <div class="field">
 
-<label>
-이메일
-</label>
+      <label>
+        비밀번호
+      </label>
 
-<input
-id="authEmail"
-type="email">
+      <input
+        id="authPassword"
+        type="password"
+      >
 
-</div>
+    </div>
 
+    <div
+      id="signupConsentWrap"
+      class="hidden"
+    >
 
-<div class="field">
+      <label class="check">
 
-<label>
-비밀번호
-</label>
+        <input
+          id="agreeTerms"
+          type="checkbox"
+        >
 
-<input
-id="authPassword"
-type="password">
+        <span>
+          [필수] 이용약관 동의
+        </span>
 
-</div>
+      </label>
 
+      <label class="check">
 
-<div
-id="signupConsentWrap"
-class="hidden">
+        <input
+          id="agreePrivacy"
+          type="checkbox"
+        >
 
-<label class="check">
+        <span>
+          [필수] 개인정보 수집·이용 동의
+        </span>
 
-<input
-type="checkbox"
-id="agreeTerms">
+      </label>
 
-<span>
+    </div>
 
-<b>[필수]</b>
-
-이용약관 동의
-
-</span>
-
-</label>
-
-
-<label class="check">
-
-<input
-type="checkbox"
-id="agreePrivacy">
-
-<span>
-
-<b>[필수]</b>
-
-개인정보 수집·이용 동의
-
-</span>
-
-</label>
-
-
-<label class="check">
-
-<input
-type="checkbox"
-id="agreeMarketing">
-
-<span>
-
-[선택] 서비스 안내 수신 동의
-
-</span>
-
-</label>
-
-</div>
-
-
-<button
-id="authSubmit"
-class="btn primary"
-style="width:100%">
-
-로그인
-
-</button>
-
-
-</div>
-
-</div>
-
-
-<div
-id="legalModal"
-class="modal hidden">
-
-<div class="card modal-card">
-
-<div class="space">
-
-<h2 id="legalTitle">
-안내
-</h2>
-
-<button
-class="btn outline small"
-onclick="closeLegal()">
-
-닫기
-
-</button>
-
-</div>
-
-<div
-id="legalContent"
-class="legalbox">
-</div>
-
-</div>
+    <button
+      id="authSubmit"
+      class="btn primary"
+      style="width:100%"
+    >
+      로그인
+    </button>
+
+  </div>
 
 </div>
 
 
 <footer>
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="logo">
+    <div class="logo">
+      전문가<b>ON</b>
+    </div>
 
-전문가<b>ON</b>
+    <div class="footer-grid">
 
-</div>
+      <div>
+        상호: 전문가ON<br>
+        대표자: [사업자등록 후 입력]<br>
+        사업자등록번호: [등록 후 입력]<br>
+        사업장 주소: [입력]
+      </div>
 
-<div class="business">
+      <div>
+        고객센터: [전화번호/이메일]<br>
+        개인정보보호책임자: [입력]<br>
+        호스팅: GitHub Pages / Supabase<br>
+        결제: Toss Payments
+      </div>
 
-<div>
-<b>상호</b>
-전문가ON
-</div>
+    </div>
 
-<div>
-<b>대표자</b>
-[대표자 입력]
-</div>
+    <p class="tiny muted">
+      © 2026 전문가ON. All rights reserved.
+    </p>
 
-<div>
-<b>사업자등록번호</b>
-[등록 후 입력]
-</div>
-
-<div>
-<b>통신판매업 신고번호</b>
-[신고 후 입력]
-</div>
-
-<div>
-<b>사업장 주소</b>
-[주소 입력]
-</div>
-
-<div>
-<b>고객센터</b>
-[전화번호/이메일 입력]
-</div>
-
-</div>
-
-<p class="muted tiny">
-
-© 2026 전문가ON.
-
-</p>
-
-</div>
+  </div>
 
 </footer>
 
 
 <script>
 
-
-/* ===========================================
-   Supabase
-=========================================== */
+/* =========================================================
+   기본 설정
+========================================================= */
 
 const SUPABASE_URL =
-"https://qvhfoxscuxdvmywqbqbq.supabase.co";
-
+  "https://qvhfoxscuxdvmywqbqbq.supabase.co";
 
 const SUPABASE_ANON_KEY =
-"sb_publishable_0QYE_OY5x2XwuNUFMFCWxg_yxr-IHNs";
+  "sb_publishable_0QYE_OY5x2XwuNUFMFCWxg_yxr-IHNs";
 
+/*
+  현재 실제 테스트에서 정상 동작한
+  Toss Payments 테스트 Client Key
+*/
+const TOSS_CLIENT_KEY =
+  "test_ck_ZLKGPx4M3MNJqKMdwBlqVBaWypv1";
 
 const sb =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
-
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 
 let currentUser = null;
 let currentProfile = null;
 let currentExpert = null;
-let authMode = "login";
+let currentSubscription = null;
 let realtimeChannel = null;
-
+let authMode = "login";
+let expertLoginMode = false;
 
 const $ =
-id =>
-document.getElementById(id);
-
+  id =>
+    document.getElementById(id);
 
 const esc =
-v =>
-String(v ?? "")
-.replace(
-  /[&<>"']/g,
-  m => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[m])
-);
-
+  value =>
+    String(value ?? "")
+      .replace(
+        /[&<>"']/g,
+        ch => ({
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#39;"
+        }[ch])
+      );
 
 const fmt =
-d =>
-d
-? new Date(d)
-  .toLocaleString("ko-KR")
-: "";
-
+  date =>
+    date
+      ? new Date(date)
+          .toLocaleString("ko-KR")
+      : "-";
 
 function say(message){
   alert(message);
 }
 
+function statusLabel(status){
 
-const TERMS_VERSION =
-"2026-09-06-v1";
+  return ({
+    open:"매칭 대기",
+    matched:"전문가 배정",
+    in_progress:"상담중",
+    done:"상담 완료",
+    cancelled:"취소"
+  })[status] || status || "-";
 
-
-const PRIVACY_VERSION =
-"2026-09-06-v1";
-
-
-const EXPERT_TERMS_VERSION =
-"2026-09-06-v1";
-
-
-/* ===========================================
-   약관
-=========================================== */
-
-const LEGAL = {
-
-guide:`
-[전문가ON 이용안내]
-
-전문가ON은 고객과 전문가의 검색·상담 요청·연결을 지원하는 플랫폼입니다.
-
-전문가는 관리자 승인 및 유효한 프리미엄 이용권 상태에서 활동할 수 있습니다.
-`,
-
-terms:`
-[전문가ON 이용약관 초안]
-
-전문가ON은 전문가 검색 및 상담 연결 서비스를 제공합니다.
-
-실제 전문서비스 업무 및 계약은 이용자와 전문가 사이에 별도로 이루어집니다.
-`,
-
-privacy:`
-[개인정보처리방침 초안]
-
-회원가입, 상담 연결 및 서비스 운영을 위해 필요한 개인정보를 처리합니다.
-`,
-
-thirdparty:`
-[개인정보 제3자 제공]
-
-상담을 담당하는 전문가에게 상담 진행에 필요한 범위에서 고객정보가 제공될 수 있습니다.
-`,
-
-expertTerms:`
-[전문가 이용약관]
-
-전문가는 정확한 자격정보를 제출하고 각 직역의 관계법령을 준수해야 합니다.
-`
-
-};
-
-
-function openLegal(type){
-
-  $("legalTitle").textContent =
-    {
-      guide:"이용안내",
-      terms:"이용약관",
-      privacy:"개인정보처리방침",
-      thirdparty:"개인정보 제3자 제공",
-      expertTerms:"전문가 이용약관"
-    }[type] || "안내";
-
-
-  $("legalContent").textContent =
-    LEGAL[type] || "";
-
-
-  $("legalModal")
-    .classList
-    .remove("hidden");
 }
 
 
-function closeLegal(){
-
-  $("legalModal")
-    .classList
-    .add("hidden");
-}
-
-
-/* ===========================================
+/* =========================================================
    초기화
-=========================================== */
+========================================================= */
 
 async function init(){
 
@@ -2362,15 +1890,14 @@ async function init(){
   } =
     await sb.auth.getSession();
 
-
   currentUser =
     session?.user || null;
-
 
   await syncUser();
 
   await loadExperts();
 
+  await handleBillingResult();
 
   sb.auth.onAuthStateChange(
     async (_event,session) => {
@@ -2382,8 +1909,13 @@ async function init(){
 
     }
   );
+
 }
 
+
+/* =========================================================
+   로그인 상태 동기화
+========================================================= */
 
 async function syncUser(){
 
@@ -2394,7 +1926,6 @@ async function syncUser(){
       !!currentUser
     );
 
-
   $("userActions")
     .classList
     .toggle(
@@ -2402,11 +1933,11 @@ async function syncUser(){
       !currentUser
     );
 
-
   if(!currentUser){
 
     currentProfile = null;
     currentExpert = null;
+    currentSubscription = null;
 
     $("dashboard")
       .classList
@@ -2415,8 +1946,9 @@ async function syncUser(){
     return;
   }
 
-
-  const {data:p} =
+  const {
+    data:profile
+  } =
     await sb
       .from("profiles")
       .select("*")
@@ -2426,11 +1958,13 @@ async function syncUser(){
       )
       .maybeSingle();
 
+  currentProfile =
+    profile || null;
 
-  currentProfile = p;
 
-
-  const {data:e} =
+  const {
+    data:expert
+  } =
     await sb
       .from("experts")
       .select("*")
@@ -2440,30 +1974,27 @@ async function syncUser(){
       )
       .maybeSingle();
 
+  currentExpert =
+    expert || null;
 
-  currentExpert = e;
 
-
-  await recordPendingSignupConsents();
-
+  await loadSubscription();
 
   renderProfile();
 
-  renderSubscriptionStatus();
-
-
-  const expertActive =
-
+  const approved =
     currentExpert?.approval_status ===
-      "approved"
+    "approved";
 
-    &&
-
+  const active =
+    approved &&
     currentExpert?.subscription_status ===
-      "active";
+    "active" &&
+    currentSubscription?.status ===
+    "active";
 
 
-  $("subscriptionCard")
+  $("subscriptionTab")
     .classList
     .toggle(
       "hidden",
@@ -2475,7 +2006,7 @@ async function syncUser(){
     .classList
     .toggle(
       "hidden",
-      !expertActive
+      !active
     );
 
 
@@ -2483,7 +2014,7 @@ async function syncUser(){
     .classList
     .toggle(
       "hidden",
-      !expertActive
+      !active
     );
 
 
@@ -2491,7 +2022,7 @@ async function syncUser(){
     .classList
     .toggle(
       "hidden",
-      !expertActive
+      !active
     );
 
 
@@ -2499,8 +2030,7 @@ async function syncUser(){
     .classList
     .toggle(
       "hidden",
-      currentProfile?.is_admin !==
-      true
+      currentProfile?.is_admin !== true
     );
 
 
@@ -2509,235 +2039,206 @@ async function syncUser(){
   await loadNotifications();
 
 
-  if(expertActive){
+  if(currentExpert){
+
+    renderSubscription();
+
+  }
+
+
+  if(active){
 
     await loadLeadPool();
-
     await loadMyCases();
-
     await loadStats();
 
   }
 
 
   subscribeRealtime();
+
 }
 
 
-/* ===========================================
-   프로필
-=========================================== */
+/* =========================================================
+   회원정보
+========================================================= */
 
 function renderProfile(){
 
   $("dashWelcome").textContent =
     `${currentProfile?.name || ""}님, 반갑습니다.`;
 
+  let expertHtml = "";
 
-  $("dash-profile").innerHTML = `
+  if(currentExpert){
 
-    <h3>
-      회원 정보
-    </h3>
-
-    <p>
-      <b>이름</b>
-      ${esc(currentProfile?.name || "")}
-    </p>
-
-    <p>
-      <b>이메일</b>
-      ${esc(currentUser?.email || "")}
-    </p>
-
-
-    ${currentExpert ? `
+    expertHtml = `
 
       <hr>
 
-      <h3>
-        전문가 정보
-      </h3>
+      <h3>전문가 정보</h3>
 
       <p>
-        <b>분야</b>
-        ${esc(currentExpert.expert_type || "")}
+        <b>전문분야</b><br>
+        ${esc(currentExpert.expert_type || "-")}
       </p>
 
       <p>
-        <b>지역</b>
-        ${esc(currentExpert.region || "")}
+        <b>상호명</b><br>
+        ${esc(currentExpert.business_name || "-")}
       </p>
 
       <p>
-        <b>승인상태</b>
-        ${esc(currentExpert.approval_status || "")}
+        <b>지역</b><br>
+        ${esc(currentExpert.region || "-")}
       </p>
 
       <p>
-        <b>구독상태</b>
-        ${esc(currentExpert.subscription_status || "")}
+        <b>승인상태</b><br>
+        ${esc(currentExpert.approval_status || "-")}
       </p>
 
-    ` : ""}
+      <p>
+        <b>이용권</b><br>
+        ${esc(currentExpert.subscription_status || "inactive")}
+      </p>
+
+    `;
+  }
+
+  $("dash-profile").innerHTML = `
+
+    <h3>회원 정보</h3>
+
+    <p>
+      <b>이름</b><br>
+      ${esc(currentProfile?.name || "-")}
+    </p>
+
+    <p>
+      <b>이메일</b><br>
+      ${esc(currentUser?.email || "-")}
+    </p>
+
+    ${expertHtml}
 
   `;
+
 }
 
 
-function renderSubscriptionStatus(){
-
-  const text =
-    $("subscriptionStatusText");
-
-
-  const button =
-    $("subscriptionPayBtn");
-
-
-  if(!text || !button){
-    return;
-  }
-
-
-  if(!currentExpert){
-
-    text.textContent =
-      "전문가 등록 후 이용할 수 있습니다.";
-
-    button.disabled = true;
-
-    return;
-  }
-
-
-  if(
-    currentExpert.approval_status !==
-    "approved"
-  ){
-
-    text.textContent =
-      "관리자 승인 후 프리미엄 이용권을 결제할 수 있습니다.";
-
-    button.disabled = true;
-
-    return;
-  }
-
-
-  if(
-    currentExpert.subscription_status ===
-    "active"
-  ){
-
-    text.textContent =
-      "✅ 프리미엄 월 이용권이 활성화되어 있습니다.";
-
-    button.textContent =
-      "프리미엄 이용권 이용 중";
-
-    button.disabled = true;
-
-    return;
-  }
-
-
-  text.textContent =
-    "관리자 승인이 완료되었습니다. 월 198,000원 결제 후 활동을 시작할 수 있습니다.";
-
-
-  button.textContent =
-    "🔒 월 198,000원 결제하기";
-
-
-  button.disabled =
-    false;
-}
-
-
-/* ===========================================
+/* =========================================================
    로그인 / 회원가입
-=========================================== */
+========================================================= */
 
 function openAuth(mode){
 
   authMode = mode;
-
+  expertLoginMode = false;
 
   $("authModal")
     .classList
     .remove("hidden");
 
+  $("expertLoginNotice")
+    .classList
+    .add("hidden");
+
+  setupAuthModal();
+
+}
+
+function openExpertLogin(){
+
+  authMode = "login";
+  expertLoginMode = true;
+
+  $("authModal")
+    .classList
+    .remove("hidden");
+
+  $("expertLoginNotice")
+    .classList
+    .remove("hidden");
+
+  setupAuthModal();
+
+}
+
+function setupAuthModal(){
 
   $("authTitle").textContent =
-    mode === "login"
-    ? "로그인"
-    : "회원가입";
-
+    expertLoginMode
+      ? "전문가 로그인"
+      : authMode === "login"
+        ? "로그인"
+        : "회원가입";
 
   $("authSubmit").textContent =
-    mode === "login"
-    ? "로그인"
-    : "회원가입";
-
+    authMode === "login"
+      ? "로그인"
+      : "회원가입";
 
   $("authNameWrap")
     .classList
     .toggle(
       "hidden",
-      mode === "login"
+      authMode === "login"
     );
-
 
   $("signupConsentWrap")
     .classList
     .toggle(
       "hidden",
-      mode === "login"
+      authMode === "login"
     );
-}
 
+}
 
 function closeAuth(){
 
   $("authModal")
     .classList
     .add("hidden");
-}
 
+}
 
 $("authSubmit").onclick =
 async () => {
 
   const email =
-    $("authEmail").value.trim();
-
+    $("authEmail")
+      .value
+      .trim();
 
   const password =
-    $("authPassword").value;
-
-
-  const name =
-    $("authName").value.trim();
-
+    $("authPassword")
+      .value;
 
   if(!email || !password){
 
     return say(
       "이메일과 비밀번호를 입력하세요."
     );
+
   }
 
 
   if(authMode === "signup"){
+
+    const name =
+      $("authName")
+        .value
+        .trim();
 
     if(!name){
 
       return say(
         "이름을 입력하세요."
       );
-    }
 
+    }
 
     if(
       !$("agreeTerms").checked ||
@@ -2747,30 +2248,16 @@ async () => {
       return say(
         "필수 약관에 동의해주세요."
       );
+
     }
 
 
-    localStorage.setItem(
-      "pending_consents",
-      JSON.stringify({
-
-        terms:true,
-
-        privacy:true,
-
-        marketing:
-          $("agreeMarketing")
-          .checked
-
-      })
-    );
-
-
-    const {error} =
+    const {
+      error
+    } =
       await sb.auth.signUp({
 
         email,
-
         password,
 
         options:{
@@ -2785,129 +2272,103 @@ async () => {
       return say(
         error.message
       );
-    }
 
+    }
 
     say(
-      "회원가입 완료"
+      "회원가입이 완료되었습니다."
     );
 
-
     closeAuth();
 
-
-  }else{
-
-
-    const {error} =
-      await sb.auth
-        .signInWithPassword({
-
-          email,
-
-          password
-
-        });
+    return;
+  }
 
 
-    if(error){
+  const {
+    error
+  } =
+    await sb.auth.signInWithPassword({
+      email,
+      password
+    });
 
-      return say(
-        error.message
+
+  if(error){
+
+    return say(
+      error.message
+    );
+
+  }
+
+
+  closeAuth();
+
+  await syncUser();
+
+
+  if(expertLoginMode){
+
+    if(!currentExpert){
+
+      say(
+        "이 계정에는 전문가 정보가 없습니다. 전문가 가입을 먼저 진행해주세요."
       );
+
+      location.hash =
+        "expertJoin";
+
+      return;
     }
 
-
-    closeAuth();
   }
+
+
+  openDashboard();
+
 };
 
 
 async function logout(){
 
   await sb.auth.signOut();
+
 }
 
 
-/* ===========================================
-   동의 저장
-=========================================== */
-
-async function recordPendingSignupConsents(){
-
-  const raw =
-    localStorage.getItem(
-      "pending_consents"
-    );
-
-
-  if(!raw || !currentUser){
-    return;
-  }
-
-
-  const consent =
-    JSON.parse(raw);
-
-
-  await sb
-    .from("consent_logs")
-    .insert([
-
-      {
-        user_id:
-          currentUser.id,
-
-        consent_type:
-          "terms",
-
-        version:
-          TERMS_VERSION,
-
-        agreed:
-          consent.terms
-      },
-
-      {
-        user_id:
-          currentUser.id,
-
-        consent_type:
-          "privacy",
-
-        version:
-          PRIVACY_VERSION,
-
-        agreed:
-          consent.privacy
-      }
-
-    ]);
-
-
-  localStorage.removeItem(
-    "pending_consents"
-  );
-}
-
-
-/* ===========================================
-   전문가 목록
-=========================================== */
+/* =========================================================
+   전문가 검색
+========================================================= */
 
 async function loadExperts(){
 
-  const q =
+  const query =
     $("searchInput")
       .value
       .trim()
       .toLowerCase();
 
 
-  const {data,error} =
+  const {
+    data,
+    error
+  } =
     await sb
       .from("experts")
-      .select("*")
+      .select(
+        `
+        id,
+        user_id,
+        expert_type,
+        region,
+        business_name,
+        bio,
+        approval_status,
+        subscription_status,
+        is_visible
+        `
+      )
       .eq(
         "approval_status",
         "approved"
@@ -2916,21 +2377,18 @@ async function loadExperts(){
         "subscription_status",
         "active"
       )
-      .eq(
-        "is_visible",
-        true
-      )
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       );
 
 
   if(error){
 
-    console.error(error);
+    console.error(
+      "전문가 불러오기 오류:",
+      error
+    );
 
     return;
   }
@@ -2940,23 +2398,31 @@ async function loadExperts(){
     data || [];
 
 
-  if(q){
+  experts =
+    experts.filter(
+      expert =>
+        expert.is_visible !== false
+    );
+
+
+  if(query){
 
     experts =
       experts.filter(
         expert =>
 
-        [
-          expert.expert_type,
-          expert.region,
-          expert.business_name,
-          expert.bio
-        ]
-        .join(" ")
-        .toLowerCase()
-        .includes(q)
+          [
+            expert.expert_type,
+            expert.region,
+            expert.business_name,
+            expert.bio
+          ]
+          .join(" ")
+          .toLowerCase()
+          .includes(query)
 
       );
+
   }
 
 
@@ -2964,114 +2430,88 @@ async function loadExperts(){
 
     experts.length
 
-    ? experts.map(
-      expert => `
+    ? experts
+        .map(
+          expert => `
 
+            <div class="card expert-card">
 
-      <div class="card expert-card">
+              <div class="avatar">
+                🧑🏻‍💼
+              </div>
 
+              <div class="expert-body">
 
-        <div class="avatar">
+                <h3>
+                  ${esc(
+                    expert.business_name ||
+                    "전문가"
+                  )}
+                </h3>
 
-          🧑🏻‍💼
+                <span class="pill">
+                  ${esc(
+                    expert.expert_type ||
+                    ""
+                  )}
+                </span>
 
-        </div>
+                <span class="pill">
+                  승인 전문가
+                </span>
 
+                <p class="muted tiny">
+                  📍
+                  ${esc(
+                    expert.region ||
+                    ""
+                  )}
+                </p>
 
-        <div class="expert-body">
+                <p class="tiny">
+                  ${esc(
+                    (expert.bio || "")
+                      .slice(
+                        0,
+                        100
+                      )
+                  )}
+                </p>
 
+                <button
+                  class="btn primary"
+                  style="width:100%"
+                  onclick="
+                    selectExpert(
+                      '${expert.id}',
+                      '${encodeURIComponent(
+                        expert.business_name ||
+                        "전문가"
+                      )}',
+                      '${encodeURIComponent(
+                        expert.expert_type ||
+                        ""
+                      )}'
+                    )
+                  "
+                >
+                  이 전문가에게 상담
+                </button>
 
-          <h3>
+              </div>
 
-            ${esc(
-              expert.business_name ||
-              "전문가"
-            )}
+            </div>
 
-          </h3>
-
-
-          <span class="pill">
-
-            ${esc(
-              expert.expert_type ||
-              ""
-            )}
-
-          </span>
-
-
-          <span class="pill">
-
-            프리미엄 전문가
-
-          </span>
-
-
-          <p class="muted tiny">
-
-            📍
-
-            ${esc(
-              expert.region ||
-              ""
-            )}
-
-          </p>
-
-
-          <p class="tiny">
-
-            ${esc(
-              (
-                expert.bio ||
-                ""
-              ).slice(0,90)
-            )}
-
-          </p>
-
-
-          <button
-            class="btn primary"
-            style="width:100%"
-            onclick="
-              selectExpert(
-                '${expert.id}',
-                '${encodeURIComponent(
-                  expert.business_name ||
-                  "전문가"
-                )}',
-                '${encodeURIComponent(
-                  expert.expert_type
-                )}'
-              )
-            "
-          >
-
-            이 전문가에게 상담
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-      `
-    ).join("")
+          `
+        )
+        .join("")
 
     : `
+        <div class="muted">
+          현재 조건에 맞는 전문가가 없습니다.
+        </div>
+      `;
 
-      <div class="muted">
-
-        현재 활동 중인 전문가가 없습니다.
-
-      </div>
-
-    `;
 }
 
 
@@ -3080,33 +2520,11 @@ function pickCategory(category){
   $("searchInput").value =
     category;
 
-
   loadExperts();
-
 
   $("experts")
     .scrollIntoView();
-}
 
-
-/* ===========================================
-   전문가 선택
-=========================================== */
-
-function clearSelectedExpert(){
-
-  $("selectedExpertId").value =
-    "";
-
-
-  $("selectedExpertNotice")
-    .classList
-    .add("hidden");
-
-
-  $("selectedExpertNotice")
-    .innerHTML =
-    "";
 }
 
 
@@ -3119,332 +2537,423 @@ function selectExpert(
   $("selectedExpertId").value =
     id;
 
-
   $("consultCategory").value =
     decodeURIComponent(
       category
     );
 
-
   $("selectedExpertNotice")
     .classList
     .remove("hidden");
 
-
   $("selectedExpertNotice")
     .innerHTML =
-
-    `✅ <b>${
-      esc(
-        decodeURIComponent(name)
-      )
-    }</b> 전문가에게 직접 상담을 보냅니다.`;
-
+      `
+        ✅ <b>${esc(
+          decodeURIComponent(name)
+        )}</b>
+        전문가에게 직접 상담 요청을 보냅니다.
+      `;
 
   $("consult")
     .scrollIntoView();
+
 }
 
 
-/* ===========================================
-   고객 상담 신청
-=========================================== */
+function clearSelectedExpert(){
+
+  $("selectedExpertId").value =
+    "";
+
+  $("selectedExpertNotice")
+    .classList
+    .add("hidden");
+
+  $("selectedExpertNotice")
+    .innerHTML =
+    "";
+
+}
+
+
+/* =========================================================
+   상담 신청
+========================================================= */
 
 $("consultForm")
-.addEventListener(
-"submit",
-async event => {
+  .addEventListener(
+    "submit",
+    async event => {
 
-  event.preventDefault();
-
-
-  if(!currentUser){
-
-    return openAuth(
-      "login"
-    );
-  }
+      event.preventDefault();
 
 
-  if(
-    !$("consultPrivacy").checked ||
-    !$("consultThirdParty").checked
-  ){
+      if(!currentUser){
 
-    return say(
-      "필수 개인정보 동의가 필요합니다."
-    );
-  }
+        return openAuth(
+          "login"
+        );
+
+      }
 
 
-  const expertId =
-    $("selectedExpertId").value ||
-    null;
+      if(
+        !$("consultPrivacy").checked ||
+        !$("consultThirdParty").checked
+      ){
+
+        return say(
+          "필수 개인정보 동의가 필요합니다."
+        );
+
+      }
 
 
-  const {
-    data:request,
-    error
-  } =
-    await sb
-      .from(
-        "consult_requests"
-      )
-      .insert({
-
-        customer_id:
-          currentUser.id,
-
-        assigned_expert_id:
-          expertId,
-
-        category:
-          $("consultCategory")
-          .value,
-
-        region:
-          $("consultRegion")
-          .value
-          .trim(),
-
-        title:
-          $("consultTitle")
-          .value
-          .trim(),
-
-        content:
-          $("consultContent")
-          .value
-          .trim(),
-
-        status:
-          expertId
-          ? "matched"
-          : "open"
-
-      })
-      .select(
-        "id"
-      )
-      .single();
+      const selectedExpertId =
+        $("selectedExpertId").value ||
+        null;
 
 
-  if(error){
+      const {
+        data:request,
+        error
+      } =
+        await sb
+          .from("consult_requests")
+          .insert({
 
-    return say(
-      error.message
-    );
-  }
+            customer_id:
+              currentUser.id,
+
+            assigned_expert_id:
+              selectedExpertId,
+
+            category:
+              $("consultCategory").value,
+
+            region:
+              $("consultRegion")
+                .value
+                .trim(),
+
+            title:
+              $("consultTitle")
+                .value
+                .trim(),
+
+            content:
+              $("consultContent")
+                .value
+                .trim(),
+
+            status:
+              selectedExpertId
+                ? "matched"
+                : "open"
+
+          })
+          .select("id")
+          .single();
 
 
-  await sb
-    .from(
-      "consult_contacts"
-    )
-    .insert({
+      if(error){
 
-      request_id:
-        request.id,
+        return say(
+          error.message
+        );
 
-      customer_id:
-        currentUser.id,
-
-      phone:
-        $("consultPhone")
-        .value
-        .trim(),
-
-      preferred_contact:
-        $("consultContact")
-        .value
-
-    });
+      }
 
 
-  event.target.reset();
+      const {
+        error:contactError
+      } =
+        await sb
+          .from("consult_contacts")
+          .insert({
+
+            request_id:
+              request.id,
+
+            customer_id:
+              currentUser.id,
+
+            phone:
+              $("consultPhone")
+                .value
+                .trim(),
+
+            preferred_contact:
+              $("consultContact").value
+
+          });
 
 
-  clearSelectedExpert();
+      if(contactError){
+
+        console.error(
+          contactError
+        );
+
+      }
 
 
-  say(
-    "상담 신청이 접수되었습니다."
+      event.target.reset();
+
+      clearSelectedExpert();
+
+      say(
+        selectedExpertId
+          ? "선택한 전문가에게 상담 요청을 보냈습니다."
+          : "상담 신청이 접수되었습니다."
+      );
+
+      await loadMyRequests();
+
+    }
   );
 
 
-  await loadMyRequests();
-
-}
-);
-
-
-/* ===========================================
-   전문가 등록
-=========================================== */
+/* =========================================================
+   전문가 가입
+========================================================= */
 
 $("expertForm")
-.addEventListener(
-"submit",
-async event => {
+  .addEventListener(
+    "submit",
+    async event => {
 
-  event.preventDefault();
+      event.preventDefault();
 
+
+      if(!currentUser){
+
+        return openAuth(
+          "login"
+        );
+
+      }
+
+
+      if(!$("expertTerms").checked){
+
+        return say(
+          "전문가 이용약관 동의가 필요합니다."
+        );
+
+      }
+
+
+      const {
+        error
+      } =
+        await sb
+          .from("experts")
+          .upsert(
+            {
+
+              user_id:
+                currentUser.id,
+
+              expert_type:
+                $("expertCategory").value,
+
+              region:
+                $("expertRegion")
+                  .value
+                  .trim(),
+
+              business_name:
+                $("expertOffice")
+                  .value
+                  .trim(),
+
+              license_no:
+                $("expertLicense")
+                  .value
+                  .trim(),
+
+              bio:
+                $("expertBio")
+                  .value
+                  .trim(),
+
+              approval_status:
+                "pending",
+
+              subscription_status:
+                "inactive",
+
+              is_visible:
+                false
+
+            },
+            {
+              onConflict:
+                "user_id"
+            }
+          );
+
+
+      if(error){
+
+        return say(
+          error.message
+        );
+
+      }
+
+
+      say(
+        "전문가 승인 요청이 접수되었습니다."
+      );
+
+      await syncUser();
+
+      openDashboard();
+
+    }
+  );
+
+
+/* =========================================================
+   마이페이지
+========================================================= */
+
+function openDashboard(){
 
   if(!currentUser){
 
     return openAuth(
       "login"
     );
+
   }
 
+  $("dashboard")
+    .classList
+    .remove("hidden");
 
-  if(
-    !$("expertTerms").checked
-  ){
+  $("dashboard")
+    .scrollIntoView();
 
-    return say(
-      "전문가 이용약관 동의가 필요합니다."
-    );
-  }
+  refreshDashboard();
 
-
-  const {error} =
-    await sb
-      .from(
-        "experts"
-      )
-      .upsert({
-
-        user_id:
-          currentUser.id,
-
-        expert_type:
-          $("expertCategory")
-          .value,
-
-        region:
-          $("expertRegion")
-          .value
-          .trim(),
-
-        business_name:
-          $("expertOffice")
-          .value
-          .trim(),
-
-        license_no:
-          $("expertLicense")
-          .value
-          .trim(),
-
-        bio:
-          $("expertBio")
-          .value
-          .trim(),
-
-        approval_status:
-          "pending",
-
-        subscription_status:
-          "inactive",
-
-        is_visible:
-          false
-
-      },{
-        onConflict:
-          "user_id"
-      });
+}
 
 
-  if(error){
-
-    return say(
-      error.message
-    );
-  }
-
-
-  say(
-    "전문가 승인 요청이 접수되었습니다."
-  );
-
+async function refreshDashboard(){
 
   await syncUser();
 
+  if(
+    currentProfile?.is_admin ===
+    true
+  ){
+
+    await loadAdminDashboard();
+
+  }
+
 }
-);
 
 
-/* ===========================================
-   고객센터
-=========================================== */
+function switchDash(
+  name,
+  button
+){
 
-$("supportForm")
-.addEventListener(
-"submit",
-async event => {
+  [
+    "profile",
+    "customer",
+    "subscription",
+    "leads",
+    "cases",
+    "notifications",
+    "admin"
+  ]
+  .forEach(
+    section => {
 
-  event.preventDefault();
+      $("dash-" + section)
+        ?.classList
+        .add("hidden");
 
-
-  if(!currentUser){
-
-    return openAuth(
-      "login"
-    );
-  }
-
-
-  const {error} =
-    await sb
-      .from(
-        "support_tickets"
-      )
-      .insert({
-
-        user_id:
-          currentUser.id,
-
-        type:
-          $("supportType")
-          .value,
-
-        title:
-          $("supportTitle")
-          .value
-          .trim(),
-
-        content:
-          $("supportContent")
-          .value
-          .trim()
-
-      });
-
-
-  if(error){
-
-    return say(
-      error.message
-    );
-  }
-
-
-  event.target.reset();
-
-
-  say(
-    "문의가 접수되었습니다."
+    }
   );
 
+
+  $("dash-" + name)
+    ?.classList
+    .remove("hidden");
+
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(
+      tab =>
+        tab
+          .classList
+          .remove("active")
+    );
+
+
+  button
+    .classList
+    .add("active");
+
+
+  if(name === "customer"){
+
+    loadMyRequests();
+
+  }
+
+
+  if(name === "subscription"){
+
+    loadSubscription()
+      .then(
+        renderSubscription
+      );
+
+  }
+
+
+  if(name === "leads"){
+
+    loadLeadPool();
+
+  }
+
+
+  if(name === "cases"){
+
+    loadMyCases();
+
+  }
+
+
+  if(name === "notifications"){
+
+    loadNotifications();
+
+  }
+
+
+  if(name === "admin"){
+
+    loadAdminDashboard();
+
+  }
+
 }
-);
 
 
-/* ===========================================
-   고객 내 상담
-=========================================== */
+/* =========================================================
+   고객 본인 상담신청
+========================================================= */
 
 async function loadMyRequests(){
 
@@ -3453,11 +2962,12 @@ async function loadMyRequests(){
   }
 
 
-  const {data} =
+  const {
+    data,
+    error
+  } =
     await sb
-      .from(
-        "consult_requests"
-      )
+      .from("consult_requests")
       .select("*")
       .eq(
         "customer_id",
@@ -3465,838 +2975,371 @@ async function loadMyRequests(){
       )
       .order(
         "created_at",
-        {
-          ascending:false
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    return;
+  }
+
+
+  const requests =
+    data || [];
+
+
+  const expertIds =
+    [
+      ...new Set(
+        requests
+          .map(
+            request =>
+              request.assigned_expert_id
+          )
+          .filter(Boolean)
+      )
+    ];
+
+
+  const expertMap =
+    {};
+
+
+  if(expertIds.length){
+
+    const {
+      data:experts
+    } =
+      await sb
+        .from("experts")
+        .select(
+          "id,business_name,expert_type,region"
+        )
+        .in(
+          "id",
+          expertIds
+        );
+
+
+    (experts || [])
+      .forEach(
+        expert => {
+
+          expertMap[
+            expert.id
+          ] =
+            expert;
+
         }
       );
+
+  }
 
 
   $("myRequests").innerHTML =
 
-    (data || [])
-    .map(
-      request => `
+    requests.length
 
-      <div class="card request">
+    ? requests
+        .map(
+          request => {
 
-        <h4>
+            const expert =
+              expertMap[
+                request.assigned_expert_id
+              ];
 
-          ${esc(
-            request.title
-          )}
+            return `
 
-        </h4>
+              <div class="card request">
 
+                <div class="space">
 
-        <div class="meta">
+                  <h4>
+                    ${esc(
+                      request.title
+                    )}
+                  </h4>
 
-          ${esc(
-            request.category
-          )}
+                  <span
+                    class="status ${esc(
+                      request.status
+                    )}"
+                  >
+                    ${esc(
+                      statusLabel(
+                        request.status
+                      )
+                    )}
+                  </span>
 
-          ·
+                </div>
 
-          ${esc(
-            request.region
-          )}
+                <div class="meta">
 
-          ·
+                  ${esc(
+                    request.category
+                  )}
 
-          ${fmt(
-            request.created_at
-          )}
+                  ·
 
-        </div>
+                  ${esc(
+                    request.region
+                  )}
 
+                  ·
 
-        <p>
+                  ${fmt(
+                    request.created_at
+                  )}
 
-          ${esc(
-            request.content
-          )}
+                </div>
 
-        </p>
+                <p>
+                  ${esc(
+                    request.content
+                  )}
+                </p>
 
+                ${
+                  expert
 
-        <span class="pill">
+                  ? `
+                      <div class="notice good">
 
-          ${esc(
-            request.status
-          )}
+                        <b>
+                          배정 전문가
+                        </b>
 
-        </span>
+                        <br>
 
+                        ${esc(
+                          expert.business_name ||
+                          "전문가"
+                        )}
 
-      </div>
+                        ·
 
-      `
-    )
-    .join("")
+                        ${esc(
+                          expert.expert_type ||
+                          ""
+                        )}
 
-    ||
+                        ·
 
-    `
+                        ${esc(
+                          expert.region ||
+                          ""
+                        )}
 
-    <div class="muted">
+                        <br><br>
 
-      아직 상담 신청이 없습니다.
+                        전문가가 고객 연락처를 확인하고 연락을 진행합니다.
 
-    </div>
+                      </div>
+                    `
 
-    `;
-}
+                  : `
+                      <div class="notice">
+                        아직 전문가가 배정되지 않았습니다.
+                      </div>
+                    `
+                }
 
+              </div>
 
-/* ===========================================
-   전문가 신규 요청
-=========================================== */
+            `;
 
-async function loadLeadPool(){
-
-  if(
-    !currentExpert ||
-    currentExpert.approval_status !==
-    "approved" ||
-    currentExpert.subscription_status !==
-    "active"
-  ){
-
-    return;
-  }
-
-
-  const {data,error} =
-    await sb
-      .from(
-        "consult_requests"
-      )
-      .select("*")
-      .eq(
-        "category",
-        currentExpert.expert_type
-      )
-      .is(
-        "assigned_expert_id",
-        null
-      )
-      .eq(
-        "status",
-        "open"
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
-
-
-  if(error){
-
-    console.error(error);
-
-    return;
-  }
-
-
-  $("leadList").innerHTML =
-
-    (data || [])
-    .map(
-      request => `
-
-      <div class="card request">
-
-
-        <h4>
-
-          ${esc(
-            request.title
-          )}
-
-        </h4>
-
-
-        <div class="meta">
-
-          ${esc(
-            request.region
-          )}
-
-          ·
-
-          ${fmt(
-            request.created_at
-          )}
-
-        </div>
-
-
-        <p>
-
-          ${esc(
-            request.content
-          )}
-
-        </p>
-
-
-        <button
-          class="btn primary"
-          onclick="
-            claimRequest(
-              '${request.id}'
-            )
-          "
-        >
-
-          내 상담으로 받기
-
-        </button>
-
-
-      </div>
-
-
-      `
-    )
-    .join("")
-
-    ||
-
-    `
-
-      <div class="muted">
-
-        현재 신규 요청이 없습니다.
-
-      </div>
-
-    `;
-}
-
-
-async function claimRequest(id){
-
-  const {error} =
-    await sb.rpc(
-      "claim_consult_request",
-      {
-        p_request_id:id
-      }
-    );
-
-
-  if(error){
-
-    return say(
-      error.message
-    );
-  }
-
-
-  say(
-    "내 상담 DB로 배정되었습니다."
-  );
-
-
-  await loadLeadPool();
-
-  await loadMyCases();
-
-  await loadStats();
-}
-
-
-/* ===========================================
-   내 상담 DB
-=========================================== */
-
-async function loadMyCases(){
-
-  if(!currentExpert){
-    return;
-  }
-
-
-  const {data,error} =
-    await sb
-      .from(
-        "consult_requests"
-      )
-      .select(
-        "*,consult_contacts(phone,preferred_contact)"
-      )
-      .eq(
-        "assigned_expert_id",
-        currentExpert.id
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
-
-
-  if(error){
-
-    console.error(error);
-
-    return;
-  }
-
-
-  $("caseList").innerHTML =
-
-    (data || [])
-    .map(
-      request => {
-
-
-      const contact =
-
-        Array.isArray(
-          request.consult_contacts
+          }
         )
+        .join("")
 
-        ? request.consult_contacts[0]
-
-        : request.consult_contacts;
-
-
-      return `
-
-
-      <div class="card request">
-
-
-        <h4>
-
-          ${esc(
-            request.title
-          )}
-
-        </h4>
-
-
-        <div class="meta">
-
-          ${esc(
-            request.category
-          )}
-
-          ·
-
-          ${esc(
-            request.region
-          )}
-
-          ·
-
-          ${fmt(
-            request.created_at
-          )}
-
+    : `
+        <div class="muted">
+          아직 상담 신청이 없습니다.
         </div>
-
-
-        <p>
-
-          ${esc(
-            request.content
-          )}
-
-        </p>
-
-
-        <span class="pill">
-
-          ${esc(
-            request.status
-          )}
-
-        </span>
-
-
-        <div
-          class="notice"
-          style="margin-top:12px"
-        >
-
-          <b>
-            고객 연락처
-          </b>
-
-          <br>
-
-          ${esc(
-            contact?.phone ||
-            ""
-          )}
-
-          ·
-
-          ${esc(
-            contact?.preferred_contact ||
-            ""
-          )}
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            전문가 비공개 메모
-          </label>
-
-          <textarea
-            id="note-${request.id}"
-          >
-          </textarea>
-
-        </div>
-
-
-        <div class="row">
-
-
-          <button
-            class="btn outline small"
-            onclick="
-              saveNote(
-                '${request.id}'
-              )
-            "
-          >
-
-            메모 저장
-
-          </button>
-
-
-          <button
-            class="btn soft small"
-            onclick="
-              changeStatus(
-                '${request.id}',
-                'in_progress'
-              )
-            "
-          >
-
-            상담중
-
-          </button>
-
-
-          <button
-            class="btn success small"
-            onclick="
-              changeStatus(
-                '${request.id}',
-                'done'
-              )
-            "
-          >
-
-            완료
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
       `;
 
-    })
-    .join("")
-
-    ||
-
-    `
-
-      <div class="muted">
-
-        아직 배정된 상담이 없습니다.
-
-      </div>
-
-    `;
 }
 
 
-async function saveNote(id){
+/* =========================================================
+   전문가 구독
+========================================================= */
+
+async function loadSubscription(){
+
+  currentSubscription =
+    null;
+
 
   if(!currentExpert){
+
     return;
   }
 
 
-  const note =
-    $("note-" + id)
-      .value;
-
-
-  const {error} =
+  const {
+    data,
+    error
+  } =
     await sb
-      .from(
-        "expert_private_notes"
-      )
-      .upsert(
-        {
-
-          request_id:id,
-
-          expert_id:
-            currentExpert.id,
-
-          note
-
-        },{
-          onConflict:
-            "request_id,expert_id"
-        }
-      );
-
-
-  if(error){
-
-    return say(
-      error.message
-    );
-  }
-
-
-  say(
-    "메모 저장 완료"
-  );
-}
-
-
-async function changeStatus(
-  id,
-  status
-){
-
-  if(!currentExpert){
-    return;
-  }
-
-
-  const {error} =
-    await sb
-      .from(
-        "consult_requests"
-      )
-      .update({
-
-        status,
-
-        updated_at:
-          new Date()
-          .toISOString()
-
-      })
-      .eq(
-        "id",
-        id
-      )
-      .eq(
-        "assigned_expert_id",
-        currentExpert.id
-      );
-
-
-  if(error){
-
-    return say(
-      error.message
-    );
-  }
-
-
-  await loadMyCases();
-
-  await loadStats();
-}
-
-
-/* ===========================================
-   전문가 통계
-=========================================== */
-
-async function loadStats(){
-
-  if(!currentExpert){
-    return;
-  }
-
-
-  const {data:newRequests} =
-    await sb
-      .from(
-        "consult_requests"
-      )
-      .select(
-        "id"
-      )
-      .eq(
-        "category",
-        currentExpert.expert_type
-      )
-      .is(
-        "assigned_expert_id",
-        null
-      )
-      .eq(
-        "status",
-        "open"
-      );
-
-
-  const {data:myRequests} =
-    await sb
-      .from(
-        "consult_requests"
-      )
-      .select(
-        "id,status"
-      )
-      .eq(
-        "assigned_expert_id",
-        currentExpert.id
-      );
-
-
-  $("statNew").textContent =
-    (newRequests || [])
-    .length;
-
-
-  $("statMine").textContent =
-    (myRequests || [])
-    .length;
-
-
-  $("statProgress").textContent =
-    (myRequests || [])
-    .filter(
-      item =>
-      item.status ===
-      "in_progress"
-    )
-    .length;
-
-
-  $("statDone").textContent =
-    (myRequests || [])
-    .filter(
-      item =>
-      item.status ===
-      "done"
-    )
-    .length;
-}
-
-
-/* ===========================================
-   알림
-=========================================== */
-
-async function loadNotifications(){
-
-  if(!currentUser){
-    return;
-  }
-
-
-  const {data} =
-    await sb
-      .from(
-        "notifications"
-      )
+      .from("subscriptions")
       .select("*")
       .eq(
-        "user_id",
-        currentUser.id
+        "expert_id",
+        currentExpert.id
       )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      )
-      .limit(60);
+      .maybeSingle();
 
 
-  const unread =
-    (data || [])
-    .filter(
-      item =>
-      !item.is_read
-    )
-    .length;
+  if(error){
+
+    console.error(
+      "구독 조회 오류:",
+      error
+    );
+
+    return;
+  }
 
 
-  const badge =
-    unread
+  currentSubscription =
+    data || null;
 
-    ? `<span class="badge">${unread}</span>`
-
-    : "";
+}
 
 
-  $("notifyBadge")
-    .innerHTML =
-    badge;
+function renderSubscription(){
+
+  if(!currentExpert){
+
+    return;
+  }
 
 
-  $("dashNotifyBadge")
-    .innerHTML =
-    badge;
+  const approved =
+    currentExpert.approval_status ===
+    "approved";
 
 
-  $("notifications")
-    .innerHTML =
+  const active =
+    approved &&
+    currentExpert.subscription_status ===
+    "active" &&
+    currentSubscription?.status ===
+    "active";
 
-    (data || [])
-    .map(
-      item => `
 
-      <div class="card request">
+  $("subscriptionStatusBox")
+    .innerHTML = `
 
+      <div class="info-box">
+        <small>전문가 승인</small>
         <b>
-
           ${esc(
-            item.title
+            currentExpert.approval_status ||
+            "-"
           )}
-
         </b>
-
-        <p>
-
-          ${esc(
-            item.message
-          )}
-
-        </p>
-
-        <div class="meta">
-
-          ${fmt(
-            item.created_at
-          )}
-
-        </div>
-
       </div>
 
-      `
-    )
-    .join("")
+      <div class="info-box">
+        <small>이용권 상태</small>
+        <b>
+          ${active
+            ? "활성"
+            : "비활성"
+          }
+        </b>
+      </div>
 
-    ||
+      <div class="info-box">
+        <small>최근 결제일</small>
+        <b>
+          ${currentSubscription?.last_paid_at
+            ? fmt(
+                currentSubscription.last_paid_at
+              )
+            : "-"
+          }
+        </b>
+      </div>
 
-    `
-
-      <div class="muted">
-
-        알림이 없습니다.
-
+      <div class="info-box">
+        <small>다음 결제일</small>
+        <b>
+          ${currentSubscription?.next_billing_at
+            ? fmt(
+                currentSubscription.next_billing_at
+              )
+            : "-"
+          }
+        </b>
       </div>
 
     `;
-}
 
 
-async function markAllRead(){
+  if(!approved){
 
-  if(!currentUser){
+    $("subscriptionMessage")
+      .className =
+        "notice warn";
+
+    $("subscriptionMessage")
+      .textContent =
+        "관리자 승인 완료 후 이용권을 결제할 수 있습니다.";
+
+    $("subscriptionPayBtn")
+      .classList
+      .add("hidden");
+
     return;
   }
 
 
-  await sb
-    .from(
-      "notifications"
-    )
-    .update({
-      is_read:true
-    })
-    .eq(
-      "user_id",
-      currentUser.id
-    )
-    .eq(
-      "is_read",
-      false
-    );
+  if(active){
 
+    $("subscriptionMessage")
+      .className =
+        "notice good";
 
-  await loadNotifications();
+    $("subscriptionMessage")
+      .textContent =
+        "프리미엄 이용권이 정상적으로 활성화되어 있습니다.";
+
+    $("subscriptionPayBtn")
+      .classList
+      .add("hidden");
+
+  }else{
+
+    $("subscriptionMessage")
+      .className =
+        "notice";
+
+    $("subscriptionMessage")
+      .textContent =
+        "이용권 결제 후 상담 요청 확인과 고객 연결 기능이 활성화됩니다.";
+
+    $("subscriptionPayBtn")
+      .classList
+      .remove("hidden");
+
+  }
+
 }
 
 
-function subscribeRealtime(){
-
-  if(!currentUser){
-    return;
-  }
-
-
-  if(realtimeChannel){
-
-    sb.removeChannel(
-      realtimeChannel
-    );
-  }
-
-
-  realtimeChannel =
-
-    sb.channel(
-      "live-" +
-      currentUser.id
-    )
-
-    .on(
-
-      "postgres_changes",
-
-      {
-
-        event:"INSERT",
-
-        schema:"public",
-
-        table:"notifications",
-
-        filter:
-          `user_id=eq.${currentUser.id}`
-
-      },
-
-      () => {
-
-        loadNotifications();
-
-      }
-
-    )
-
-    .subscribe();
-}
-
-
-/* ===========================================
-   결제
-=========================================== */
+/* =========================================================
+   Toss 최초 이용권 결제
+========================================================= */
 
 async function startSubscriptionPayment(){
 
@@ -4305,14 +3348,16 @@ async function startSubscriptionPayment(){
     return openAuth(
       "login"
     );
+
   }
 
 
   if(!currentExpert){
 
     return say(
-      "먼저 전문가 등록을 해주세요."
+      "전문가 가입을 먼저 진행해주세요."
     );
+
   }
 
 
@@ -4324,85 +3369,70 @@ async function startSubscriptionPayment(){
     return say(
       "관리자 승인 후 결제할 수 있습니다."
     );
-  }
 
-
-  if(
-    currentExpert.subscription_status ===
-    "active"
-  ){
-
-    return say(
-      "이미 이용권이 활성화되어 있습니다."
-    );
   }
 
 
   try{
 
-
-    const clientKey =
-      "test_ck_ZLKGPx4M3MNJqKMdwBlqVBaWypv1";
-
-
     const tossPayments =
       TossPayments(
-        clientKey
+        TOSS_CLIENT_KEY
       );
 
 
     const payment =
       tossPayments.payment({
-
         customerKey:
           currentUser.id
-
       });
 
 
-    await payment
-      .requestBillingAuth({
+    await payment.requestBillingAuth({
 
-        method:
-          "CARD",
+      method:
+        "CARD",
 
-        successUrl:
-          window.location.origin +
-          window.location.pathname +
-          "?billing=success",
+      successUrl:
+        window.location.origin +
+        window.location.pathname +
+        "?billing=success",
 
-        failUrl:
-          window.location.origin +
-          window.location.pathname +
-          "?billing=fail",
+      failUrl:
+        window.location.origin +
+        window.location.pathname +
+        "?billing=fail",
 
-        customerEmail:
-          currentUser.email ||
-          undefined,
+      customerEmail:
+        currentUser.email ||
+        undefined,
 
-        customerName:
-          currentProfile?.name ||
-          "전문가ON 전문가"
+      customerName:
+        currentProfile?.name ||
+        "전문가ON 전문가"
 
-      });
+    });
 
 
   }catch(error){
-
 
     console.error(
       error
     );
 
-
     say(
       error.message ||
-      "결제 카드 등록 중 오류가 발생했습니다."
+      "카드 등록 중 오류가 발생했습니다."
     );
 
   }
+
 }
 
+
+/* =========================================================
+   Toss 카드인증 결과
+========================================================= */
 
 async function handleBillingResult(){
 
@@ -4418,15 +3448,10 @@ async function handleBillingResult(){
   ){
 
     const authKey =
-      params.get(
-        "authKey"
-      );
-
+      params.get("authKey");
 
     const customerKey =
-      params.get(
-        "customerKey"
-      );
+      params.get("customerKey");
 
 
     if(
@@ -4435,19 +3460,18 @@ async function handleBillingResult(){
     ){
 
       return say(
-        "결제 정보를 확인할 수 없습니다."
+        "카드 인증정보를 확인할 수 없습니다."
       );
+
     }
 
 
     try{
 
-
       const {
         data:{session}
       } =
-        await sb.auth
-          .getSession();
+        await sb.auth.getSession();
 
 
       if(!session){
@@ -4455,17 +3479,17 @@ async function handleBillingResult(){
         throw new Error(
           "로그인이 필요합니다."
         );
+
       }
 
 
-      const {data:expert} =
+      const {
+        data:expert,
+        error:expertError
+      } =
         await sb
-          .from(
-            "experts"
-          )
-          .select(
-            "id"
-          )
+          .from("experts")
+          .select("id")
           .eq(
             "user_id",
             session.user.id
@@ -4473,40 +3497,40 @@ async function handleBillingResult(){
           .maybeSingle();
 
 
-      if(!expert){
+      if(
+        expertError ||
+        !expert
+      ){
 
         throw new Error(
           "전문가 정보를 찾을 수 없습니다."
         );
+
       }
 
 
-      const billingResponse =
+      const response =
         await fetch(
-
           SUPABASE_URL +
           "/functions/v1/toss-billing",
-
           {
 
-            method:"POST",
+            method:
+              "POST",
 
             headers:{
-
               "Content-Type":
                 "application/json",
 
               "Authorization":
                 "Bearer " +
                 session.access_token
-
             },
 
             body:
               JSON.stringify({
 
                 authKey,
-
                 customerKey,
 
                 expertId:
@@ -4515,81 +3539,20 @@ async function handleBillingResult(){
               })
 
           }
-
         );
 
 
-      const billingResult =
-        await billingResponse
-          .json();
+      const result =
+        await response.json();
 
 
-      if(
-        !billingResponse.ok
-      ){
+      if(!response.ok){
 
         throw new Error(
-          billingResult.error ||
-          "카드 등록 실패"
-        );
-      }
-
-
-      const paymentResponse =
-        await fetch(
-
-          SUPABASE_URL +
-          "/functions/v1/toss-subscription-payment",
-
-          {
-
-            method:"POST",
-
-            headers:{
-
-              "Content-Type":
-                "application/json",
-
-              "Authorization":
-                "Bearer " +
-                session.access_token
-
-            },
-
-            body:
-              JSON.stringify({
-
-                expertId:
-                  expert.id,
-
-                amount:
-                  198000
-
-              })
-
-          }
-
+          result.error ||
+          "결제 처리에 실패했습니다."
         );
 
-
-      const paymentResult =
-        await paymentResponse
-          .json();
-
-
-      if(
-        !paymentResponse.ok
-      ){
-
-        throw new Error(
-
-          paymentResult.error ||
-
-          paymentResult.detail?.message ||
-
-          "월 이용권 결제 실패"
-
-        );
       }
 
 
@@ -4600,28 +3563,42 @@ async function handleBillingResult(){
 
       window.history
         .replaceState(
-
           {},
-
           document.title,
-
           window.location.pathname
-
         );
 
 
       await syncUser();
 
-      await loadExperts();
+      openDashboard();
+
+      const subButton =
+        Array.from(
+          document
+            .querySelectorAll(".tab")
+        )
+        .find(
+          button =>
+            button.id ===
+            "subscriptionTab"
+        );
+
+      if(subButton){
+
+        switchDash(
+          "subscription",
+          subButton
+        );
+
+      }
 
 
     }catch(error){
 
-
       console.error(
         error
       );
-
 
       say(
         error.message ||
@@ -4629,6 +3606,7 @@ async function handleBillingResult(){
       );
 
     }
+
   }
 
 
@@ -4638,35 +3616,891 @@ async function handleBillingResult(){
   ){
 
     say(
-
-      params.get(
-        "message"
-      )
-
-      ||
-
-      "결제가 취소되었거나 실패했습니다."
-
+      params.get("message") ||
+      "카드 등록 또는 결제가 취소되었습니다."
     );
 
 
     window.history
       .replaceState(
-
         {},
-
         document.title,
-
         window.location.pathname
-
       );
+
   }
+
 }
 
 
-/* ===========================================
-   관리자
-=========================================== */
+/* =========================================================
+   신규 상담 풀
+========================================================= */
+
+async function loadLeadPool(){
+
+  if(!currentExpert){
+
+    return;
+  }
+
+
+  if(
+    currentExpert.subscription_status !==
+    "active"
+  ){
+
+    $("leadList").innerHTML =
+      `
+        <div class="notice warn">
+          활성 이용권이 필요합니다.
+        </div>
+      `;
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await sb
+      .from("consult_requests")
+      .select("*")
+      .eq(
+        "category",
+        currentExpert.expert_type
+      )
+      .is(
+        "assigned_expert_id",
+        null
+      )
+      .eq(
+        "status",
+        "open"
+      )
+      .order(
+        "created_at",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    return;
+  }
+
+
+  $("leadList").innerHTML =
+
+    (data || []).length
+
+    ? (data || [])
+        .map(
+          request => `
+
+            <div class="card request">
+
+              <div class="space">
+
+                <h4>
+                  ${esc(
+                    request.title
+                  )}
+                </h4>
+
+                <span class="status open">
+                  신규 요청
+                </span>
+
+              </div>
+
+              <div class="meta">
+
+                ${esc(
+                  request.region
+                )}
+
+                ·
+
+                ${fmt(
+                  request.created_at
+                )}
+
+              </div>
+
+              <p>
+                ${esc(
+                  request.content
+                )}
+              </p>
+
+              <button
+                class="btn primary"
+                onclick="
+                  claimRequest(
+                    '${request.id}'
+                  )
+                "
+              >
+                상담 수락
+              </button>
+
+            </div>
+
+          `
+        )
+        .join("")
+
+    : `
+        <div class="muted">
+          현재 신규 상담 요청이 없습니다.
+        </div>
+      `;
+
+}
+
+
+/* =========================================================
+   상담 수락
+========================================================= */
+
+async function claimRequest(
+  requestId
+){
+
+  if(!currentExpert){
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await sb.rpc(
+      "claim_consult_request",
+      {
+        p_request_id:
+          requestId
+      }
+    );
+
+
+  if(error){
+
+    return say(
+      error.message
+    );
+
+  }
+
+
+  say(
+    "상담을 수락했습니다. 고객 연락처를 확인할 수 있습니다."
+  );
+
+  await loadLeadPool();
+
+  await loadMyCases();
+
+  await loadStats();
+
+}
+
+
+/* =========================================================
+   전문가 내 상담 DB
+========================================================= */
+
+async function loadMyCases(){
+
+  if(!currentExpert){
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await sb
+      .from("consult_requests")
+      .select(
+        `
+        *,
+        consult_contacts(
+          phone,
+          preferred_contact
+        )
+        `
+      )
+      .eq(
+        "assigned_expert_id",
+        currentExpert.id
+      )
+      .order(
+        "created_at",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    $("caseList").innerHTML =
+      `
+        <div class="notice bad">
+          상담 DB를 불러오지 못했습니다.
+        </div>
+      `;
+
+    return;
+  }
+
+
+  $("caseList").innerHTML =
+
+    (data || []).length
+
+    ? (data || [])
+        .map(
+          request => {
+
+            const contact =
+              Array.isArray(
+                request.consult_contacts
+              )
+              ? request.consult_contacts[0]
+              : request.consult_contacts;
+
+
+            const isWaiting =
+              request.status ===
+              "matched";
+
+
+            return `
+
+              <div class="card request">
+
+                <div class="space">
+
+                  <h4>
+                    ${esc(
+                      request.title
+                    )}
+                  </h4>
+
+                  <span
+                    class="status ${esc(
+                      request.status
+                    )}"
+                  >
+                    ${esc(
+                      statusLabel(
+                        request.status
+                      )
+                    )}
+                  </span>
+
+                </div>
+
+                <div class="meta">
+
+                  ${esc(
+                    request.category
+                  )}
+
+                  ·
+
+                  ${esc(
+                    request.region
+                  )}
+
+                  ·
+
+                  ${fmt(
+                    request.created_at
+                  )}
+
+                </div>
+
+                <p>
+                  ${esc(
+                    request.content
+                  )}
+                </p>
+
+
+                ${
+                  isWaiting
+
+                  ? `
+                      <div class="notice">
+                        고객이 나를 직접 선택한 상담 요청입니다.
+                      </div>
+
+                      <div class="row">
+
+                        <button
+                          class="btn success"
+                          onclick="
+                            acceptAssignedRequest(
+                              '${request.id}'
+                            )
+                          "
+                        >
+                          상담 수락
+                        </button>
+
+                        <button
+                          class="btn danger"
+                          onclick="
+                            rejectAssignedRequest(
+                              '${request.id}'
+                            )
+                          "
+                        >
+                          상담 거절
+                        </button>
+
+                      </div>
+                    `
+
+                  : `
+                      <div class="case-contact">
+
+                        <b>
+                          고객 연락처
+                        </b>
+
+                        <br>
+
+                        ${esc(
+                          contact?.phone ||
+                          "연락처 확인 불가"
+                        )}
+
+                        ·
+
+                        ${esc(
+                          contact?.preferred_contact ||
+                          ""
+                        )}
+
+                      </div>
+
+
+                      ${
+                        request.status !==
+                        "done"
+
+                        ? `
+                            <div class="row">
+
+                              <button
+                                class="btn soft small"
+                                onclick="
+                                  changeStatus(
+                                    '${request.id}',
+                                    'in_progress'
+                                  )
+                                "
+                              >
+                                상담중
+                              </button>
+
+                              <button
+                                class="btn success small"
+                                onclick="
+                                  changeStatus(
+                                    '${request.id}',
+                                    'done'
+                                  )
+                                "
+                              >
+                                상담완료
+                              </button>
+
+                              <button
+                                class="btn danger small"
+                                onclick="
+                                  rejectAssignedRequest(
+                                    '${request.id}'
+                                  )
+                                "
+                              >
+                                상담 반환
+                              </button>
+
+                            </div>
+                          `
+
+                        : `
+                            <div class="notice good">
+                              상담이 완료되었습니다.
+                            </div>
+                          `
+                      }
+
+                    `
+                }
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("")
+
+    : `
+        <div class="muted">
+          아직 배정된 상담이 없습니다.
+        </div>
+      `;
+
+}
+
+
+/* =========================================================
+   직접 지정 상담 수락
+========================================================= */
+
+async function acceptAssignedRequest(
+  requestId
+){
+
+  const {
+    error
+  } =
+    await sb
+      .from("consult_requests")
+      .update({
+        status:
+          "in_progress"
+      })
+      .eq(
+        "id",
+        requestId
+      )
+      .eq(
+        "assigned_expert_id",
+        currentExpert.id
+      );
+
+
+  if(error){
+
+    return say(
+      error.message
+    );
+
+  }
+
+
+  say(
+    "상담을 수락했습니다."
+  );
+
+  await loadMyCases();
+
+  await loadStats();
+
+}
+
+
+/* =========================================================
+   상담 거절 / 반환
+========================================================= */
+
+async function rejectAssignedRequest(
+  requestId
+){
+
+  const ok =
+    confirm(
+      "이 상담을 거절하고 다시 미배정 상태로 돌리시겠습니까?"
+    );
+
+
+  if(!ok){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await sb
+      .from("consult_requests")
+      .update({
+
+        assigned_expert_id:
+          null,
+
+        status:
+          "open"
+
+      })
+      .eq(
+        "id",
+        requestId
+      )
+      .eq(
+        "assigned_expert_id",
+        currentExpert.id
+      );
+
+
+  if(error){
+
+    return say(
+      error.message
+    );
+
+  }
+
+
+  say(
+    "상담 요청을 반환했습니다."
+  );
+
+  await loadMyCases();
+
+  await loadLeadPool();
+
+  await loadStats();
+
+}
+
+
+/* =========================================================
+   상담 상태 변경
+========================================================= */
+
+async function changeStatus(
+  requestId,
+  status
+){
+
+  const {
+    error
+  } =
+    await sb
+      .from("consult_requests")
+      .update({
+        status
+      })
+      .eq(
+        "id",
+        requestId
+      )
+      .eq(
+        "assigned_expert_id",
+        currentExpert.id
+      );
+
+
+  if(error){
+
+    return say(
+      error.message
+    );
+
+  }
+
+
+  await loadMyCases();
+
+  await loadStats();
+
+}
+
+
+/* =========================================================
+   전문가 통계
+========================================================= */
+
+async function loadStats(){
+
+  if(!currentExpert){
+
+    return;
+  }
+
+
+  const {
+    data:newRequests
+  } =
+    await sb
+      .from("consult_requests")
+      .select("id")
+      .eq(
+        "category",
+        currentExpert.expert_type
+      )
+      .is(
+        "assigned_expert_id",
+        null
+      )
+      .eq(
+        "status",
+        "open"
+      );
+
+
+  const {
+    data:myCases
+  } =
+    await sb
+      .from("consult_requests")
+      .select(
+        "id,status"
+      )
+      .eq(
+        "assigned_expert_id",
+        currentExpert.id
+      );
+
+
+  $("statNew").textContent =
+    (newRequests || []).length;
+
+
+  $("statMine").textContent =
+    (myCases || []).length;
+
+
+  $("statProgress").textContent =
+    (myCases || [])
+      .filter(
+        item =>
+          item.status ===
+          "in_progress"
+      )
+      .length;
+
+
+  $("statDone").textContent =
+    (myCases || [])
+      .filter(
+        item =>
+          item.status ===
+          "done"
+      )
+      .length;
+
+}
+
+
+/* =========================================================
+   알림
+========================================================= */
+
+async function loadNotifications(){
+
+  if(!currentUser){
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await sb
+      .from("notifications")
+      .select("*")
+      .eq(
+        "user_id",
+        currentUser.id
+      )
+      .order(
+        "created_at",
+        {ascending:false}
+      )
+      .limit(80);
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    return;
+  }
+
+
+  const notifications =
+    data || [];
+
+
+  const unread =
+    notifications
+      .filter(
+        item =>
+          !item.is_read
+      )
+      .length;
+
+
+  const badge =
+    unread
+      ? `<span class="badge">${unread}</span>`
+      : "";
+
+
+  $("notifyBadge").innerHTML =
+    badge;
+
+
+  $("dashNotifyBadge").innerHTML =
+    badge;
+
+
+  $("notifications").innerHTML =
+
+    notifications.length
+
+    ? notifications
+        .map(
+          item => `
+
+            <div class="card request">
+
+              <b>
+                ${esc(
+                  item.title
+                )}
+              </b>
+
+              <p>
+                ${esc(
+                  item.message
+                )}
+              </p>
+
+              <div class="meta">
+                ${fmt(
+                  item.created_at
+                )}
+              </div>
+
+            </div>
+
+          `
+        )
+        .join("")
+
+    : `
+        <div class="muted">
+          알림이 없습니다.
+        </div>
+      `;
+
+}
+
+
+async function markAllRead(){
+
+  if(!currentUser){
+
+    return;
+  }
+
+
+  await sb
+    .from("notifications")
+    .update({
+      is_read:true
+    })
+    .eq(
+      "user_id",
+      currentUser.id
+    )
+    .eq(
+      "is_read",
+      false
+    );
+
+
+  await loadNotifications();
+
+}
+
+
+/* =========================================================
+   실시간 알림
+========================================================= */
+
+function subscribeRealtime(){
+
+  if(!currentUser){
+
+    return;
+  }
+
+
+  if(realtimeChannel){
+
+    sb.removeChannel(
+      realtimeChannel
+    );
+
+  }
+
+
+  realtimeChannel =
+
+    sb
+      .channel(
+        "expertON-" +
+        currentUser.id
+      )
+
+      .on(
+
+        "postgres_changes",
+
+        {
+          event:"INSERT",
+          schema:"public",
+          table:"notifications",
+          filter:
+            `user_id=eq.${currentUser.id}`
+        },
+
+        () => {
+
+          loadNotifications();
+
+        }
+
+      )
+
+      .subscribe();
+
+}
+
+
+/* =========================================================
+   관리자 전체 로딩
+========================================================= */
 
 async function loadAdminDashboard(){
 
@@ -4676,20 +4510,22 @@ async function loadAdminDashboard(){
   ){
 
     return;
+
   }
 
 
   await Promise.all([
-
     loadAdminExperts(),
-
     loadAdminConsults(),
-
     loadAdminSubscriptions()
-
   ]);
+
 }
 
+
+/* =========================================================
+   관리자 전문가 승인
+========================================================= */
 
 async function loadAdminExperts(){
 
@@ -4699,24 +4535,28 @@ async function loadAdminExperts(){
   ){
 
     return;
+
   }
 
 
-  const {data,error} =
+  const {
+    data,
+    error
+  } =
     await sb
-      .from(
-        "experts"
-      )
+      .from("experts")
       .select("*")
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       );
 
 
   if(error){
+
+    console.error(
+      error
+    );
 
     return;
   }
@@ -4726,159 +4566,131 @@ async function loadAdminExperts(){
     data || [];
 
 
-  $("adminTotalExperts")
-    .textContent =
+  $("adminTotalExperts").textContent =
     experts.length;
 
 
-  $("adminPendingExperts")
-    .textContent =
-
-    experts.filter(
-      item =>
-      item.approval_status ===
-      "pending"
-    ).length;
-
-
-  $("adminApprovedExperts")
-    .textContent =
-
-    experts.filter(
-      item =>
-      item.approval_status ===
-      "approved"
-    ).length;
+  $("adminPendingExperts").textContent =
+    experts
+      .filter(
+        expert =>
+          expert.approval_status ===
+          "pending"
+      )
+      .length;
 
 
-  $("adminRejectedExperts")
-    .textContent =
-
-    experts.filter(
-      item =>
-      item.approval_status ===
-      "rejected"
-    ).length;
-
-
-  $("adminExperts")
-    .innerHTML =
-
-    experts.map(
-      expert => `
+  $("adminActiveExperts").textContent =
+    experts
+      .filter(
+        expert =>
+          expert.approval_status ===
+          "approved" &&
+          expert.subscription_status ===
+          "active"
+      )
+      .length;
 
 
-      <div class="card request">
+  $("adminExperts").innerHTML =
 
+    experts.length
 
-        <b>
+    ? experts
+        .map(
+          expert => `
 
-          ${esc(
-            expert.business_name ||
-            "전문가"
-          )}
+            <div class="card request">
 
-        </b>
+              <h4>
+                ${esc(
+                  expert.business_name ||
+                  "전문가"
+                )}
+              </h4>
 
+              <div class="meta">
 
-        <div class="tiny">
+                ${esc(
+                  expert.expert_type ||
+                  ""
+                )}
 
-          분야 :
-          ${esc(
-            expert.expert_type ||
-            "-"
-          )}
+                ·
 
+                ${esc(
+                  expert.region ||
+                  ""
+                )}
+
+              </div>
+
+              <p class="tiny">
+
+                자격번호:
+                ${esc(
+                  expert.license_no ||
+                  "-"
+                )}
+
+                <br>
+
+                승인:
+                ${esc(
+                  expert.approval_status ||
+                  "-"
+                )}
+
+                <br>
+
+                구독:
+                ${esc(
+                  expert.subscription_status ||
+                  "-"
+                )}
+
+              </p>
+
+              <div class="row">
+
+                <button
+                  class="btn success small"
+                  onclick="
+                    adminSetExpert(
+                      '${expert.user_id}',
+                      'approved'
+                    )
+                  "
+                >
+                  승인
+                </button>
+
+                <button
+                  class="btn danger small"
+                  onclick="
+                    adminSetExpert(
+                      '${expert.user_id}',
+                      'rejected'
+                    )
+                  "
+                >
+                  거절
+                </button>
+
+              </div>
+
+            </div>
+
+          `
+        )
+        .join("")
+
+    : `
+        <div class="muted">
+          전문가가 없습니다.
         </div>
+      `;
 
-
-        <div class="tiny">
-
-          지역 :
-          ${esc(
-            expert.region ||
-            "-"
-          )}
-
-        </div>
-
-
-        <div class="tiny">
-
-          자격번호 :
-          ${esc(
-            expert.license_no ||
-            "-"
-          )}
-
-        </div>
-
-
-        <div class="tiny">
-
-          승인 :
-          ${esc(
-            expert.approval_status
-          )}
-
-        </div>
-
-
-        <div class="tiny">
-
-          구독 :
-          ${esc(
-            expert.subscription_status
-          )}
-
-        </div>
-
-
-        <div
-          class="row"
-          style="margin-top:10px"
-        >
-
-
-          <button
-            class="btn success small"
-            onclick="
-              adminSetExpert(
-                '${expert.user_id}',
-                'approved'
-              )
-            "
-          >
-
-            승인
-
-          </button>
-
-
-          <button
-            class="btn danger small"
-            onclick="
-              adminSetExpert(
-                '${expert.user_id}',
-                'rejected'
-              )
-            "
-          >
-
-            거절
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-      `
-    )
-    .join("");
 }
 
 
@@ -4887,30 +4699,29 @@ async function adminSetExpert(
   status
 ){
 
-  if(
-    currentProfile?.is_admin !==
-    true
-  ){
+  const rpcName =
+    status === "approved"
+      ? "approve_expert"
+      : status === "rejected"
+        ? "reject_expert"
+        : null;
+
+
+  if(!rpcName){
 
     return;
   }
 
 
-  const {error} =
+  const {
+    error
+  } =
     await sb.rpc(
-
-      "admin_set_expert_status",
-
+      rpcName,
       {
-
         target_user_id:
-          userId,
-
-        new_status:
-          status
-
+          userId
       }
-
     );
 
 
@@ -4919,31 +4730,25 @@ async function adminSetExpert(
     return say(
       error.message
     );
+
   }
 
 
-  if(
-    status ===
-    "approved"
-  ){
-
-    say(
-      "전문가 승인이 완료되었습니다. 이용권은 결제 전까지 비활성 상태입니다."
-    );
-
-  }else{
-
-    say(
-      "전문가 신청이 거절되었습니다."
-    );
-  }
+  say(
+    status === "approved"
+      ? "전문가 승인이 완료되었습니다."
+      : "전문가 신청을 거절했습니다."
+  );
 
 
-  await loadAdminDashboard();
+  await loadAdminExperts();
 
-  await loadExperts();
 }
 
+
+/* =========================================================
+   관리자 상담 배정
+========================================================= */
 
 async function loadAdminConsults(){
 
@@ -4953,30 +4758,40 @@ async function loadAdminConsults(){
   ){
 
     return;
+
   }
 
 
-  const {data:consults} =
+  const {
+    data:consultData,
+    error
+  } =
     await sb
-      .from(
-        "consult_requests"
-      )
+      .from("consult_requests")
       .select("*")
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       );
 
 
-  const {data:experts} =
+  if(error){
+
+    console.error(
+      error
+    );
+
+    return;
+  }
+
+
+  const {
+    data:expertData
+  } =
     await sb
-      .from(
-        "experts"
-      )
+      .from("experts")
       .select(
-        "id,business_name,expert_type,approval_status,subscription_status"
+        "id,business_name,expert_type,region,approval_status"
       )
       .eq(
         "approval_status",
@@ -4984,238 +4799,166 @@ async function loadAdminConsults(){
       );
 
 
-  $("adminConsultCount")
-    .textContent =
-    (consults || [])
-    .length;
+  const consults =
+    consultData || [];
 
 
-  $("adminConsults")
-    .innerHTML =
-
-    (consults || [])
-    .map(
-      request => `
+  const experts =
+    expertData || [];
 
 
-      <div class="card request">
+  $("adminTotalConsults").textContent =
+    consults.length;
 
 
-        <h4>
+  $("adminConsults").innerHTML =
 
-          ${esc(
-            request.title
-          )}
+    consults.length
 
-        </h4>
+    ? consults
+        .map(
+          consult => `
 
+            <div class="card request">
 
-        <div class="tiny">
+              <h4>
+                ${esc(
+                  consult.title ||
+                  "상담 신청"
+                )}
+              </h4>
 
-          분야 :
-          ${esc(
-            request.category
-          )}
-
-        </div>
-
-
-        <div class="tiny">
-
-          지역 :
-          ${esc(
-            request.region
-          )}
-
-        </div>
-
-
-        <div class="tiny">
-
-          상태 :
-          ${esc(
-            request.status
-          )}
-
-        </div>
-
-
-        <p>
-
-          ${esc(
-            request.content
-          )}
-
-        </p>
-
-
-        <div class="notice">
-
-
-          <b>
-
-            👨‍💼 전문가 배정
-
-          </b>
-
-
-          <select
-            id="adminExpertSelect-${request.id}"
-            style="
-              width:100%;
-              margin:10px 0;
-              padding:10px;
-            "
-          >
-
-
-            <option value="">
-
-              미배정
-
-            </option>
-
-
-            ${(experts || [])
-            .map(
-              expert => `
-
-
-              <option
-                value="${expert.id}"
-
-                ${
-                  expert.id ===
-                  request.assigned_expert_id
-
-                  ? "selected"
-
-                  : ""
-                }
-              >
+              <div class="meta">
 
                 ${esc(
-                  expert.business_name ||
-                  expert.expert_type
+                  consult.category ||
+                  "-"
                 )}
 
-                ${
-                  expert.subscription_status ===
-                  "active"
+                ·
 
-                  ? " · 이용권 활성"
+                ${esc(
+                  consult.region ||
+                  "-"
+                )}
 
-                  : " · 이용권 미결제"
-                }
+                ·
 
-              </option>
+                ${esc(
+                  statusLabel(
+                    consult.status
+                  )
+                )}
 
+              </div>
 
-              `
-            )
-            .join("")}
+              <p>
+                ${esc(
+                  consult.content ||
+                  ""
+                )}
+              </p>
 
+              <div class="field">
 
-          </select>
+                <label>
+                  전문가 배정
+                </label>
 
+                <select
+                  id="adminExpertSelect-${consult.id}"
+                >
 
-          <button
-            class="btn primary small"
-            onclick="
-              adminAssignExpert(
-                '${request.id}'
-              )
-            "
-          >
+                  <option value="">
+                    미배정
+                  </option>
 
-            배정 변경 저장
+                  ${
+                    experts
+                      .map(
+                        expert => `
 
-          </button>
+                          <option
+                            value="${expert.id}"
+                            ${
+                              expert.id ===
+                              consult.assigned_expert_id
+                                ? "selected"
+                                : ""
+                            }
+                          >
 
+                            ${esc(
+                              expert.business_name ||
+                              expert.expert_type ||
+                              "전문가"
+                            )}
 
+                            ·
+
+                            ${esc(
+                              expert.region ||
+                              ""
+                            )}
+
+                          </option>
+
+                        `
+                      )
+                      .join("")
+                  }
+
+                </select>
+
+              </div>
+
+              <button
+                class="btn primary small"
+                onclick="
+                  adminAssignExpert(
+                    '${consult.id}'
+                  )
+                "
+              >
+                배정 저장
+              </button>
+
+            </div>
+
+          `
+        )
+        .join("")
+
+    : `
+        <div class="muted">
+          상담이 없습니다.
         </div>
+      `;
 
-
-      </div>
-
-
-      `
-    )
-    .join("");
 }
 
 
 async function adminAssignExpert(
-  requestId
+  consultId
 ){
-
-  if(
-    currentProfile?.is_admin !==
-    true
-  ){
-
-    return;
-  }
-
 
   const select =
     $(
       "adminExpertSelect-" +
-      requestId
+      consultId
     );
 
 
   const expertId =
-    select.value || null;
+    select?.value ||
+    null;
 
 
-  if(expertId){
-
-
-    const {data:expert} =
-      await sb
-        .from(
-          "experts"
-        )
-        .select(
-          "approval_status,subscription_status"
-        )
-        .eq(
-          "id",
-          expertId
-        )
-        .maybeSingle();
-
-
-    if(
-      expert?.approval_status !==
-      "approved"
-    ){
-
-      return say(
-        "승인된 전문가만 배정할 수 있습니다."
-      );
-    }
-
-
-    if(
-      expert?.subscription_status !==
-      "active"
-    ){
-
-      return say(
-        "이용권이 활성화된 전문가만 상담을 배정할 수 있습니다."
-      );
-    }
-
-  }
-
-
-  const {error} =
+  const {
+    error
+  } =
     await sb
-      .from(
-        "consult_requests"
-      )
+      .from("consult_requests")
       .update({
 
         assigned_expert_id:
@@ -5223,17 +4966,13 @@ async function adminAssignExpert(
 
         status:
           expertId
-          ? "matched"
-          : "open",
-
-        updated_at:
-          new Date()
-          .toISOString()
+            ? "matched"
+            : "open"
 
       })
       .eq(
         "id",
-        requestId
+        consultId
       );
 
 
@@ -5242,19 +4981,23 @@ async function adminAssignExpert(
     return say(
       error.message
     );
+
   }
 
 
   say(
-    expertId
-    ? "전문가 배정이 완료되었습니다."
-    : "전문가 배정이 해제되었습니다."
+    "전문가 배정이 변경되었습니다."
   );
 
 
   await loadAdminConsults();
+
 }
 
+
+/* =========================================================
+   관리자 구독 현황
+========================================================= */
 
 async function loadAdminSubscriptions(){
 
@@ -5264,294 +5007,203 @@ async function loadAdminSubscriptions(){
   ){
 
     return;
+
   }
 
 
-  const {data:experts} =
+  const {
+    data,
+    error
+  } =
     await sb
-      .from(
-        "experts"
+      .from("subscriptions")
+      .select(
+        `
+        id,
+        expert_id,
+        status,
+        monthly_amount,
+        last_paid_at,
+        next_billing_at,
+        payment_fail_count
+        `
       )
-      .select("*")
       .order(
-        "created_at",
-        {
-          ascending:false
-        }
+        "last_paid_at",
+        {ascending:false}
       );
 
 
-  const {data:subscriptions} =
-    await sb
-      .from(
-        "subscriptions"
+  if(error){
+
+    console.error(
+      error
+    );
+
+    $("adminSubscriptions").innerHTML =
+      `
+        <div class="notice bad">
+          구독 정보를 불러오지 못했습니다.
+        </div>
+      `;
+
+    return;
+  }
+
+
+  const subscriptions =
+    data || [];
+
+
+  const expertIds =
+    [
+      ...new Set(
+        subscriptions
+          .map(
+            item =>
+              item.expert_id
+          )
+          .filter(Boolean)
       )
-      .select("*");
+    ];
 
 
-  $("adminActiveSubCount")
-    .textContent =
-
-    (experts || [])
-    .filter(
-      expert =>
-      expert.subscription_status ===
-      "active"
-    )
-    .length;
+  const expertMap =
+    {};
 
 
-  $("adminSubscriptions")
-    .innerHTML =
+  if(expertIds.length){
 
-    (experts || [])
-    .map(
-      expert => {
-
-
-      const subscription =
-
-        (subscriptions || [])
-        .find(
-          item =>
-          item.expert_id ===
-          expert.id
+    const {
+      data:experts
+    } =
+      await sb
+        .from("experts")
+        .select(
+          "id,business_name,expert_type"
+        )
+        .in(
+          "id",
+          expertIds
         );
 
 
-      return `
+    (experts || [])
+      .forEach(
+        expert => {
+
+          expertMap[
+            expert.id
+          ] =
+            expert;
+
+        }
+      );
+
+  }
 
 
-      <div class="card request">
+  $("adminSubscriptions").innerHTML =
+
+    subscriptions.length
+
+    ? subscriptions
+        .map(
+          subscription => {
+
+            const expert =
+              expertMap[
+                subscription.expert_id
+              ];
 
 
-        <b>
+            return `
 
-          ${esc(
-            expert.business_name ||
-            "전문가"
-          )}
+              <div class="card request">
 
-        </b>
+                <h4>
+                  ${esc(
+                    expert?.business_name ||
+                    "전문가"
+                  )}
+                </h4>
 
+                <div class="meta">
 
-        <div class="tiny">
+                  ${esc(
+                    expert?.expert_type ||
+                    ""
+                  )}
 
-          승인 :
+                  ·
 
-          ${esc(
-            expert.approval_status
-          )}
+                  ${esc(
+                    subscription.status ||
+                    "-"
+                  )}
 
-        </div>
+                </div>
 
+                <p class="tiny">
 
-        <div class="tiny">
+                  월 이용료:
+                  ${Number(
+                    subscription.monthly_amount ||
+                    0
+                  ).toLocaleString()}원
 
-          구독 :
+                  <br>
 
-          ${esc(
-            expert.subscription_status
-          )}
+                  최근 결제:
+                  ${fmt(
+                    subscription.last_paid_at
+                  )}
 
-        </div>
+                  <br>
 
+                  다음 결제:
+                  ${fmt(
+                    subscription.next_billing_at
+                  )}
 
-        <div class="tiny">
+                  <br>
 
-          월 이용료 :
+                  결제 실패 횟수:
+                  ${esc(
+                    subscription.payment_fail_count ||
+                    0
+                  )}
 
-          ${Number(
-            subscription?.monthly_amount ||
-            198000
-          ).toLocaleString()}원
+                </p>
 
-        </div>
+              </div>
 
+            `;
 
-        <div class="tiny">
-
-          최근 결제 :
-
-          ${
-            subscription?.last_paid_at
-
-            ? fmt(
-              subscription.last_paid_at
-            )
-
-            : "-"
           }
+        )
+        .join("")
 
+    : `
+        <div class="muted">
+          구독 정보가 없습니다.
         </div>
-
-
-        <div class="tiny">
-
-          다음 결제 :
-
-          ${
-            subscription?.next_billing_at
-
-            ? fmt(
-              subscription.next_billing_at
-            )
-
-            : "-"
-          }
-
-        </div>
-
-
-      </div>
-
-
       `;
 
-    })
-    .join("");
 }
 
 
-/* ===========================================
-   마이페이지
-=========================================== */
-
-function openDashboard(){
-
-  if(!currentUser){
-
-    return openAuth(
-      "login"
-    );
-  }
-
-
-  $("dashboard")
-    .classList
-    .remove("hidden");
-
-
-  $("dashboard")
-    .scrollIntoView();
-
-
-  refreshDashboard();
-}
-
-
-async function refreshDashboard(){
-
-  await syncUser();
-
-
-  if(
-    currentProfile?.is_admin ===
-    true
-  ){
-
-    await loadAdminDashboard();
-  }
-}
-
-
-function switchDash(
-  name,
-  button
-){
-
-  [
-    "profile",
-    "customer",
-    "leads",
-    "cases",
-    "notifications",
-    "admin"
-  ]
-  .forEach(
-    panel => {
-
-      $("dash-" + panel)
-      ?.classList
-      .add("hidden");
-
-    }
-  );
-
-
-  $("dash-" + name)
-    ?.classList
-    .remove("hidden");
-
-
-  document
-    .querySelectorAll(
-      ".tab"
-    )
-    .forEach(
-      tab =>
-      tab.classList
-      .remove("active")
-    );
-
-
-  button
-    .classList
-    .add("active");
-
-
-  if(name === "leads"){
-
-    loadLeadPool();
-  }
-
-
-  if(name === "cases"){
-
-    loadMyCases();
-  }
-
-
-  if(
-    name ===
-    "notifications"
-  ){
-
-    loadNotifications();
-  }
-
-
-  if(name === "admin"){
-
-    loadAdminDashboard();
-  }
-}
-
-
-/* ===========================================
-   결제 리턴
-=========================================== */
-
-window.addEventListener(
-"load",
-async () => {
-
-  await handleBillingResult();
-
-}
-);
-
-
-/* ===========================================
+/* =========================================================
    시작
-=========================================== */
+========================================================= */
 
-init();
-
+window
+  .addEventListener(
+    "load",
+    init
+  );
 
 </script>
 
-
 </body>
-
 </html>
