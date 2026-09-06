@@ -36,6 +36,7 @@
 <script src="https://js.tosspayments.com/v2/standard"></script>
 <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging-compat.js"></script>
+
 <style>
 
 /* =========================================================
@@ -1778,53 +1779,6 @@ nav{
 
 
 /* =========================================================
-   고객센터 1:1 문의
-========================================================= */
-
-$("supportInquiryForm")
-.addEventListener(
-"submit",
-async e=>{
-
-e.preventDefault();
-
-if(!currentUser){
-  return openAuth("login");
-}
-
-if(!$("supportPrivacy").checked){
-  return say("개인정보 수집·이용 동의가 필요합니다.");
-}
-
-const phone=normalizePhone($("supportPhone").value);
-
-if(!/^01\d{8,9}$/.test(콜)){
-  return say("연락처를 정확히 입력하세요.");
-}
-
-const {error}=
-await sb
-.from("support_inquiries")
-.insert({
-  user_id:currentUser.id,
-  phone,
-  subject:$("supportSubject").value.trim(),
-  content:$("supportContent").value.trim()
-});
-
-if(error){
-  return say(error.message);
-}
-
-e.target.reset();
-
-say("문의가 접수되었습니다. 담당자에게 카카오 알림도 함께 전달됩니다.");
-
-}
-);
-
-
-/* =========================================================
    DASHBOARD
 ========================================================= */
 
@@ -3289,12 +3243,18 @@ footer{
 마이페이지
 <span id="notifyBadge"></span>
 </button>
+
+
 <button
+  id="pushEnableBtn"
   class="btn soft"
-  onclick="enablePushNotification()"
+  onclick="
+    enablePushNotification()
+  "
 >
 알림 켜기
 </button>
+
 
 <button
   class="btn primary"
@@ -4387,57 +4347,32 @@ footer{
 </h3>
 
 <p class="muted tiny">
-문의가 접수되면 관리자에게 사이트 알림과 카카오 알림이 전달됩니다.
+문의가 접수되면 관리자에게 사이트 알림과 앱 푸시 알림이 전달됩니다.
 </p>
 
 <form id="supportInquiryForm">
 
 <div class="field">
 <label>연락처</label>
-<input
-  id="supportPhone"
-  type="tel"
-  inputmode="tel"
-  placeholder="010-0000-0000"
-  required
->
+<input id="supportPhone" type="tel" inputmode="tel" placeholder="010-0000-0000" required>
 </div>
 
 <div class="field">
 <label>문의 제목</label>
-<input
-  id="supportSubject"
-  placeholder="문의 제목을 입력하세요"
-  required
->
+<input id="supportSubject" placeholder="문의 제목을 입력하세요" required>
 </div>
 
 <div class="field">
 <label>문의 내용</label>
-<textarea
-  id="supportContent"
-  placeholder="문의 내용을 입력하세요"
-  required
-></textarea>
+<textarea id="supportContent" placeholder="문의 내용을 입력하세요" required></textarea>
 </div>
 
 <label class="check">
-<input
-  id="supportPrivacy"
-  type="checkbox"
-  required
->
-<span>
-<b>[필수]</b> 문의 처리 및 답변을 위한 개인정보 수집·이용에 동의합니다.
-</span>
+<input id="supportPrivacy" type="checkbox" required>
+<span><b>[필수]</b> 문의 처리 및 답변을 위한 개인정보 수집·이용에 동의합니다.</span>
 </label>
 
-<button
-  class="btn primary"
-  type="submit"
->
-문의 보내기
-</button>
+<button class="btn primary" type="submit">문의 보내기</button>
 
 </form>
 
@@ -5035,25 +4970,6 @@ footer{
 </div>
 
 
-<div
-  id="authPhoneWrap"
-  class="field hidden"
->
-
-<label>
-휴대전화 (카카오 알림 수신)
-</label>
-
-<input
-  id="authPhone"
-  type="tel"
-  inputmode="tel"
-  placeholder="010-0000-0000"
->
-
-</div>
-
-
 <div class="field">
 
 <label>
@@ -5391,507 +5307,7 @@ All rights reserved.
 /* =========================================================
    기존 설정값 그대로 유지
 ========================================================= */
-/* =========================================================
-   전문가ON FIREBASE PUSH NOTIFICATION
-========================================================= */
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBvpSs7CMZcUmzhyjeQ_aw1c91eSTBG2o4",
-  authDomain: "jeonmungaon.firebaseapp.com",
-  projectId: "jeonmungaon",
-  storageBucket: "jeonmungaon.firebasestorage.app",
-  messagingSenderId: "1093664819027",
-  appId: "1:1093664819027:web:33ead50b454cbbeb9383a6"
-};
-
-
-/* =========================================================
-   Firebase 초기화
-========================================================= */
-
-if (!firebase.apps.length) {
-
-  firebase.initializeApp(
-    firebaseConfig
-  );
-
-}
-
-
-const messaging =
-firebase.messaging();
-
-
-const VAPID_KEY =
-"BPYhBW4nccviNqqXlOduQpaVCJLxTK00vpUHvD1l5Qdbqix9lWBk-lDkxfLXP7KVHlInLb2SGgUmo8BJo5o4PJQ";
-
-
-/* =========================================================
-   현재 로그인 사용자의 PUSH TOKEN 저장
-========================================================= */
-
-async function savePushTokenForCurrentUser(
-  token
-){
-
-  try{
-
-    if(
-      !token
-      ||
-      typeof sb === "undefined"
-    ){
-
-      return;
-
-    }
-
-
-    const {
-      data:{
-        user
-      },
-      error:userError
-    }=
-    await sb.auth.getUser();
-
-
-    if(
-      userError
-      ||
-      !user
-    ){
-
-      console.log(
-        "로그인 사용자가 없어 푸시 토큰을 저장하지 않습니다."
-      );
-
-      return;
-
-    }
-
-
-    /*
-      token 컬럼 자체가 UNIQUE이므로
-      token 기준으로 upsert
-    */
-
-    const {
-      error
-    }=
-    await sb
-    .from(
-      "push_tokens"
-    )
-    .upsert(
-      {
-
-        user_id:
-        user.id,
-
-        token:
-        token,
-
-        platform:
-        "web",
-
-        user_agent:
-        navigator.userAgent,
-
-        updated_at:
-        new Date()
-        .toISOString()
-
-      },
-      {
-
-        onConflict:
-        "token"
-
-      }
-    );
-
-
-    if(error){
-
-      console.error(
-        "푸시 토큰 저장 실패:",
-        error
-      );
-
-      return;
-
-    }
-
-
-    console.log(
-      "전문가ON 푸시 토큰 저장 완료"
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "푸시 토큰 저장 오류:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   알림 권한 요청 + FCM TOKEN 생성
-========================================================= */
-
-async function enablePushNotification(){
-
-  try{
-
-
-    if(
-      !(
-        "Notification"
-        in
-        window
-      )
-    ){
-
-      alert(
-        "현재 브라우저에서는 푸시 알림을 사용할 수 없습니다."
-      );
-
-      return null;
-
-    }
-
-
-    if(
-      !(
-        "serviceWorker"
-        in
-        navigator
-      )
-    ){
-
-      alert(
-        "현재 브라우저에서는 백그라운드 알림을 지원하지 않습니다."
-      );
-
-      return null;
-
-    }
-
-
-    let permission =
-    Notification.permission;
-
-
-    if(
-      permission
-      ===
-      "default"
-    ){
-
-      permission =
-      await Notification
-      .requestPermission();
-
-    }
-
-
-    if(
-      permission
-      !==
-      "granted"
-    ){
-
-      alert(
-        "알림 권한이 허용되지 않았습니다.\n브라우저 설정에서 전문가ON 알림을 허용해주세요."
-      );
-
-      return null;
-
-    }
-
-
-    /*
-      GitHub Pages 루트에
-      firebase-messaging-sw.js 파일 필요
-    */
-
-    const registration =
-    await navigator
-    .serviceWorker
-    .register(
-      "./firebase-messaging-sw.js"
-    );
-
-
-    const token =
-    await messaging
-    .getToken(
-      {
-
-        vapidKey:
-        VAPID_KEY,
-
-        serviceWorkerRegistration:
-        registration
-
-      }
-    );
-
-
-    if(!token){
-
-      console.error(
-        "FCM 토큰을 발급받지 못했습니다."
-      );
-
-      return null;
-
-    }
-
-
-    console.log(
-      "전문가ON FCM TOKEN:",
-      token
-    );
-
-
-    await savePushTokenForCurrentUser(
-      token
-    );
-
-
-    return token;
-
-
-  }catch(error){
-
-    console.error(
-      "전문가ON 푸시알림 설정 오류:",
-      error
-    );
-
-    return null;
-
-  }
-
-}
-
-
-/* =========================================================
-   이미 알림을 허용한 회원의 TOKEN 자동 갱신
-========================================================= */
-
-async function refreshPushTokenIfAllowed(){
-
-  try{
-
-
-    if(
-      !(
-        "Notification"
-        in
-        window
-      )
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      Notification.permission
-      !==
-      "granted"
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      !(
-        "serviceWorker"
-        in
-        navigator
-      )
-    ){
-
-      return;
-
-    }
-
-
-    const registration =
-    await navigator
-    .serviceWorker
-    .register(
-      "./firebase-messaging-sw.js"
-    );
-
-
-    const token =
-    await messaging
-    .getToken(
-      {
-
-        vapidKey:
-        VAPID_KEY,
-
-        serviceWorkerRegistration:
-        registration
-
-      }
-    );
-
-
-    if(token){
-
-      await savePushTokenForCurrentUser(
-        token
-      );
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "푸시 토큰 자동 갱신 오류:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   사이트가 열려 있을 때 PUSH 수신
-========================================================= */
-
-messaging.onMessage(
-(payload)=>{
-
-
-  console.log(
-    "전문가ON PUSH 수신:",
-    payload
-  );
-
-
-  const title =
-  payload.notification?.title
-  ||
-  payload.data?.title
-  ||
-  "전문가ON";
-
-
-  const body =
-  payload.notification?.body
-  ||
-  payload.data?.body
-  ||
-  "새로운 알림이 도착했습니다.";
-
-
-  /*
-    전문가ON 내부 알림 데이터가 있으면
-    기존 알림 목록도 다시 불러옴
-  */
-
-  if(
-    typeof loadNotifications
-    ===
-    "function"
-  ){
-
-    loadNotifications();
-
-  }
-
-
-  /*
-    사이트가 열려 있어도
-    OS 알림 표시
-  */
-
-  if(
-    Notification.permission
-    ===
-    "granted"
-  ){
-
-    try{
-
-      new Notification(
-        title,
-        {
-
-          body:
-          body,
-
-          tag:
-          payload.data?.type
-          ||
-          "jeonmungaon",
-
-          data:{
-            url:
-            payload.data?.url
-            ||
-            "./"
-          }
-
-        }
-      );
-
-    }catch(error){
-
-      console.log(
-        "포그라운드 알림 표시:",
-        error
-      );
-
-    }
-
-  }
-
-
-}
-);
-
-
-/* =========================================================
-   페이지 로딩 후
-   이미 권한이 허용된 사용자 TOKEN 갱신
-========================================================= */
-
-window.addEventListener(
-"load",
-()=>{
-
-
-  setTimeout(
-    ()=>{
-
-      refreshPushTokenIfAllowed();
-
-    },
-    1500
-  );
-
-
-}
-);
 const SUPABASE_URL =
 "https://qvhfoxscuxdvmywqbqbq.supabase.co";
 
@@ -5909,6 +5325,182 @@ supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
+
+/* =========================================================
+   전문가ON 앱 푸시 알림 (Firebase Cloud Messaging)
+========================================================= */
+
+const FIREBASE_CONFIG={
+  apiKey:"AIzaSyBvpSs7CMZcUmzhyjeQ_aw1c91eSTBG2o4",
+  authDomain:"jeonmungaon.firebaseapp.com",
+  projectId:"jeonmungaon",
+  storageBucket:"jeonmungaon.firebasestorage.app",
+  messagingSenderId:"1093664819027",
+  appId:"1:1093664819027:web:33ead50b454cbbeb9383a6"
+};
+
+const FCM_VAPID_KEY=
+"BPYhBW4nccviNqqXlOduQpaVCJLxTK00vpUHvD1l5Qdbqix9lWBk-lDkxfLXP7KVHlInLb2SGgUmo8BJo5o4PJQ";
+
+let firebaseMessaging=null;
+let pushServiceWorkerRegistration=null;
+
+try{
+  if(typeof firebase!=="undefined"&&!firebase.apps.length){
+    firebase.initializeApp(FIREBASE_CONFIG);
+  }
+  if(typeof firebase!=="undefined"){
+    firebaseMessaging=firebase.messaging();
+  }
+}catch(error){
+  console.error("Firebase 초기화 오류:",error);
+}
+
+async function getPushServiceWorker(){
+  if(!("serviceWorker" in navigator)){
+    throw new Error("이 브라우저는 백그라운드 알림을 지원하지 않습니다.");
+  }
+  if(pushServiceWorkerRegistration){
+    return pushServiceWorkerRegistration;
+  }
+  pushServiceWorkerRegistration=
+  await navigator.serviceWorker.register("./firebase-messaging-sw.js",{scope:"./"});
+  return pushServiceWorkerRegistration;
+}
+
+async function getCurrentPushToken(){
+  if(!firebaseMessaging){
+    throw new Error("Firebase 메시징을 초기화하지 못했습니다.");
+  }
+  const registration=await getPushServiceWorker();
+  const token=await firebaseMessaging.getToken({
+    vapidKey:FCM_VAPID_KEY,
+    serviceWorkerRegistration:registration
+  });
+  if(!token){
+    throw new Error("푸시 알림 토큰을 발급받지 못했습니다.");
+  }
+  return token;
+}
+
+async function savePushTokenForCurrentUser(token){
+  if(!currentUser||!token)return false;
+  const {error}=await sb.from("push_tokens").upsert({
+    user_id:currentUser.id,
+    token,
+    platform:"web",
+    user_agent:navigator.userAgent,
+    updated_at:new Date().toISOString()
+  },{onConflict:"token"});
+  if(error)throw error;
+  return true;
+}
+
+function updatePushButton(){
+  const btn=$("pushEnableBtn");
+  if(!btn)return;
+  if("Notification" in window&&Notification.permission==="granted"){
+    btn.textContent="알림 ON";
+    btn.classList.remove("soft");
+    btn.classList.add("success");
+  }else{
+    btn.textContent="알림 켜기";
+    btn.classList.remove("success");
+    btn.classList.add("soft");
+  }
+}
+
+async function enablePushNotification(){
+  try{
+    if(!currentUser)return openAuth("login");
+    if(!("Notification" in window)){
+      return say("현재 브라우저는 푸시 알림을 지원하지 않습니다.");
+    }
+    let permission=Notification.permission;
+    if(permission==="default"){
+      permission=await Notification.requestPermission();
+    }
+    if(permission!=="granted"){
+      return say("브라우저에서 전문가ON 알림을 허용해주세요.");
+    }
+    const token=await getCurrentPushToken();
+    await savePushTokenForCurrentUser(token);
+    updatePushButton();
+    say("전문가ON 푸시 알림이 켜졌습니다.");
+    return token;
+  }catch(error){
+    console.error("푸시 알림 설정 오류:",error);
+    say("푸시 알림 연결에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    return null;
+  }
+}
+
+async function refreshPushTokenIfAllowed(){
+  try{
+    if(!currentUser||!("Notification" in window)||Notification.permission!=="granted"){
+      updatePushButton();
+      return;
+    }
+    const token=await getCurrentPushToken();
+    await savePushTokenForCurrentUser(token);
+    updatePushButton();
+  }catch(error){
+    console.error("푸시 토큰 갱신 오류:",error);
+    updatePushButton();
+  }
+}
+
+async function removeCurrentPushToken(){
+  try{
+    if(!currentUser||!firebaseMessaging||!("Notification" in window)||Notification.permission!=="granted")return;
+    const token=await getCurrentPushToken();
+    await sb.from("push_tokens").delete().eq("user_id",currentUser.id).eq("token",token);
+  }catch(error){
+    console.error("푸시 토큰 제거 오류:",error);
+  }
+}
+
+async function dispatchPushEvent(eventName,resourceId){
+  try{
+    if(!currentUser||!eventName||!resourceId)return;
+    const {data:{session}}=await sb.auth.getSession();
+    if(!session)return;
+    const response=await fetch(
+      SUPABASE_URL+"/functions/v1/push-send",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+session.access_token
+        },
+        body:JSON.stringify({event:eventName,resource_id:resourceId})
+      }
+    );
+    if(!response.ok){
+      console.error("푸시 전송 실패:",await response.text());
+    }
+  }catch(error){
+    console.error("푸시 전송 호출 오류:",error);
+  }
+}
+
+if(firebaseMessaging){
+  firebaseMessaging.onMessage(async payload=>{
+    if(typeof loadNotifications==="function")loadNotifications();
+    const title=payload.data?.title||payload.notification?.title||"전문가ON";
+    const body=payload.data?.body||payload.notification?.body||"새로운 알림이 도착했습니다.";
+    try{
+      const registration=await getPushServiceWorker();
+      await registration.showNotification(title,{
+        body,
+        tag:payload.data?.type||"jeonmungaon",
+        data:{url:payload.data?.url||"./"}
+      });
+    }catch(error){
+      console.error("포그라운드 알림 표시 오류:",error);
+    }
+  });
+}
 
 
 let currentUser=null;
@@ -5961,28 +5553,6 @@ new Date(d)
 function say(message){
 
 alert(message);
-
-}
-
-
-function normalizePhone(value){
-
-return String(value||"")
-.replace(/[^0-9]/g,"");
-
-}
-
-
-function deletionDate(completedAt){
-
-if(!completedAt){
-  return "";
-}
-
-const d=new Date(completedAt);
-d.setDate(d.getDate()+30);
-
-return d.toLocaleDateString("ko-KR");
 
 }
 
@@ -6254,11 +5824,6 @@ currentProfile=
 p||null;
 
 
-if($("supportPhone") && currentProfile?.phone){
-  $("supportPhone").value=currentProfile.phone;
-}
-
-
 const {
   data:e
 }=
@@ -6350,6 +5915,8 @@ await loadMyRequests();
 
 await loadNotifications();
 
+await refreshPushTokenIfAllowed();
+
 
 if(currentExpert){
 
@@ -6406,28 +5973,15 @@ ${esc(
 )}
 </p>
 
-<div class="field" style="max-width:360px">
-<label>카카오 알림 수신번호</label>
-<input
-  id="profilePhone"
-  type="tel"
-  inputmode="tel"
-  value="${esc(currentProfile?.phone||"")}"
-  placeholder="010-0000-0000"
->
-</div>
-
-<button
-  type="button"
-  class="btn outline small"
-  onclick="saveNotificationPhone()"
->
-알림번호 저장
+<div class="notice">
+<b>앱 푸시 알림</b><br>
+상담 신청·매칭·수락·완료 및 주요 서비스 알림을 이 기기에서 받을 수 있습니다.
+<div style="margin-top:10px">
+<button type="button" class="btn soft small" onclick="enablePushNotification()">
+푸시 알림 켜기
 </button>
-
-<p class="muted tiny">
-상담 요청·수락·완료 및 고객센터 문의 관련 카카오 알림에 사용됩니다.
-</p>
+</div>
+</div>
 
 ${currentExpert?`
 
@@ -6480,40 +6034,6 @@ ${esc(
 `:""}
 
 `;
-
-}
-
-
-
-
-async function saveNotificationPhone(){
-
-if(!currentUser){
-  return openAuth("login");
-}
-
-const input=$("profilePhone");
-const phone=normalizePhone(input?.value);
-
-if(!/^01\d{8,9}$/.test(콜)){
-  return say("휴대전화 번호를 정확히 입력하세요.");
-}
-
-const {error}=
-await sb
-.from("profiles")
-.update({phone})
-.eq("id",currentUser.id);
-
-if(error){
-  return say(error.message);
-}
-
-if(currentProfile){
-  currentProfile.phone=phone;
-}
-
-say("카카오 알림 수신번호가 저장되었습니다.");
 
 }
 
@@ -6616,14 +6136,6 @@ $("authNameWrap")
 );
 
 
-$("authPhoneWrap")
-.classList
-.toggle(
-  "hidden",
-  authMode==="login"
-);
-
-
 $("signupConsentWrap")
 .classList
 .toggle(
@@ -6687,22 +6199,6 @@ return say(
 }
 
 
-const phone=
-normalizePhone(
-  $("authPhone")
-  .value
-);
-
-
-if(!/^01\d{8,9}$/.test(콜)){
-
-return say(
-  "카카오 알림을 받을 휴대전화 번호를 정확히 입력하세요."
-);
-
-}
-
-
 if(
   !$("agreeTerms").checked
   ||
@@ -6727,8 +6223,7 @@ password,
 
 options:{
   data:{
-    name,
-    phone
+    name
   }
 }
 
@@ -6810,6 +6305,8 @@ openDashboard();
 
 
 async function logout(){
+
+await removeCurrentPushToken();
 
 await sb.auth.signOut();
 
@@ -7709,6 +7206,12 @@ console.error(
 }
 
 
+await dispatchPushEvent(
+  "consult_created",
+  r.id
+);
+
+
 e.target.reset();
 
 
@@ -8184,7 +7687,7 @@ ${esc(
 ${r.status==="done" && r.completed_at?`
 
 <div class="notice warn">
-상담 완료일로부터 30일 후(${esc(deletionDate(r.completed_at))}) 상담 DB가 자동 삭제됩니다.
+이 상담기록은 완료일로부터 30일 후 자동 삭제됩니다.
 </div>
 
 `:""}
@@ -8994,6 +8497,12 @@ say(
 );
 
 
+await dispatchPushEvent(
+  "consult_accepted",
+  id
+);
+
+
 await loadLeadPool();
 
 await loadMyCases();
@@ -9149,14 +8658,6 @@ ${esc(
 </p>
 
 
-${r.status==="done" && r.completed_at?`
-
-<div class="notice warn">
-이 상담 DB는 완료일로부터 30일 후(${esc(deletionDate(r.completed_at))}) 자동 삭제됩니다.
-</div>
-
-`:""}
-
 ${waiting?`
 
 <div class="notice">
@@ -9248,7 +8749,8 @@ ${r.status!=="done"?`
 
 <div class="notice good">
 
-상담이 완료되었습니다.
+상담이 완료되었습니다.<br>
+완료일로부터 30일 후 상담 DB가 자동 삭제됩니다.
 
 </div>
 
@@ -9314,6 +8816,12 @@ return say(
 
 say(
   "상담을 수락했습니다. 고객 연락처를 확인할 수 있습니다."
+);
+
+
+await dispatchPushEvent(
+  "consult_accepted",
+  id
 );
 
 
@@ -9421,6 +8929,16 @@ if(error){
 
 return say(
   error.message
+);
+
+}
+
+
+if(status==="done"){
+
+await dispatchPushEvent(
+  "consult_done",
+  id
 );
 
 }
@@ -10491,6 +10009,86 @@ ${esc(
 </div>
 
 `;
+
+}
+
+
+/* =========================================================
+   고객센터 1:1 문의
+========================================================= */
+
+const supportInquiryForm=
+$("supportInquiryForm");
+
+if(supportInquiryForm){
+
+supportInquiryForm
+.addEventListener(
+"submit",
+async e=>{
+
+e.preventDefault();
+
+if(!currentUser){
+  return openAuth("login");
+}
+
+if(!$("supportPrivacy").checked){
+  return say(
+    "개인정보 수집·이용 동의가 필요합니다."
+  );
+}
+
+const phone=
+String(
+  $("supportPhone").value||""
+)
+.replace(
+  /[^0-9]/g,
+  ""
+);
+
+if(!/^01\d{8,9}$/.test(콜)){
+  return say(
+    "연락처를 정확히 입력하세요."
+  );
+}
+
+const {
+  data:inquiry,
+  error
+}=
+await sb
+.from("support_inquiries")
+.insert({
+  user_id:currentUser.id,
+  phone,
+  subject:$("supportSubject").value.trim(),
+  content:$("supportContent").value.trim(),
+  status:"open"
+})
+.select("id")
+.single();
+
+if(error){
+  return say(
+    error.message
+  );
+}
+
+await dispatchPushEvent(
+  "support_created",
+  inquiry.id
+);
+
+e.target.reset();
+
+say(
+  "문의가 접수되었습니다."
+);
+
+}
+);
 
 }
 
