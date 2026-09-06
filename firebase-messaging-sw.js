@@ -18,7 +18,7 @@ importScripts(
 firebase.initializeApp({
 
   apiKey:
-  "AIzaSyBvpSs7CMZcUmzhyjeQ_aw1c91eSTBG2o4",
+  "AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UOOlf8_Y",
 
   authDomain:
   "jeonmungaon.firebaseapp.com",
