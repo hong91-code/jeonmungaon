@@ -8920,26 +8920,65 @@ await loadStats();
 
 async function rejectAssignedRequest(id){
 
-  const ok=
-  confirm(
+  const ok = confirm(
     "이 상담 요청을 거절하시겠습니까?\n\n거절하면 고객에게 알림이 전송되고 상담은 다시 매칭 대기 상태로 전환됩니다."
   );
-
 
   if(!ok){
     return;
   }
 
-
   try{
 
+    /* ==========================================
+       현재 로그인 세션 확인
+    ========================================== */
+
     const {
-      data:pushData,
-      error:pushError
-    }=
-    await sb.functions.invoke(
+      data: sessionData,
+      error: sessionError
+    } = await sb.auth.getSession();
+
+    if(sessionError){
+
+      console.error(
+        "세션 확인 오류:",
+        sessionError
+      );
+
+      return say(
+        "로그인 정보를 확인할 수 없습니다. 다시 로그인해주세요."
+      );
+    }
+
+
+    const accessToken =
+      sessionData?.session?.access_token;
+
+
+    if(!accessToken){
+
+      return say(
+        "로그인이 만료되었습니다. 다시 로그인해주세요."
+      );
+    }
+
+
+    /* ==========================================
+       거절 처리 + 고객 푸시
+    ========================================== */
+
+    const {
+      data: pushData,
+      error: pushError
+    } = await sb.functions.invoke(
       "push-send",
       {
+        headers:{
+          Authorization:
+            `Bearer ${accessToken}`
+        },
+
         body:{
           event:
             "consult_rejected",
@@ -8958,32 +8997,26 @@ async function rejectAssignedRequest(id){
         pushError
       );
 
-
       return say(
         pushError.message
         ||
         "상담 거절 처리에 실패했습니다."
       );
-
     }
 
 
-    if(
-      !pushData?.success
-    ){
+    if(!pushData?.success){
 
       console.error(
         "상담 거절 결과:",
         pushData
       );
 
-
       return say(
         pushData?.error
         ||
         "상담 거절 처리에 실패했습니다."
       );
-
     }
 
 
@@ -9006,7 +9039,6 @@ async function rejectAssignedRequest(id){
 
     await loadNotifications();
 
-
   }
   catch(error){
 
@@ -9015,15 +9047,12 @@ async function rejectAssignedRequest(id){
       error
     );
 
-
     say(
       error?.message
       ||
       "상담 거절 처리 중 오류가 발생했습니다."
     );
-
   }
-
 }
 
 
