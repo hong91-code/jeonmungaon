@@ -2,115 +2,74 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-
 <meta
   name="viewport"
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
-
 <meta name="theme-color" content="#ffffff">
-
 <title>전문가ON | 필요한 순간, 전문가를 ON하다</title>
-
 <meta
   name="description"
-  content="세무사, 노무사, 손해사정사, 변호사, 법무사, 행정사, 공인중개사 등 전문가를 검색하고 상담을 신청하는 전문가 매칭 플랫폼 전문가ON"
+  content="어떤 전문가가 필요한지 몰라도 상황을 입력하면 세무사, 노무사, 손해사정사, 변호사, 법무사, 행정사, 공인중개사 등 적합한 전문가를 찾고 상담을 신청할 수 있는 전문가 매칭 플랫폼 전문가ON"
 >
-
 <meta
   name="keywords"
   content="전문가ON, 전문가찾기, 세무사, 노무사, 손해사정사, 변호사, 법무사, 행정사, 공인중개사, 전문가상담"
 >
-
 <meta property="og:title" content="전문가ON">
 <meta property="og:description" content="필요한 순간, 전문가를 ON하다">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hong91-code.github.io/jeonmungaon/">
-
 <link
   rel="canonical"
   href="https://hong91-code.github.io/jeonmungaon/"
 >
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://js.tosspayments.com/v2/standard"></script>
 
 <style>
 
-/* =========================================================
-   전문가ON PREMIUM DESIGN SYSTEM
-========================================================= */
-
 :root{
-
   --navy:#101f38;
   --navy2:#183253;
-
   --blue:#1479ed;
   --blue-dark:#0963cf;
   --blue-soft:#eef6ff;
   --blue-pale:#f6faff;
-
   --green:#12a36d;
   --green-soft:#eafaf3;
-
   --orange:#f59f0b;
   --orange-soft:#fff7e4;
-
   --red:#e14f4f;
   --red-soft:#fff0f0;
-
   --ink:#142238;
   --text:#253a55;
   --muted:#718299;
-
   --line:#e4ebf3;
   --line2:#d7e2ed;
-
   --white:#ffffff;
   --bg:#f6f8fb;
-
-  --shadow-sm:
-    0 4px 16px rgba(21,52,91,.05);
-
-  --shadow:
-    0 12px 35px rgba(21,52,91,.08);
-
-  --shadow-xl:
-    0 24px 60px rgba(21,52,91,.12);
-
+  --shadow-sm:0 4px 16px rgba(21,52,91,.05);
+  --shadow:0 12px 35px rgba(21,52,91,.08);
+  --shadow-xl:0 24px 60px rgba(21,52,91,.12);
   --radius:18px;
   --radius-lg:26px;
   --radius-xl:34px;
-
 }
 
-
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 
 html{
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
 }
 
-
 body{
-
   margin:0;
-
   background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(20,121,237,.065),
-      transparent 28%
-    ),
+    radial-gradient(circle at 100% 0%,rgba(20,121,237,.065),transparent 28%),
     var(--bg);
-
   color:var(--ink);
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -120,2979 +79,1089 @@ body{
     "Malgun Gothic",
     Arial,
     sans-serif;
-
   letter-spacing:-.015em;
-
 }
 
-
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
-
-
-button{
-  cursor:pointer;
-}
-
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-
-.hidden{
-  display:none!important;
-}
-
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.hidden{display:none!important}
 
 .wrap{
-
-  width:min(
-    1180px,
-    calc(100% - 36px)
-  );
-
+  width:min(1180px,calc(100% - 36px));
   margin:0 auto;
-
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
+/* BUTTON */
 
 .btn{
-
   border:0;
-
   min-height:46px;
-
   padding:0 17px;
-
   border-radius:14px;
-
   display:inline-flex;
-
   align-items:center;
-
   justify-content:center;
-
   gap:7px;
-
   font-weight:800;
-
   transition:
     transform .16s ease,
     box-shadow .16s ease,
     background .16s ease;
-
   white-space:nowrap;
-
 }
 
-
-.btn:hover{
-
-  transform:
-    translateY(-1px);
-
-}
-
+.btn:hover{transform:translateY(-1px)}
 
 .primary{
-
   color:#fff;
-
-  background:
-    linear-gradient(
-      135deg,
-      #1b7def,
-      #0c6bdc
-    );
-
-  box-shadow:
-    0 8px 20px
-    rgba(20,121,237,.20);
-
+  background:linear-gradient(135deg,#1b7def,#0c6bdc);
+  box-shadow:0 8px 20px rgba(20,121,237,.20);
 }
-
 
 .primary:hover{
-
-  background:
-    linear-gradient(
-      135deg,
-      #0c72e7,
-      #075fc7
-    );
-
+  background:linear-gradient(135deg,#0c72e7,#075fc7);
 }
-
 
 .outline{
-
   background:#fff;
-
-  border:
-    1px solid
-    #d8e5f3;
-
+  border:1px solid #d8e5f3;
   color:#176bc8;
-
 }
-
 
 .soft{
-
-  background:
-    #edf5ff;
-
+  background:#edf5ff;
   color:#176bc8;
-
 }
-
 
 .success{
-
-  background:
-    var(--green);
-
+  background:var(--green);
   color:#fff;
-
 }
-
 
 .danger{
-
-  background:
-    var(--red);
-
+  background:var(--red);
   color:#fff;
-
 }
-
 
 .warning{
-
-  background:
-    var(--orange);
-
+  background:var(--orange);
   color:#fff;
-
 }
-
 
 .small{
-
   min-height:38px;
-
-  padding:
-    0 12px;
-
-  border-radius:
-    11px;
-
-  font-size:
-    12px;
-
+  padding:0 12px;
+  border-radius:11px;
+  font-size:12px;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 header{
-
-  position:
-    sticky;
-
-  top:
-    0;
-
-  z-index:
-    100;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .94
-    );
-
-  backdrop-filter:
-    blur(18px);
-
-  border-bottom:
-    1px solid
-    rgba(
-      220,
-      229,
-      239,
-      .9
-    );
-
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(220,229,239,.9);
 }
-
 
 nav{
-
-  min-height:
-    78px;
-
-  display:
-    grid;
-
-  grid-template-columns:
-    auto 1fr auto;
-
-  align-items:
-    center;
-
-  gap:
-    26px;
-
+  min-height:78px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:26px;
 }
-
 
 .logo{
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  gap:
-    9px;
-
-  font-size:
-    27px;
-
-  font-weight:
-    950;
-
-  color:
-    var(--navy);
-
-  letter-spacing:
-    -1.5px;
-
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:27px;
+  font-weight:950;
+  color:var(--navy);
+  letter-spacing:-1.5px;
 }
-
 
 .logo::before{
-
-  content:
-    "ON";
-
-  width:
-    43px;
-
-  height:
-    43px;
-
-  border-radius:
-    14px;
-
-  display:
-    grid;
-
-  place-items:
-    center;
-
-  font-size:
-    12px;
-
-  color:
-    #fff;
-
-  letter-spacing:
-    -.4px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #2587f5,
-      #0865d5
-    );
-
-  box-shadow:
-    0 8px 18px
-    rgba(
-      20,
-      121,
-      237,
-      .23
-    );
-
+  content:"ON";
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  color:#fff;
+  letter-spacing:-.4px;
+  background:linear-gradient(145deg,#2587f5,#0865d5);
+  box-shadow:0 8px 18px rgba(20,121,237,.23);
 }
 
-
-.logo b{
-
-  color:
-    var(--blue);
-
-}
-
+.logo b{color:var(--blue)}
 
 .navlinks{
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  gap:
-    29px;
-
-  color:
-    #43556c;
-
-  font-size:
-    14px;
-
-  font-weight:
-    750;
-
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:29px;
+  color:#43556c;
+  font-size:14px;
+  font-weight:750;
 }
 
-
-.navlinks a{
-
-  transition:
-    color .16s;
-
-}
-
-
-.navlinks a:hover{
-
-  color:
-    var(--blue);
-
-}
-
+.navlinks a{transition:color .16s}
+.navlinks a:hover{color:var(--blue)}
 
 .nav-actions{
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    8px;
-
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
+/* HERO */
 
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-
-  padding:
-    34px 0 18px;
-
-}
-
+.hero{padding:34px 0 18px}
 
 .hero-shell{
-
-  position:
-    relative;
-
-  overflow:
-    hidden;
-
-  border:
-    1px solid
-    #dfebf8;
-
-  border-radius:
-    38px;
-
+  position:relative;
+  overflow:hidden;
+  border:1px solid #dfebf8;
+  border-radius:38px;
   background:
-
-    radial-gradient(
-      circle at 86% 12%,
-      rgba(
-        20,
-        121,
-        237,
-        .18
-      ),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 12% 110%,
-      rgba(
-        71,
-        153,
-        250,
-        .10
-      ),
-      transparent 35%
-    ),
-
-    linear-gradient(
-      135deg,
-      #fbfdff,
-      #eff7ff
-    );
-
-  box-shadow:
-    var(--shadow);
-
+    radial-gradient(circle at 86% 12%,rgba(20,121,237,.18),transparent 28%),
+    radial-gradient(circle at 12% 110%,rgba(71,153,250,.10),transparent 35%),
+    linear-gradient(135deg,#fbfdff,#eff7ff);
+  box-shadow:var(--shadow);
 }
-
 
 .hero-shell::after{
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  width:
-    330px;
-
-  height:
-    330px;
-
-  border-radius:
-    50%;
-
-  right:
-    -150px;
-
-  bottom:
-    -170px;
-
-  background:
-    rgba(
-      20,
-      121,
-      237,
-      .06
-    );
-
+  content:"";
+  position:absolute;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  right:-150px;
+  bottom:-170px;
+  background:rgba(20,121,237,.06);
 }
-
 
 .hero-grid{
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1.17fr .83fr;
-
-  gap:
-    42px;
-
-  align-items:
-    center;
-
-  padding:
-    52px;
-
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.17fr .83fr;
+  gap:42px;
+  align-items:center;
+  padding:52px;
 }
-
 
 .hero-label{
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  gap:
-    8px;
-
-  padding:
-    8px 12px;
-
-  border-radius:
-    999px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .78
-    );
-
-  color:
-    #176bc8;
-
-  border:
-    1px solid
-    #d8e9fa;
-
-  font-size:
-    12px;
-
-  font-weight:
-    850;
-
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  color:#176bc8;
+  border:1px solid #d8e9fa;
+  font-size:12px;
+  font-weight:850;
 }
-
 
 .hero h1{
-
-  margin:
-    17px 0 17px;
-
-  max-width:
-    690px;
-
-  font-size:
-    clamp(
-      44px,
-      5vw,
-      67px
-    );
-
-  line-height:
-    1.08;
-
-  letter-spacing:
-    -4px;
-
+  margin:17px 0;
+  max-width:690px;
+  font-size:clamp(44px,5vw,67px);
+  line-height:1.08;
+  letter-spacing:-4px;
 }
-
 
 .hero h1 em{
-
-  color:
-    var(--blue);
-
-  font-style:
-    normal;
-
+  color:var(--blue);
+  font-style:normal;
 }
-
 
 .hero p{
-
-  margin:
-    0;
-
-  font-size:
-    18px;
-
-  line-height:
-    1.82;
-
-  color:
-    #52657d;
-
+  margin:0;
+  font-size:18px;
+  line-height:1.82;
+  color:#52657d;
 }
-
 
 .hero-card{
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .90
-    );
-
-  border:
-    1px solid
-    rgba(
-      215,
-      229,
-      244,
-      .95
-    );
-
-  border-radius:
-    28px;
-
-  padding:
-    25px;
-
-  box-shadow:
-    var(--shadow);
-
-  backdrop-filter:
-    blur(12px);
-
+  background:rgba(255,255,255,.90);
+  border:1px solid rgba(215,229,244,.95);
+  border-radius:28px;
+  padding:25px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(12px);
 }
 
-
-.hero-card-head{
-
-  margin-bottom:
-    8px;
-
-}
-
+.hero-card-head{margin-bottom:8px}
 
 .hero-card-head h3{
-
-  margin:
-    0 0 6px;
-
-  font-size:
-    20px;
-
+  margin:0 0 6px;
+  font-size:20px;
 }
-
 
 .hero-card-head p{
-
-  font-size:
-    13px;
-
-  line-height:
-    1.55;
-
+  font-size:13px;
+  line-height:1.55;
 }
-
 
 .hero-point{
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    12px;
-
-  padding:
-    15px 4px;
-
-  border-bottom:
-    1px solid
-    #edf2f7;
-
-  font-weight:
-    800;
-
-  font-size:
-    14px;
-
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px 4px;
+  border-bottom:1px solid #edf2f7;
+  font-weight:800;
+  font-size:14px;
 }
 
-
-.hero-point:last-child{
-
-  border-bottom:
-    0;
-
-}
-
+.hero-point:last-child{border-bottom:0}
 
 .hero-point span{
-
-  width:
-    31px;
-
-  height:
-    31px;
-
-  flex:
-    0 0 31px;
-
-  display:
-    grid;
-
-  place-items:
-    center;
-
-  border-radius:
-    10px;
-
-  background:
-    var(--blue-soft);
-
-  color:
-    var(--blue);
-
-  font-size:
-    12px;
-
+  width:31px;
+  height:31px;
+  flex:0 0 31px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:var(--blue-soft);
+  color:var(--blue);
+  font-size:12px;
 }
 
-
-/* =========================================================
-   SEARCH
-========================================================= */
+/* SEARCH */
 
 .search{
-
-  margin-top:
-    27px;
-
-  max-width:
-    680px;
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr auto;
-
-  gap:
-    8px;
-
-  padding:
-    8px;
-
-  border-radius:
-    19px;
-
-  background:
-    #fff;
-
-  border:
-    1px solid
-    #d5e5f6;
-
-  box-shadow:
-    0 8px 25px
-    rgba(
-      22,
-      79,
-      137,
-      .08
-    );
-
+  margin-top:27px;
+  max-width:680px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  padding:8px;
+  border-radius:19px;
+  background:#fff;
+  border:1px solid #d5e5f6;
+  box-shadow:0 8px 25px rgba(22,79,137,.08);
 }
-
 
 .search input{
-
-  width:
-    100%;
-
-  min-width:
-    0;
-
-  border:
-    0;
-
-  outline:
-    0;
-
-  padding:
-    0 15px;
-
-  font-size:
-    16px;
-
-  color:
-    var(--ink);
-
+  width:100%;
+  min-width:0;
+  border:0;
+  outline:0;
+  padding:0 15px;
+  font-size:16px;
+  color:var(--ink);
 }
-
 
 .search button{
-
-  min-width:
-    98px;
-
-  border-radius:
-    14px;
-
+  min-width:98px;
+  border-radius:14px;
 }
 
+.smart-match-result{
+  margin-top:14px;
+  padding:15px 16px;
+  border:1px solid #cfe4fb;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f7fbff,#eef7ff);
+  color:#2d527a;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.smart-match-result strong{
+  color:var(--blue);
+  font-size:15px;
+}
+
+.smart-match-actions{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
 
 .tags{
-
-  display:
-    flex;
-
-  flex-wrap:
-    wrap;
-
-  gap:
-    8px;
-
-  margin-top:
-    15px;
-
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
 }
-
 
 .tag,
 .pill{
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    7px 10px;
-
-  border-radius:
-    999px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .76
-    );
-
-  border:
-    1px solid
-    #e2ebf4;
-
-  color:
-    #43566d;
-
-  font-size:
-    12px;
-
-  font-weight:
-    800;
-
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.76);
+  border:1px solid #e2ebf4;
+  color:#43566d;
+  font-size:12px;
+  font-weight:800;
 }
 
+/* SECTIONS */
 
-/* =========================================================
-   SECTIONS
-========================================================= */
-
-.section{
-
-  padding:
-    58px 0;
-
-}
-
+.section{padding:58px 0}
 
 .section-header{
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    flex-end;
-
-  gap:
-    18px;
-
-  margin-bottom:
-    24px;
-
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:18px;
+  margin-bottom:24px;
 }
-
 
 .section-title{
-
-  margin:
-    0 0 7px;
-
-  font-size:
-    32px;
-
-  letter-spacing:
-    -1.5px;
-
+  margin:0 0 7px;
+  font-size:32px;
+  letter-spacing:-1.5px;
 }
-
 
 .section-desc{
-
-  margin:
-    0;
-
-  color:
-    var(--muted);
-
-  line-height:
-    1.6;
-
-  font-size:
-    14px;
-
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
 }
 
-
-/* =========================================================
-   CARDS
-========================================================= */
+/* CARDS */
 
 .card{
-
-  background:
-    var(--white);
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:
-    var(--radius-lg);
-
-  box-shadow:
-    var(--shadow-sm);
-
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm);
 }
 
-
-.panel{
-
-  padding:
-    27px;
-
-}
-
+.panel{padding:27px}
 
 .grid2{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      2,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    18px;
-
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
 }
-
 
 .grid4{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    16px;
-
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
 }
 
-
-/* =========================================================
-   CATEGORY
-========================================================= */
+/* CATEGORY */
 
 .categories{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    14px;
-
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
 }
 
-
 .category{
-
-  position:
-    relative;
-
-  overflow:
-    hidden;
-
-  padding:
-    24px 17px;
-
-  text-align:
-    left;
-
-  cursor:
-    pointer;
-
+  position:relative;
+  overflow:hidden;
+  padding:24px 17px;
+  text-align:left;
+  cursor:pointer;
   transition:
     transform .17s,
     border-color .17s,
     box-shadow .17s;
-
 }
-
 
 .category:hover{
-
-  transform:
-    translateY(-3px);
-
-  border-color:
-    #afd1f8;
-
-  box-shadow:
-    var(--shadow);
-
+  transform:translateY(-3px);
+  border-color:#afd1f8;
+  box-shadow:var(--shadow);
 }
-
 
 .category .ico{
-
-  width:
-    47px;
-
-  height:
-    47px;
-
-  margin-bottom:
-    16px;
-
-  display:
-    grid;
-
-  place-items:
-    center;
-
-  border-radius:
-    15px;
-
-  background:
-    var(--blue-soft);
-
-  font-size:
-    23px;
-
+  width:47px;
+  height:47px;
+  margin-bottom:16px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:var(--blue-soft);
+  font-size:23px;
 }
-
 
 .category b{
-
-  display:
-    block;
-
-  font-size:
-    17px;
-
-  margin-bottom:
-    4px;
-
+  display:block;
+  font-size:17px;
+  margin-bottom:4px;
 }
 
+.category small{color:var(--muted)}
 
-.category small{
-
-  color:
-    var(--muted);
-
-}
-
-
-/* =========================================================
-   EXPERT CARDS
-========================================================= */
+/* EXPERT */
 
 .expert-card{
-
-  overflow:
-    hidden;
-
-  transition:
-    transform .17s,
-    box-shadow .17s;
-
+  overflow:hidden;
+  transition:transform .17s,box-shadow .17s;
 }
-
 
 .expert-card:hover{
-
-  transform:
-    translateY(-4px);
-
-  box-shadow:
-    var(--shadow);
-
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
 }
-
 
 .avatar{
-
-  height:
-    145px;
-
-  display:
-    grid;
-
-  place-items:
-    center;
-
+  height:145px;
+  display:grid;
+  place-items:center;
   background:
-
-    radial-gradient(
-      circle at 60% 10%,
-      #dcecff,
-      transparent 48%
-    ),
-
-    linear-gradient(
-      135deg,
-      #f3f8ff,
-      #eaf3ff
-    );
-
-  font-size:
-    61px;
-
+    radial-gradient(circle at 60% 10%,#dcecff,transparent 48%),
+    linear-gradient(135deg,#f3f8ff,#eaf3ff);
+  font-size:61px;
 }
 
-
-.expert-body{
-
-  padding:
-    20px;
-
-}
-
+.expert-body{padding:20px}
 
 .expert-body h3{
-
-  margin:
-    0 0 10px;
-
-  font-size:
-    18px;
-
+  margin:0 0 10px;
+  font-size:18px;
 }
 
+.expert-body p{line-height:1.65}
 
-.expert-body p{
-
-  line-height:
-    1.65;
-
-}
-
-
-/* =========================================================
-   FORMS
-========================================================= */
+/* FORMS */
 
 .field{
-
-  display:
-    grid;
-
-  gap:
-    7px;
-
-  margin-bottom:
-    15px;
-
+  display:grid;
+  gap:7px;
+  margin-bottom:15px;
 }
-
 
 .field label{
-
-  color:
-    #394b62;
-
-  font-size:
-    13px;
-
-  font-weight:
-    850;
-
+  color:#394b62;
+  font-size:13px;
+  font-weight:850;
 }
-
 
 .field input,
 .field select,
 .field textarea{
-
-  width:
-    100%;
-
-  border:
-    1px solid
-    #d7e3ee;
-
-  border-radius:
-    14px;
-
-  background:
-    #fff;
-
-  padding:
-    13px 14px;
-
-  outline:
-    0;
-
-  color:
-    var(--ink);
-
-  transition:
-    border-color .15s,
-    box-shadow .15s;
-
+  width:100%;
+  border:1px solid #d7e3ee;
+  border-radius:14px;
+  background:#fff;
+  padding:13px 14px;
+  outline:0;
+  color:var(--ink);
+  transition:border-color .15s,box-shadow .15s;
 }
-
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
-
-  border-color:
-    #8bbbf3;
-
-  box-shadow:
-    0 0 0 4px
-    rgba(
-      20,
-      121,
-      237,
-      .07
-    );
-
+  border-color:#8bbbf3;
+  box-shadow:0 0 0 4px rgba(20,121,237,.07);
 }
-
 
 .field textarea{
-
-  min-height:
-    120px;
-
-  resize:
-    vertical;
-
+  min-height:120px;
+  resize:vertical;
 }
-
 
 .check{
-
-  display:
-    flex;
-
-  align-items:
-    flex-start;
-
-  gap:
-    9px;
-
-  margin:
-    12px 0;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.55;
-
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  margin:12px 0;
+  font-size:13px;
+  line-height:1.55;
 }
 
-
-.check input{
-
-  margin-top:
-    3px;
-
-}
-
-
-/* =========================================================
-   UTILITY
-========================================================= */
+.check input{margin-top:3px}
 
 .row{
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  flex-wrap:
-    wrap;
-
-  gap:
-    8px;
-
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
 }
-
 
 .space{
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
-  gap:
-    14px;
-
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
 }
 
-
-.muted{
-
-  color:
-    var(--muted);
-
-}
-
-
-.tiny{
-
-  font-size:
-    12px;
-
-}
-
+.muted{color:var(--muted)}
+.tiny{font-size:12px}
 
 .notice{
-
-  padding:
-    13px 15px;
-
-  margin:
-    10px 0 16px;
-
-  border:
-    1px solid
-    #dbe9f8;
-
-  border-radius:
-    14px;
-
-  color:
-    #326294;
-
-  background:
-    #eff7ff;
-
-  line-height:
-    1.6;
-
-  font-size:
-    13px;
-
+  padding:13px 15px;
+  margin:10px 0 16px;
+  border:1px solid #dbe9f8;
+  border-radius:14px;
+  color:#326294;
+  background:#eff7ff;
+  line-height:1.6;
+  font-size:13px;
 }
-
 
 .notice.warn{
-
-  color:
-    #835b00;
-
-  border-color:
-    #f8dfaa;
-
-  background:
-    var(--orange-soft);
-
+  color:#835b00;
+  border-color:#f8dfaa;
+  background:var(--orange-soft);
 }
-
 
 .notice.good{
-
-  color:
-    #147252;
-
-  border-color:
-    #c9ebdd;
-
-  background:
-    var(--green-soft);
-
+  color:#147252;
+  border-color:#c9ebdd;
+  background:var(--green-soft);
 }
-
 
 .notice.bad{
-
-  color:
-    #9d3737;
-
-  border-color:
-    #f1d0d0;
-
-  background:
-    var(--red-soft);
-
+  color:#9d3737;
+  border-color:#f1d0d0;
+  background:var(--red-soft);
 }
-
-
-/* =========================================================
-   REQUEST
-========================================================= */
 
 .request{
-
-  padding:
-    18px;
-
-  margin:
-    11px 0;
-
-  border-radius:
-    18px;
-
-  box-shadow:
-    none;
-
+  padding:18px;
+  margin:11px 0;
+  border-radius:18px;
+  box-shadow:none;
 }
-
 
 .request h4{
-
-  margin:
-    0 0 7px;
-
-  font-size:
-    16px;
-
+  margin:0 0 7px;
+  font-size:16px;
 }
-
 
 .meta{
-
-  margin-bottom:
-    8px;
-
-  color:
-    var(--muted);
-
-  font-size:
-    12px;
-
+  margin-bottom:8px;
+  color:var(--muted);
+  font-size:12px;
 }
-
 
 .status{
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  min-height:
-    27px;
-
-  padding:
-    0 9px;
-
-  border-radius:
-    999px;
-
-  background:
-    #edf3f9;
-
-  color:
-    #50647b;
-
-  font-size:
-    11px;
-
-  font-weight:
-    850;
-
+  display:inline-flex;
+  align-items:center;
+  min-height:27px;
+  padding:0 9px;
+  border-radius:999px;
+  background:#edf3f9;
+  color:#50647b;
+  font-size:11px;
+  font-weight:850;
 }
-
 
 .status.open{
-
-  color:
-    #846000;
-
-  background:
-    #fff3d8;
-
+  color:#846000;
+  background:#fff3d8;
 }
-
 
 .status.matched{
-
-  color:
-    #1764ad;
-
-  background:
-    #e8f2ff;
-
+  color:#1764ad;
+  background:#e8f2ff;
 }
-
 
 .status.in_progress{
-
-  color:
-    #0873a3;
-
-  background:
-    #e7f8ff;
-
+  color:#0873a3;
+  background:#e7f8ff;
 }
-
 
 .status.done{
-
-  color:
-    #14714f;
-
-  background:
-    #e8f8ee;
-
+  color:#14714f;
+  background:#e8f8ee;
 }
-
 
 .badge{
-
-  padding:
-    2px 7px;
-
-  border-radius:
-    999px;
-
-  background:
-    var(--red);
-
-  color:
-    #fff;
-
-  font-size:
-    10px;
-
+  padding:2px 7px;
+  border-radius:999px;
+  background:var(--red);
+  color:#fff;
+  font-size:10px;
 }
 
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.dashboard-card{
-
-  overflow:
-    hidden;
-
-}
-
+.dashboard-card{overflow:hidden}
 
 .tabs{
-
-  display:
-    flex;
-
-  flex-wrap:
-    wrap;
-
-  gap:
-    7px;
-
-  margin-bottom:
-    16px;
-
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:16px;
 }
-
 
 .tab{
-
-  min-height:
-    42px;
-
-  color:
-    #4a6179;
-
-  background:
-    #edf3f9;
-
-  box-shadow:
-    none;
-
+  min-height:42px;
+  color:#4a6179;
+  background:#edf3f9;
+  box-shadow:none;
 }
-
 
 .tab.active{
-
-  color:
-    #fff;
-
-  background:
-    var(--blue);
-
+  color:#fff;
+  background:var(--blue);
 }
-
 
 .stat-grid{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    13px;
-
-  margin-bottom:
-    18px;
-
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:13px;
+  margin-bottom:18px;
 }
-
 
 .stat{
-
-  padding:
-    21px;
-
-  text-align:
-    left;
-
+  padding:21px;
+  text-align:left;
 }
-
 
 .stat strong{
-
-  display:
-    block;
-
-  margin-bottom:
-    5px;
-
-  color:
-    var(--blue);
-
-  font-size:
-    29px;
-
+  display:block;
+  margin-bottom:5px;
+  color:var(--blue);
+  font-size:29px;
 }
-
 
 .stat span{
-
-  color:
-    var(--muted);
-
-  font-size:
-    13px;
-
-  font-weight:
-    750;
-
+  color:var(--muted);
+  font-size:13px;
+  font-weight:750;
 }
-
-
-/* =========================================================
-   SUBSCRIPTION
-========================================================= */
 
 .subscription-card{
-
-  overflow:
-    hidden;
-
-  position:
-    relative;
-
-  padding:
-    29px;
-
+  overflow:hidden;
+  position:relative;
+  padding:29px;
   background:
-
-    radial-gradient(
-      circle at 100% 0,
-      rgba(
-        20,
-        121,
-        237,
-        .10
-      ),
-      transparent 28%
-    ),
-
+    radial-gradient(circle at 100% 0,rgba(20,121,237,.10),transparent 28%),
     #fff;
-
 }
-
 
 .subscription-top{
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    flex-start;
-
-  gap:
-    24px;
-
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:24px;
 }
-
 
 .subscription-price{
-
-  color:
-    var(--blue);
-
-  font-size:
-    37px;
-
-  font-weight:
-    950;
-
-  letter-spacing:
-    -2px;
-
+  color:var(--blue);
+  font-size:37px;
+  font-weight:950;
+  letter-spacing:-2px;
 }
-
 
 .subscription-info{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    10px;
-
-  margin:
-    20px 0;
-
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:20px 0;
 }
-
 
 .info-box{
-
-  padding:
-    15px;
-
-  border:
-    1px solid
-    #e9f0f7;
-
-  border-radius:
-    15px;
-
-  background:
-    #f8fafc;
-
+  padding:15px;
+  border:1px solid #e9f0f7;
+  border-radius:15px;
+  background:#f8fafc;
 }
-
 
 .info-box small{
-
-  display:
-    block;
-
-  margin-bottom:
-    6px;
-
-  color:
-    var(--muted);
-
+  display:block;
+  margin-bottom:6px;
+  color:var(--muted);
 }
-
 
 .case-contact{
-
-  margin:
-    12px 0;
-
-  padding:
-    14px;
-
-  border:
-    1px solid
-    #ccebdd;
-
-  border-radius:
-    14px;
-
-  background:
-    var(--green-soft);
-
-  color:
-    #17634c;
-
+  margin:12px 0;
+  padding:14px;
+  border:1px solid #ccebdd;
+  border-radius:14px;
+  background:var(--green-soft);
+  color:#17634c;
 }
-
-
-/* =========================================================
-   ADMIN
-========================================================= */
 
 .admin-stats{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    12px;
-
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
 }
-
 
 .admin-stat{
-
-  padding:
-    21px;
-
-  text-align:
-    left;
-
+  padding:21px;
+  text-align:left;
 }
-
 
 .admin-stat strong{
-
-  display:
-    block;
-
-  margin-bottom:
-    6px;
-
-  color:
-    var(--blue);
-
-  font-size:
-    30px;
-
+  display:block;
+  margin-bottom:6px;
+  color:var(--blue);
+  font-size:30px;
 }
-
 
 .admin-section{
-
-  margin-top:
-    18px;
-
-  padding:
-    23px;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:
-    var(--radius-lg);
-
-  background:
-    #fff;
-
-  box-shadow:
-    var(--shadow-sm);
-
+  margin-top:18px;
+  padding:23px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  background:#fff;
+  box-shadow:var(--shadow-sm);
 }
-
-
-/* =========================================================
-   MODAL
-========================================================= */
 
 .modal{
-
-  position:
-    fixed;
-
-  inset:
-    0;
-
-  z-index:
-    300;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    20px;
-
-  background:
-    rgba(
-      12,
-      25,
-      44,
-      .54
-    );
-
-  backdrop-filter:
-    blur(7px);
-
+  position:fixed;
+  inset:0;
+  z-index:300;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(12,25,44,.54);
+  backdrop-filter:blur(7px);
 }
-
 
 .modal-card{
-
-  width:
-    min(
-      580px,
-      100%
-    );
-
-  max-height:
-    90vh;
-
-  overflow:
-    auto;
-
-  padding:
-    25px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .75
-    );
-
-  border-radius:
-    26px;
-
-  background:
-    #fff;
-
-  box-shadow:
-    var(--shadow-xl);
-
+  width:min(580px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:25px;
+  border:1px solid rgba(255,255,255,.75);
+  border-radius:26px;
+  background:#fff;
+  box-shadow:var(--shadow-xl);
 }
-
 
 .legalbox{
-
-  white-space:
-    pre-wrap;
-
-  padding:
-    18px;
-
-  border-radius:
-    16px;
-
-  background:
-    #f8fafc;
-
-  color:
-    #475a72;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.78;
-
+  white-space:pre-wrap;
+  padding:18px;
+  border-radius:16px;
+  background:#f8fafc;
+  color:#475a72;
+  font-size:13px;
+  line-height:1.78;
 }
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
 
 footer{
-
-  margin-top:
-    28px;
-
-  padding:
-    46px 0 42px;
-
-  border-top:
-    1px solid
-    var(--line);
-
-  background:
-    #fff;
-
+  margin-top:28px;
+  padding:46px 0 42px;
+  border-top:1px solid var(--line);
+  background:#fff;
 }
-
 
 .business{
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(
-        0,
-        1fr
-      )
-    );
-
-  gap:
-    12px;
-
-  margin-top:
-    22px;
-
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:22px;
 }
-
 
 .business > div{
-
-  padding:
-    13px 14px;
-
-  border:
-    1px solid
-    #edf1f5;
-
-  border-radius:
-    13px;
-
-  color:
-    #718299;
-
-  font-size:
-    12px;
-
-  line-height:
-    1.55;
-
+  padding:13px 14px;
+  border:1px solid #edf1f5;
+  border-radius:13px;
+  color:#718299;
+  font-size:12px;
+  line-height:1.55;
 }
 
+.business b{color:#44566d}
 
-.business b{
+.mobile-bottom{display:none}
 
-  color:
-    #44566d;
-
-}
-
-
-/* =========================================================
-   MOBILE BOTTOM BAR
-========================================================= */
-
-.mobile-bottom{
-
-  display:
-    none;
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
+/* TABLET */
 
 @media(max-width:980px){
 
-  nav{
-
-    grid-template-columns:
-      auto 1fr;
-
-  }
-
-
-  .navlinks{
-
-    display:
-      none;
-
-  }
-
-
-  .nav-actions{
-
-    justify-self:
-      end;
-
-  }
-
-
-  .hero-grid{
-
-    grid-template-columns:
-      1fr;
-
-  }
-
+  nav{grid-template-columns:auto 1fr}
+  .navlinks{display:none}
+  .nav-actions{justify-self:end}
+  .hero-grid{grid-template-columns:1fr}
 
   .hero-card{
-
-    display:
-      grid;
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
-    column-gap:
-      22px;
-
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    column-gap:22px;
   }
 
+  .hero-card-head{grid-column:1/-1}
 
-  .hero-card-head{
-
-    grid-column:
-      1 / -1;
-
-  }
-
-
-  .categories{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
-  }
-
-
+  .categories,
   .grid4{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
 
-
-  .grid2{
-
-    grid-template-columns:
-      1fr;
-
-  }
-
+  .grid2{grid-template-columns:1fr}
 
   .stat-grid,
   .admin-stats{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
-
 
   .subscription-info{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
-
 
   .business{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
-
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
+/* MOBILE */
 
 @media(max-width:680px){
 
-  body{
-
-    padding-bottom:
-      68px;
-
-  }
-
+  body{padding-bottom:68px}
 
   .wrap{
-
-    width:
-      calc(
-        100% - 22px
-      );
-
+    width:calc(100% - 22px);
   }
 
-
-  header{
-
-    position:
-      sticky;
-
-  }
-
+  header{position:sticky}
 
   nav{
-
-    min-height:
-      auto;
-
-    padding:
-      10px 0 11px;
-
-    display:
-      block;
-
+    min-height:auto;
+    padding:10px 0 11px;
+    display:block;
   }
-
 
   .logo{
-
-    margin-bottom:
-      9px;
-
-    font-size:
-      23px;
-
+    margin-bottom:9px;
+    font-size:23px;
   }
-
 
   .logo::before{
-
-    width:
-      37px;
-
-    height:
-      37px;
-
-    border-radius:
-      12px;
-
+    width:37px;
+    height:37px;
+    border-radius:12px;
   }
-
-
-  /*
-    핵심:
-    로그인 / 전문가 로그인 / 회원가입
-    버튼이 휴대폰에서 절대 세로로 깨지지 않게
-    3등분
-  */
 
   .nav-actions{
-
-    width:
-      100%;
-
-    display:
-      grid;
-
-    grid-template-columns:
-      repeat(
-        3,
-        minmax(
-          0,
-          1fr
-        )
-      );
-
-    gap:
-      7px;
-
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:7px;
   }
-
 
   .nav-actions .btn{
-
-    width:
-      100%;
-
-    min-width:
-      0;
-
-    min-height:
-      43px;
-
-    padding:
-      0 5px;
-
-    border-radius:
-      12px;
-
-    font-size:
-      12px;
-
-    line-height:
-      1.25;
-
-    white-space:
-      normal;
-
-    text-align:
-      center;
-
+    width:100%;
+    min-width:0;
+    min-height:43px;
+    padding:0 5px;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1.25;
+    white-space:normal;
+    text-align:center;
   }
 
+  .hero{padding:12px 0 8px}
 
-  .hero{
-
-    padding:
-      12px 0 8px;
-
-  }
-
-
-  .hero-shell{
-
-    border-radius:
-      25px;
-
-  }
-
+  .hero-shell{border-radius:25px}
 
   .hero-grid{
-
-    padding:
-      29px 19px 21px;
-
-    gap:
-      24px;
-
+    padding:29px 19px 21px;
+    gap:24px;
   }
 
-
-  .hero-label{
-
-    font-size:
-      11px;
-
-  }
-
+  .hero-label{font-size:11px}
 
   .hero h1{
-
-    margin-top:
-      13px;
-
-    font-size:
-      39px;
-
-    line-height:
-      1.09;
-
-    letter-spacing:
-      -2.5px;
-
+    margin-top:13px;
+    font-size:39px;
+    line-height:1.09;
+    letter-spacing:-2.5px;
   }
-
 
   .hero p{
-
-    font-size:
-      15px;
-
-    line-height:
-      1.72;
-
+    font-size:15px;
+    line-height:1.72;
   }
-
 
   .search{
-
-    grid-template-columns:
-      1fr auto;
-
-    padding:
-      6px;
-
-    border-radius:
-      16px;
-
+    grid-template-columns:1fr auto;
+    padding:6px;
+    border-radius:16px;
   }
-
 
   .search input{
-
-    font-size:
-      14px;
-
-    padding:
-      0 10px;
-
+    font-size:14px;
+    padding:0 10px;
   }
-
 
   .search button{
-
-    min-width:
-      73px;
-
-    min-height:
-      46px;
-
-    padding:
-      0 13px;
-
+    min-width:73px;
+    min-height:46px;
+    padding:0 13px;
   }
 
-
-  .tags{
-
-    gap:
-      6px;
-
-  }
-
+  .tags{gap:6px}
 
   .tag{
-
-    padding:
-      6px 9px;
-
-    font-size:
-      11px;
-
+    padding:6px 9px;
+    font-size:11px;
   }
-
 
   .hero-card{
-
-    display:
-      block;
-
-    padding:
-      20px;
-
-    border-radius:
-      21px;
-
+    display:block;
+    padding:20px;
+    border-radius:21px;
   }
-
 
   .hero-point{
-
-    padding:
-      12px 0;
-
-    font-size:
-      13px;
-
+    padding:12px 0;
+    font-size:13px;
   }
 
-
-  .section{
-
-    padding:
-      42px 0;
-
-  }
-
+  .section{padding:42px 0}
 
   .section-header{
-
-    align-items:
-      flex-start;
-
-    margin-bottom:
-      18px;
-
+    align-items:flex-start;
+    margin-bottom:18px;
   }
 
-
-  .section-title{
-
-    font-size:
-      25px;
-
-  }
-
+  .section-title{font-size:25px}
 
   .categories{
-
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(
-          0,
-          1fr
-        )
-      );
-
-    gap:
-      10px;
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
   }
-
 
   .category{
-
-    padding:
-      17px 14px;
-
-    border-radius:
-      18px;
-
+    padding:17px 14px;
+    border-radius:18px;
   }
-
 
   .category .ico{
-
-    width:
-      40px;
-
-    height:
-      40px;
-
-    margin-bottom:
-      12px;
-
-    border-radius:
-      13px;
-
-    font-size:
-      20px;
-
+    width:40px;
+    height:40px;
+    margin-bottom:12px;
+    border-radius:13px;
+    font-size:20px;
   }
 
+  .category b{font-size:15px}
 
-  .category b{
+  .grid4{grid-template-columns:1fr}
 
-    font-size:
-      15px;
-
-  }
-
-
-  .grid4{
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .panel{
-
-    padding:
-      18px;
-
-  }
-
+  .panel{padding:18px}
 
   .stat-grid,
   .admin-stats{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
-    gap:
-      9px;
-
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
   }
-
 
   .stat,
   .admin-stat{
-
-    padding:
-      16px;
-
-    border-radius:
-      17px;
-
+    padding:16px;
+    border-radius:17px;
   }
-
 
   .stat strong,
   .admin-stat strong{
-
-    font-size:
-      25px;
-
+    font-size:25px;
   }
-
 
   .subscription-card{
-
-    padding:
-      20px;
-
-    border-radius:
-      21px;
-
+    padding:20px;
+    border-radius:21px;
   }
 
-
-  .subscription-top{
-
-    display:
-      block;
-
-  }
-
+  .subscription-top{display:block}
 
   .subscription-price{
-
-    margin-top:
-      14px;
-
-    font-size:
-      31px;
-
+    margin-top:14px;
+    font-size:31px;
   }
-
 
   .subscription-info{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
 
-
-  .info-box{
-
-    padding:
-      12px;
-
-  }
-
+  .info-box{padding:12px}
 
   .tabs{
-
-    flex-wrap:
-      nowrap;
-
-    overflow-x:
-      auto;
-
-    padding-bottom:
-      5px;
-
-    scrollbar-width:
-      none;
-
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:5px;
+    scrollbar-width:none;
   }
 
-
-  .tabs::-webkit-scrollbar{
-
-    display:
-      none;
-
-  }
-
-
-  .tab{
-
-    flex:
-      0 0 auto;
-
-  }
-
-
-  .space{
-
-    align-items:
-      flex-start;
-
-  }
-
-
-  .business{
-
-    grid-template-columns:
-      1fr;
-
-  }
-
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto}
+  .space{align-items:flex-start}
+  .business{grid-template-columns:1fr}
 
   .modal{
-
-    align-items:
-      flex-end;
-
-    padding:
-      10px;
-
+    align-items:flex-end;
+    padding:10px;
   }
-
 
   .modal-card{
-
-    width:
-      100%;
-
-    max-height:
-      92vh;
-
-    border-radius:
-      26px 26px 16px 16px;
-
+    width:100%;
+    max-height:92vh;
+    border-radius:26px 26px 16px 16px;
   }
-
-
-  /*
-    모바일 하단 네비
-  */
 
   .mobile-bottom{
-
-    position:
-      fixed;
-
-    left:
-      0;
-
-    right:
-      0;
-
-    bottom:
-      0;
-
-    z-index:
-      90;
-
-    height:
-      calc(
-        64px +
-        env(
-          safe-area-inset-bottom
-        )
-      );
-
-    padding-bottom:
-      env(
-        safe-area-inset-bottom
-      );
-
-    display:
-      grid;
-
-    grid-template-columns:
-      repeat(
-        4,
-        1fr
-      );
-
-    background:
-      rgba(
-        255,
-        255,
-        255,
-        .97
-      );
-
-    border-top:
-      1px solid
-      #dfe7ef;
-
-    backdrop-filter:
-      blur(12px);
-
-    box-shadow:
-      0 -6px 20px
-      rgba(
-        26,
-        55,
-        88,
-        .05
-      );
-
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:90;
+    height:calc(64px + env(safe-area-inset-bottom));
+    padding-bottom:env(safe-area-inset-bottom);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:rgba(255,255,255,.97);
+    border-top:1px solid #dfe7ef;
+    backdrop-filter:blur(12px);
+    box-shadow:0 -6px 20px rgba(26,55,88,.05);
   }
-
 
   .mobile-bottom a,
   .mobile-bottom button{
-
-    border:
-      0;
-
-    background:
-      transparent;
-
-    display:
-      flex;
-
-    flex-direction:
-      column;
-
-    align-items:
-      center;
-
-    justify-content:
-      center;
-
-    gap:
-      3px;
-
-    color:
-      #687b92;
-
-    font-size:
-      10px;
-
-    font-weight:
-      800;
-
+    border:0;
+    background:transparent;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    color:#687b92;
+    font-size:10px;
+    font-weight:800;
   }
 
-
-  .mobile-bottom .mi{
-
-    font-size:
-      20px;
-
-  }
-
+  .mobile-bottom .mi{font-size:20px}
 }
-
-
-/* =========================================================
-   VERY SMALL PHONE
-========================================================= */
 
 @media(max-width:390px){
 
-  .hero h1{
-
-    font-size:
-      35px;
-
-  }
-
-
-  .nav-actions .btn{
-
-    font-size:
-      11px;
-
-  }
-
+  .hero h1{font-size:35px}
+  .nav-actions .btn{font-size:11px}
 
   .categories{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
-
 }
 
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <header>
-
 <div class="wrap">
-
 <nav>
 
-
-<a
-  href="#"
-  class="logo"
->
+<a href="#" class="logo">
 전문가<b>ON</b>
 </a>
-
 
 <div class="navlinks">
 
@@ -3127,7 +1196,6 @@ footer{
 
 </div>
 
-
 <div
   id="guestActions"
   class="nav-actions"
@@ -3135,35 +1203,26 @@ footer{
 
 <button
   class="btn outline"
-  onclick="
-    openAuth('login')
-  "
+  onclick="openAuth('login')"
 >
 로그인
 </button>
 
-
 <button
   class="btn soft"
-  onclick="
-    openExpertLogin()
-  "
+  onclick="openExpertLogin()"
 >
 전문가 로그인
 </button>
 
-
 <button
   class="btn primary"
-  onclick="
-    openAuth('signup')
-  "
+  onclick="openAuth('signup')"
 >
 회원가입
 </button>
 
 </div>
-
 
 <div
   id="userActions"
@@ -3172,636 +1231,326 @@ footer{
 
 <button
   class="btn outline"
-  onclick="
-    openDashboard()
-  "
+  onclick="openDashboard()"
 >
 마이페이지
 <span id="notifyBadge"></span>
 </button>
 
-
 <button
   class="btn primary"
-  onclick="
-    logout()
-  "
+  onclick="logout()"
 >
 로그아웃
 </button>
 
 </div>
 
-
 </nav>
-
 </div>
-
 </header>
 
-
 <main>
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
 
 <section class="hero">
 
 <div class="wrap">
-
 <div class="hero-shell">
-
 <div class="hero-grid">
 
-
 <div>
-
 
 <span class="hero-label">
 ✓ 승인 전문가 매칭 플랫폼
 </span>
 
-
 <h1>
-
 필요한 순간,<br>
-
 <em>전문가를 ON</em>하다
-
 </h1>
 
-
 <p>
-
-세무 · 노무 · 손해사정 · 법률 · 부동산까지.<br>
-
-승인된 전문가를 찾고
-필요한 상담을 빠르게 요청하세요.
-
+어떤 전문가를 찾아야 할지 몰라도 괜찮습니다.<br>
+지금 겪고 있는 상황을 입력하면
+전문가ON이 적합한 전문분야를 찾아드립니다.
 </p>
-
 
 <div class="search">
 
 <input
   id="searchInput"
-  placeholder="예: 노무사, 보험금청구, 세무신고"
+  placeholder="예: 퇴직금을 못 받았어요 / 교통사고 보험금이 적어요"
+  onkeydown="if(event.key==='Enter'){event.preventDefault();smartMatchExperts();}"
 >
 
 <button
   class="btn primary"
-  onclick="
-    loadExperts()
-  "
+  onclick="smartMatchExperts()"
 >
-검색
+전문가 찾기
 </button>
 
 </div>
 
+<div
+  id="smartMatchResult"
+  class="smart-match-result hidden"
+></div>
 
 <div class="tags">
 
-<span class="tag">
-#세무신고
+<span
+  class="tag"
+  onclick="quickSituation('세금 신고와 절세 상담이 필요해요')"
+  style="cursor:pointer"
+>
+#세금·절세
 </span>
 
-<span class="tag">
+<span
+  class="tag"
+  onclick="quickSituation('보험금 청구와 손해사정 상담이 필요해요')"
+  style="cursor:pointer"
+>
 #보험금청구
 </span>
 
-<span class="tag">
+<span
+  class="tag"
+  onclick="quickSituation('퇴직금이나 임금 문제로 상담이 필요해요')"
+  style="cursor:pointer"
+>
 #노동문제
 </span>
 
-<span class="tag">
+<span
+  class="tag"
+  onclick="quickSituation('계약이나 소송 관련 법률상담이 필요해요')"
+  style="cursor:pointer"
+>
 #법률상담
 </span>
 
 </div>
-
-
 </div>
-
 
 <div class="hero-card">
 
-
 <div class="hero-card-head">
-
-<h3>
-전문가ON 이용방법
-</h3>
-
+<h3>전문가ON 이용방법</h3>
 <p class="muted">
-필요한 전문가를 빠르게 찾고
-상담을 시작하세요.
+상황만 입력하면 필요한 전문분야를 찾고
+바로 상담을 시작할 수 있습니다.
 </p>
-
 </div>
 
-
 <div class="hero-point">
-
 <span>01</span>
-
-필요한 전문가 검색
-
+내 상황 입력
 </div>
 
-
 <div class="hero-point">
-
 <span>02</span>
-
-상담 내용 작성 및 신청
-
+전문분야 자동 추천
 </div>
 
-
 <div class="hero-point">
-
 <span>03</span>
-
-전문가 상담 수락
-
+전문가 비교 · 선택
 </div>
-
 
 <div class="hero-point">
-
 <span>04</span>
-
 고객 · 전문가 직접 연결
-
-</div>
-
-
-</div>
-
-
 </div>
 
 </div>
-
+</div>
+</div>
 </div>
 
 </section>
 
-
-<!-- =========================================================
-     CATEGORY
-========================================================= -->
-
 <section class="section">
-
 <div class="wrap">
 
-
 <div class="section-header">
-
 <div>
-
-<h2 class="section-title">
-전문 분야
-</h2>
-
+<h2 class="section-title">전문 분야</h2>
 <p class="section-desc">
-상담이 필요한 분야를 선택해보세요.
+분야를 이미 알고 있다면 직접 선택할 수도 있습니다.
 </p>
-
 </div>
-
 </div>
-
 
 <div class="categories">
 
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('세무사')
-  "
->
-
-<div class="ico">
-🧾
+<div class="card category" onclick="pickCategory('세무사')">
+<div class="ico">🧾</div>
+<b>세무사</b>
+<small>세금 · 절세</small>
 </div>
 
-<b>
-세무사
-</b>
-
-<small>
-세금 · 절세
-</small>
-
+<div class="card category" onclick="pickCategory('노무사')">
+<div class="ico">👨‍💼</div>
+<b>노무사</b>
+<small>노동 · 인사</small>
 </div>
 
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('노무사')
-  "
->
-
-<div class="ico">
-👨‍💼
+<div class="card category" onclick="pickCategory('손해사정사')">
+<div class="ico">🛡️</div>
+<b>손해사정사</b>
+<small>보험금 · 손해사정</small>
 </div>
 
-<b>
-노무사
-</b>
-
-<small>
-노동 · 인사
-</small>
-
+<div class="card category" onclick="pickCategory('변호사')">
+<div class="ico">⚖️</div>
+<b>변호사</b>
+<small>법률 · 소송</small>
 </div>
 
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('손해사정사')
-  "
->
-
-<div class="ico">
-🛡️
+<div class="card category" onclick="pickCategory('법무사')">
+<div class="ico">📜</div>
+<b>법무사</b>
+<small>등기 · 상속</small>
 </div>
 
-<b>
-손해사정사
-</b>
-
-<small>
-보험금 · 손해사정
-</small>
-
+<div class="card category" onclick="pickCategory('행정사')">
+<div class="ico">🗂️</div>
+<b>행정사</b>
+<small>인허가 · 민원</small>
 </div>
 
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('변호사')
-  "
->
-
-<div class="ico">
-⚖️
+<div class="card category" onclick="pickCategory('공인중개사')">
+<div class="ico">🏠</div>
+<b>공인중개사</b>
+<small>매매 · 임대</small>
 </div>
 
-<b>
-변호사
-</b>
-
-<small>
-법률 · 소송
-</small>
-
-</div>
-
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('법무사')
-  "
->
-
-<div class="ico">
-📜
-</div>
-
-<b>
-법무사
-</b>
-
-<small>
-등기 · 상속
-</small>
-
-</div>
-
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('행정사')
-  "
->
-
-<div class="ico">
-🗂️
-</div>
-
-<b>
-행정사
-</b>
-
-<small>
-인허가 · 민원
-</small>
-
-</div>
-
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('공인중개사')
-  "
->
-
-<div class="ico">
-🏠
-</div>
-
-<b>
-공인중개사
-</b>
-
-<small>
-매매 · 임대
-</small>
-
-</div>
-
-
-<div
-  class="card category"
-  onclick="
-    pickCategory('기타')
-  "
->
-
-<div class="ico">
-🔎
-</div>
-
-<b>
-기타 전문가
-</b>
-
-<small>
-더 많은 분야
-</small>
-
-</div>
-
-
+<div class="card category" onclick="pickCategory('기타')">
+<div class="ico">🔎</div>
+<b>기타 전문가</b>
+<small>더 많은 분야</small>
 </div>
 
 </div>
-
+</div>
 </section>
 
-
-<!-- =========================================================
-     EXPERTS
-========================================================= -->
-
-<section
-  class="section"
-  id="experts"
->
-
+<section class="section" id="experts">
 <div class="wrap">
-
 
 <div class="section-header">
 
 <div>
-
 <h2 class="section-title">
 활동 중인 전문가
 </h2>
-
 <p class="section-desc">
 관리자 승인과 이용권 활성화를 완료한 전문가만 노출됩니다.
 </p>
-
 </div>
-
 
 <button
   class="btn outline"
-  onclick="
-    loadExperts()
-  "
+  onclick="loadExperts()"
 >
 새로고침
 </button>
 
 </div>
 
-
-<div
-  id="expertList"
-  class="grid4"
-></div>
-
+<div id="expertList" class="grid4"></div>
 
 </div>
-
 </section>
 
-
-<!-- =========================================================
-     CONSULT
-========================================================= -->
-
-<section
-  class="section"
-  id="consult"
->
-
+<section class="section" id="consult">
 <div class="wrap">
 
-
 <div class="section-header">
-
 <div>
-
-<h2 class="section-title">
-상담 신청
-</h2>
-
+<h2 class="section-title">상담 신청</h2>
 <p class="section-desc">
 일반 매칭 또는 원하는 전문가에게 직접 상담을 요청할 수 있습니다.
 </p>
-
 </div>
-
 </div>
-
 
 <div class="card panel">
-
 
 <div
   id="selectedExpertNotice"
   class="notice hidden"
 ></div>
 
-
 <form id="consultForm">
 
-
-<input
-  id="selectedExpertId"
-  type="hidden"
->
-
+<input id="selectedExpertId" type="hidden">
 
 <div class="grid2">
 
-
 <div class="field">
+<label>전문 분야</label>
 
-<label>
-전문 분야
-</label>
+<select id="consultCategory" required>
 
-<select
-  id="consultCategory"
-  required
->
-
-<option value="">
-선택하세요
-</option>
-
-<option>
-세무사
-</option>
-
-<option>
-노무사
-</option>
-
-<option>
-손해사정사
-</option>
-
-<option>
-변호사
-</option>
-
-<option>
-법무사
-</option>
-
-<option>
-행정사
-</option>
-
-<option>
-공인중개사
-</option>
-
-<option>
-기타
-</option>
+<option value="">선택하세요</option>
+<option>세무사</option>
+<option>노무사</option>
+<option>손해사정사</option>
+<option>변호사</option>
+<option>법무사</option>
+<option>행정사</option>
+<option>공인중개사</option>
+<option>기타</option>
 
 </select>
-
 </div>
 
-
 <div class="field">
-
-<label>
-지역
-</label>
-
+<label>지역</label>
 <input
   id="consultRegion"
   placeholder="예: 전주"
   required
 >
-
 </div>
 
-
 </div>
-
 
 <div class="grid2">
 
-
 <div class="field">
-
-<label>
-연락처
-</label>
+<label>연락처</label>
 
 <input
   id="consultPhone"
   placeholder="010-0000-0000"
   required
 >
-
 </div>
 
-
 <div class="field">
-
-<label>
-선호 연락방법
-</label>
+<label>선호 연락방법</label>
 
 <select id="consultContact">
-
-<option>
-전화
-</option>
-
-<option>
-문자
-</option>
-
-<option>
-카카오톡
-</option>
-
-<option>
-이메일
-</option>
-
+<option>전화</option>
+<option>문자</option>
+<option>카카오톡</option>
+<option>이메일</option>
 </select>
 
 </div>
-
-
 </div>
 
-
 <div class="field">
-
-<label>
-상담 제목
-</label>
-
-<input
-  id="consultTitle"
-  required
->
-
+<label>상담 제목</label>
+<input id="consultTitle" required>
 </div>
 
-
 <div class="field">
-
-<label>
-상담 내용
-</label>
+<label>상담 내용</label>
 
 <textarea
   id="consultContent"
@@ -3811,15 +1560,11 @@ footer{
 
 </div>
 
-
 <div class="notice warn">
-
 전문가가 상담을 수락하면
 상담 진행에 필요한 연락처와 상담정보가
 해당 전문가에게 제공됩니다.
-
 </div>
-
 
 <label class="check">
 
@@ -3830,28 +1575,19 @@ footer{
 >
 
 <span>
-
-<b>
-[필수]
-</b>
-
-상담 매칭을 위한
-개인정보 수집·이용에 동의합니다.
+<b>[필수]</b>
+상담 매칭을 위한 개인정보 수집·이용에 동의합니다.
 
 <button
   type="button"
   class="btn outline small"
-  onclick="
-    openLegal('privacy')
-  "
+  onclick="openLegal('privacy')"
 >
 내용보기
 </button>
-
 </span>
 
 </label>
-
 
 <label class="check">
 
@@ -3862,28 +1598,19 @@ footer{
 >
 
 <span>
-
-<b>
-[필수]
-</b>
-
-상담 담당 전문가에게
-상담정보 및 연락처 제공에 동의합니다.
+<b>[필수]</b>
+상담 담당 전문가에게 상담정보 및 연락처 제공에 동의합니다.
 
 <button
   type="button"
   class="btn outline small"
-  onclick="
-    openLegal('thirdparty')
-  "
+  onclick="openLegal('thirdparty')"
 >
 내용보기
 </button>
 
 </span>
-
 </label>
-
 
 <button
   class="btn primary"
@@ -3892,171 +1619,71 @@ footer{
 상담 신청하기
 </button>
 
-
 </form>
-
-
 </div>
-
 </div>
-
 </section>
 
-
-<!-- =========================================================
-     EXPERT JOIN
-========================================================= -->
-
-<section
-  class="section"
-  id="expertJoin"
->
-
+<section class="section" id="expertJoin">
 <div class="wrap">
 
-
 <div class="section-header">
-
 <div>
-
-<h2 class="section-title">
-전문가 가입
-</h2>
-
+<h2 class="section-title">전문가 가입</h2>
 <p class="section-desc">
 전문가 정보 제출 후 관리자 승인 절차를 거쳐 활동할 수 있습니다.
 </p>
-
 </div>
-
 </div>
-
 
 <div class="card panel">
 
-
 <form id="expertForm">
-
 
 <div class="grid2">
 
-
 <div class="field">
+<label>전문가 유형</label>
 
-<label>
-전문가 유형
-</label>
-
-<select
-  id="expertCategory"
-  required
->
-
-<option value="">
-선택
-</option>
-
-<option>
-세무사
-</option>
-
-<option>
-노무사
-</option>
-
-<option>
-손해사정사
-</option>
-
-<option>
-변호사
-</option>
-
-<option>
-법무사
-</option>
-
-<option>
-행정사
-</option>
-
-<option>
-공인중개사
-</option>
-
-<option>
-기타
-</option>
-
+<select id="expertCategory" required>
+<option value="">선택</option>
+<option>세무사</option>
+<option>노무사</option>
+<option>손해사정사</option>
+<option>변호사</option>
+<option>법무사</option>
+<option>행정사</option>
+<option>공인중개사</option>
+<option>기타</option>
 </select>
 
 </div>
 
-
 <div class="field">
-
-<label>
-활동 지역
-</label>
-
-<input
-  id="expertRegion"
-  required
->
-
+<label>활동 지역</label>
+<input id="expertRegion" required>
 </div>
 
-
 </div>
-
 
 <div class="grid2">
 
+<div class="field">
+<label>사무소 / 상호명</label>
+<input id="expertOffice" required>
+</div>
 
 <div class="field">
-
-<label>
-사무소 / 상호명
-</label>
-
-<input
-  id="expertOffice"
-  required
->
-
+<label>자격번호</label>
+<input id="expertLicense" required>
 </div>
 
+</div>
 
 <div class="field">
-
-<label>
-자격번호
-</label>
-
-<input
-  id="expertLicense"
-  required
->
-
+<label>전문가 소개</label>
+<textarea id="expertBio" required></textarea>
 </div>
-
-
-</div>
-
-
-<div class="field">
-
-<label>
-전문가 소개
-</label>
-
-<textarea
-  id="expertBio"
-  required
-></textarea>
-
-</div>
-
 
 <label class="check">
 
@@ -4067,28 +1694,19 @@ footer{
 >
 
 <span>
-
-<b>
-[필수]
-</b>
-
-전문가 이용약관 및
-플랫폼 운영정책에 동의합니다.
+<b>[필수]</b>
+전문가 이용약관 및 플랫폼 운영정책에 동의합니다.
 
 <button
   type="button"
   class="btn outline small"
-  onclick="
-    openLegal('expertTerms')
-  "
+  onclick="openLegal('expertTerms')"
 >
 내용보기
 </button>
 
 </span>
-
 </label>
-
 
 <button
   class="btn primary"
@@ -4097,377 +1715,208 @@ footer{
 전문가 승인 요청
 </button>
 
-
 </form>
-
-
 </div>
-
 </div>
-
 </section>
 
-
-<!-- =========================================================
-     SUPPORT
-========================================================= -->
-
-<section
-  class="section"
-  id="support"
->
-
+<section class="section" id="support">
 <div class="wrap">
 
-
 <div class="section-header">
-
 <div>
-
-<h2 class="section-title">
-고객센터
-</h2>
-
+<h2 class="section-title">고객센터</h2>
 <p class="section-desc">
 전문가ON 이용안내와 주요 정책을 확인할 수 있습니다.
 </p>
-
 </div>
-
 </div>
-
 
 <div class="grid2">
 
-
 <div class="card panel">
 
-<h3>
-전문가ON 안내
-</h3>
+<h3>전문가ON 안내</h3>
 
 <p class="muted tiny">
-
-전문가ON은
-전문가 검색·상담 요청·매칭을 지원하는 플랫폼입니다.
-
+전문가ON은 전문가 검색·상담 요청·매칭을 지원하는 플랫폼입니다.
 <br><br>
-
-실제 전문서비스의 계약,
-보수,
-업무범위 및 결과는
-이용자와 전문가 간 합의에 따릅니다.
-
+실제 전문서비스의 계약, 보수, 업무범위 및 결과는 이용자와 전문가 간 합의에 따릅니다.
 </p>
 
 </div>
 
-
 <div class="card panel">
 
-<h3>
-약관 및 정책
-</h3>
-
+<h3>약관 및 정책</h3>
 
 <div class="row">
 
-
 <button
   class="btn outline small"
-  onclick="
-    openLegal('guide')
-  "
+  onclick="openLegal('guide')"
 >
 이용안내
 </button>
 
-
 <button
   class="btn outline small"
-  onclick="
-    openLegal('terms')
-  "
+  onclick="openLegal('terms')"
 >
 이용약관
 </button>
 
-
 <button
   class="btn outline small"
-  onclick="
-    openLegal('privacy')
-  "
+  onclick="openLegal('privacy')"
 >
 개인정보처리방침
 </button>
 
-
 <button
   class="btn outline small"
-  onclick="
-    openLegal('thirdparty')
-  "
+  onclick="openLegal('thirdparty')"
 >
 제3자 제공
 </button>
 
-
 <button
   class="btn outline small"
-  onclick="
-    openLegal('payment')
-  "
+  onclick="openLegal('payment')"
 >
 결제·해지·환불
 </button>
 
-
 </div>
-
-
 </div>
-
-
 </div>
-
 </div>
-
 </section>
 
-
-<!-- =========================================================
-     DASHBOARD
-========================================================= -->
-
-<section
-  class="section hidden"
-  id="dashboard"
->
-
+<section class="section hidden" id="dashboard">
 <div class="wrap">
-
 
 <div class="section-header">
 
-
 <div>
-
-<h2 class="section-title">
-마이페이지
-</h2>
-
-<p
-  id="dashWelcome"
-  class="section-desc"
-></p>
-
+<h2 class="section-title">마이페이지</h2>
+<p id="dashWelcome" class="section-desc"></p>
 </div>
-
 
 <button
   class="btn outline"
-  onclick="
-    refreshDashboard()
-  "
+  onclick="refreshDashboard()"
 >
 전체 새로고침
 </button>
 
-
 </div>
-
 
 <div
   id="expertStats"
   class="stat-grid hidden"
 >
 
+<div class="card stat">
+<strong id="statNew">0</strong>
+<span>신규 요청</span>
+</div>
 
 <div class="card stat">
-
-<strong id="statNew">
-0
-</strong>
-
-<span>
-신규 요청
-</span>
-
+<strong id="statMine">0</strong>
+<span>내 상담</span>
 </div>
-
 
 <div class="card stat">
-
-<strong id="statMine">
-0
-</strong>
-
-<span>
-내 상담
-</span>
-
+<strong id="statProgress">0</strong>
+<span>상담중</span>
 </div>
-
 
 <div class="card stat">
-
-<strong id="statProgress">
-0
-</strong>
-
-<span>
-상담중
-</span>
-
+<strong id="statDone">0</strong>
+<span>완료</span>
 </div>
 
-
-<div class="card stat">
-
-<strong id="statDone">
-0
-</strong>
-
-<span>
-완료
-</span>
-
 </div>
-
-
-</div>
-
 
 <div class="tabs">
 
-
 <button
   class="btn tab active"
-  onclick="
-    switchDash(
-      'profile',
-      this
-    )
-  "
+  onclick="switchDash('profile',this)"
 >
 내 정보
 </button>
 
-
 <button
   class="btn tab"
-  onclick="
-    switchDash(
-      'customer',
-      this
-    )
-  "
+  onclick="switchDash('customer',this)"
 >
 내 상담신청
 </button>
 
-
 <button
   class="btn tab hidden"
   id="subscriptionTab"
-  onclick="
-    switchDash(
-      'subscription',
-      this
-    )
-  "
+  onclick="switchDash('subscription',this)"
 >
 이용권
 </button>
 
-
 <button
   class="btn tab hidden"
   id="leadTab"
-  onclick="
-    switchDash(
-      'leads',
-      this
-    )
-  "
+  onclick="switchDash('leads',this)"
 >
 신규 요청
 </button>
 
-
 <button
   class="btn tab hidden"
   id="myCasesTab"
-  onclick="
-    switchDash(
-      'cases',
-      this
-    )
-  "
+  onclick="switchDash('cases',this)"
 >
 내 상담 DB
 </button>
 
-
 <button
   class="btn tab"
-  onclick="
-    switchDash(
-      'notifications',
-      this
-    )
-  "
+  onclick="switchDash('notifications',this)"
 >
 알림
 <span id="dashNotifyBadge"></span>
 </button>
 
-
 <button
   class="btn tab hidden"
   id="adminTab"
-  onclick="
-    switchDash(
-      'admin',
-      this
-    )
-  "
+  onclick="switchDash('admin',this)"
 >
 관리자
 </button>
 
-
 </div>
-
 
 <div
   id="dash-profile"
   class="card panel dashboard-card"
 ></div>
 
-
 <div
   id="dash-customer"
   class="card panel hidden"
 >
-
 <div id="myRequests"></div>
-
 </div>
-
 
 <div
   id="dash-subscription"
   class="hidden"
 >
 
-
 <div class="card subscription-card">
 
-
 <div class="subscription-top">
-
 
 <div>
 
@@ -4485,7 +1934,6 @@ footer{
 
 </div>
 
-
 <div>
 
 <div class="subscription-price">
@@ -4497,67 +1945,48 @@ footer{
 </div>
 
 </div>
-
-
 </div>
-
 
 <div
   id="subscriptionStatusBox"
   class="subscription-info"
 ></div>
 
-
 <div
   id="subscriptionMessage"
   class="notice"
 ></div>
 
-
 <button
   id="subscriptionPayBtn"
   type="button"
   class="btn primary"
-  onclick="
-    startSubscriptionPayment()
-  "
+  onclick="startSubscriptionPayment()"
 >
 월 198,000원 결제하기
 </button>
 
-
 </div>
-
 </div>
-
 
 <div
   id="dash-leads"
   class="card panel hidden"
 >
 
-
 <div class="notice">
-
 내 전문분야의 미배정 상담 요청입니다.
-
-상담을 수락하기 전에는
-고객 연락처를 확인할 수 없습니다.
-
+상담을 수락하기 전에는 고객 연락처를 확인할 수 없습니다.
 </div>
-
 
 <div id="leadList"></div>
 
-
 </div>
-
 
 <div
   id="dash-cases"
   class="card panel hidden"
 >
-
 
 <div class="space">
 
@@ -4567,27 +1996,21 @@ footer{
 
 <button
   class="btn outline small"
-  onclick="
-    loadMyCases()
-  "
+  onclick="loadMyCases()"
 >
 새로고침
 </button>
 
 </div>
 
-
 <div id="caseList"></div>
 
-
 </div>
-
 
 <div
   id="dash-notifications"
   class="card panel hidden"
 >
-
 
 <div class="space">
 
@@ -4597,184 +2020,111 @@ footer{
 
 <button
   class="btn outline small"
-  onclick="
-    markAllRead()
-  "
+  onclick="markAllRead()"
 >
 모두 읽음
 </button>
 
 </div>
 
-
 <div id="notifications"></div>
 
-
 </div>
-
 
 <div
   id="dash-admin"
   class="hidden"
 >
 
-
 <div class="admin-stats">
 
-
 <div class="card admin-stat">
-
-<strong id="adminTotalExperts">
-0
-</strong>
-
+<strong id="adminTotalExperts">0</strong>
 전체 전문가
-
 </div>
 
-
 <div class="card admin-stat">
-
-<strong id="adminPendingExperts">
-0
-</strong>
-
+<strong id="adminPendingExperts">0</strong>
 승인 대기
-
 </div>
 
-
 <div class="card admin-stat">
-
-<strong id="adminActiveExperts">
-0
-</strong>
-
+<strong id="adminActiveExperts">0</strong>
 활성 전문가
-
 </div>
-
 
 <div class="card admin-stat">
-
-<strong id="adminTotalConsults">
-0
-</strong>
-
+<strong id="adminTotalConsults">0</strong>
 전체 상담
-
 </div>
 
-
 </div>
-
 
 <div class="admin-section">
 
-
 <div class="space">
-
-<h3>
-전문가 승인 관리
-</h3>
+<h3>전문가 승인 관리</h3>
 
 <button
   class="btn outline small"
-  onclick="
-    loadAdminExperts()
-  "
+  onclick="loadAdminExperts()"
 >
 새로고침
 </button>
-
 </div>
-
 
 <div id="adminExperts"></div>
 
-
 </div>
-
 
 <div class="admin-section">
 
-
 <div class="space">
-
-<h3>
-상담 신청 및 배정
-</h3>
+<h3>상담 신청 및 배정</h3>
 
 <button
   class="btn outline small"
-  onclick="
-    loadAdminConsults()
-  "
+  onclick="loadAdminConsults()"
 >
 새로고침
 </button>
-
 </div>
-
 
 <div id="adminConsults"></div>
 
-
 </div>
-
 
 <div class="admin-section">
 
-
 <div class="space">
-
-<h3>
-구독 · 결제 현황
-</h3>
+<h3>구독 · 결제 현황</h3>
 
 <button
   class="btn outline small"
-  onclick="
-    loadAdminSubscriptions()
-  "
+  onclick="loadAdminSubscriptions()"
 >
 새로고침
 </button>
-
 </div>
-
 
 <div id="adminSubscriptions"></div>
 
-
 </div>
-
-
 </div>
-
 </div>
-
 </section>
 
-
 </main>
-
-
-<!-- =========================================================
-     AUTH MODAL
-========================================================= -->
 
 <div
   id="authModal"
   class="modal hidden"
 >
 
-
 <div
   class="card modal-card"
   style="max-width:460px"
 >
-
 
 <div class="space">
 
@@ -4782,29 +2132,22 @@ footer{
 로그인
 </h2>
 
-
 <button
   class="btn outline small"
-  onclick="
-    closeAuth()
-  "
+  onclick="closeAuth()"
 >
 닫기
 </button>
 
 </div>
 
-
 <div
   id="expertLoginNotice"
   class="notice hidden"
 >
-
 전문가 계정으로 로그인하면
 전문가 마이페이지로 이동합니다.
-
 </div>
-
 
 <div
   id="authNameWrap"
@@ -4819,7 +2162,6 @@ footer{
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -4832,7 +2174,6 @@ footer{
 >
 
 </div>
-
 
 <div class="field">
 
@@ -4847,12 +2188,10 @@ footer{
 
 </div>
 
-
 <div
   id="signupConsentWrap"
   class="hidden"
 >
-
 
 <label class="check">
 
@@ -4862,17 +2201,11 @@ footer{
 >
 
 <span>
-
-<b>
-[필수]
-</b>
-
+<b>[필수]</b>
 이용약관 동의
-
 </span>
 
 </label>
-
 
 <label class="check">
 
@@ -4882,20 +2215,13 @@ footer{
 >
 
 <span>
-
-<b>
-[필수]
-</b>
-
+<b>[필수]</b>
 개인정보 수집·이용 동의
-
 </span>
 
 </label>
 
-
 </div>
-
 
 <button
   id="authSubmit"
@@ -4905,270 +2231,135 @@ footer{
 로그인
 </button>
 
-
 </div>
-
 </div>
-
-
-<!-- =========================================================
-     LEGAL MODAL
-========================================================= -->
 
 <div
   id="legalModal"
   class="modal hidden"
 >
 
-
 <div class="card modal-card">
 
-
 <div class="space">
-
 
 <h2 id="legalTitle">
 안내
 </h2>
 
-
 <button
   class="btn outline small"
-  onclick="
-    closeLegal()
-  "
+  onclick="closeLegal()"
 >
 닫기
 </button>
 
-
 </div>
-
 
 <div
   id="legalContent"
   class="legalbox"
 ></div>
 
-
 </div>
-
 </div>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
 
 <footer>
 
 <div class="wrap">
 
-
 <div class="logo">
 전문가<b>ON</b>
 </div>
 
-
 <div class="business">
 
-
 <div>
-
-<b>
-상호
-</b>
-
-<br>
-
+<b>상호</b><br>
 전문가ON
-
 </div>
 
-
 <div>
-
-<b>
-대표자
-</b>
-
-<br>
-
+<b>대표자</b><br>
 사업자등록 후 실제 정보 입력
-
 </div>
 
-
 <div>
-
-<b>
-사업자등록번호
-</b>
-
-<br>
-
+<b>사업자등록번호</b><br>
 사업자등록 후 실제 정보 입력
-
 </div>
 
-
 <div>
-
-<b>
-통신판매업 신고번호
-</b>
-
-<br>
-
+<b>통신판매업 신고번호</b><br>
 해당 시 실제 정보 입력
-
 </div>
 
-
 <div>
-
-<b>
-사업장 주소
-</b>
-
-<br>
-
+<b>사업장 주소</b><br>
 실제 사업장 주소 입력
-
 </div>
 
-
 <div>
-
-<b>
-고객센터
-</b>
-
-<br>
-
+<b>고객센터</b><br>
 전화번호 / 이메일 입력
-
 </div>
 
-
 <div>
-
-<b>
-개인정보보호책임자
-</b>
-
-<br>
-
+<b>개인정보보호책임자</b><br>
 실제 담당자 정보 입력
-
 </div>
-
 
 <div>
-
-<b>
-호스팅
-</b>
-
-<br>
-
+<b>호스팅</b><br>
 GitHub Pages / Supabase
-
 </div>
 
-
 </div>
-
 
 <p class="muted tiny">
-
 © 2026 전문가ON.
 All rights reserved.
-
 </p>
 
-
 </div>
-
 </footer>
-
-
-<!-- =========================================================
-     MOBILE BOTTOM BAR
-========================================================= -->
 
 <div class="mobile-bottom">
 
-
 <a href="#">
-
-<span class="mi">
-⌂
-</span>
-
+<span class="mi">⌂</span>
 홈
-
 </a>
-
 
 <a href="#experts">
-
-<span class="mi">
-⌕
-</span>
-
+<span class="mi">⌕</span>
 전문가
-
 </a>
-
 
 <a href="#consult">
-
-<span class="mi">
-✎
-</span>
-
+<span class="mi">✎</span>
 상담신청
-
 </a>
 
-
-<button
-  onclick="
-    openDashboard()
-  "
->
-
-<span class="mi">
-☻
-</span>
-
+<button onclick="openDashboard()">
+<span class="mi">☻</span>
 마이페이지
-
 </button>
-
 
 </div>
 
-
 <script>
 
-
-/* =========================================================
-   기존 설정값 그대로 유지
-========================================================= */
+/* 설정값 */
 
 const SUPABASE_URL =
 "https://qvhfoxscuxdvmywqbqbq.supabase.co";
 
-
 const SUPABASE_ANON_KEY =
 "sb_publishable_0QYE_OY5x2XwuNUFMFCWxg_yxr-IHNs";
 
-
 const TOSS_CLIENT_KEY =
 "test_ck_ZLKGPx4M3MNJqKMdwBlqVBaWypv1";
-
 
 const sb =
 supabase.createClient(
@@ -5176,29 +2367,19 @@ supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
-
 let currentUser=null;
-
 let currentProfile=null;
-
 let currentExpert=null;
-
 let currentSubscription=null;
-
 let authMode="login";
-
 let expertLoginMode=false;
-
 let realtimeChannel=null;
 
+const $=
+id=>document.getElementById(id);
 
-const $ =
-id =>
-document.getElementById(id);
-
-
-const esc =
-v =>
+const esc=
+v=>
 String(v??"")
 .replace(
   /[&<>"']/g,
@@ -5211,25 +2392,17 @@ String(v??"")
   }[m])
 );
 
-
-const fmt =
-d =>
+const fmt=
+d=>
 d
 ?
-new Date(d)
-.toLocaleString(
-  "ko-KR"
-)
+new Date(d).toLocaleString("ko-KR")
 :
 "-";
 
-
 function say(message){
-
-alert(message);
-
+  alert(message);
 }
-
 
 function statusLabel(status){
 
@@ -5243,10 +2416,7 @@ return ({
 
 }
 
-
-/* =========================================================
-   약관
-========================================================= */
+/* 약관 */
 
 const LEGAL={
 
@@ -5361,7 +2531,6 @@ payment:`
 
 };
 
-
 function openLegal(type){
 
 $("legalTitle").textContent=
@@ -5372,23 +2541,16 @@ $("legalTitle").textContent=
   thirdparty:"개인정보 제3자 제공",
   expertTerms:"전문가 이용약관",
   payment:"결제·해지·환불"
-})[type]
-||
-"안내";
-
+})[type]||"안내";
 
 $("legalContent").textContent=
-LEGAL[type]
-||
-"";
-
+LEGAL[type]||"";
 
 $("legalModal")
 .classList
 .remove("hidden");
 
 }
-
 
 function closeLegal(){
 
@@ -5398,10 +2560,7 @@ $("legalModal")
 
 }
 
-
-/* =========================================================
-   초기화
-========================================================= */
+/* 초기화 */
 
 async function init(){
 
@@ -5412,17 +2571,12 @@ const {
 }=
 await sb.auth.getSession();
 
-
 currentUser=
 session?.user||null;
 
-
 await syncUser();
-
 await loadExperts();
-
 await handleBillingResult();
-
 
 sb.auth.onAuthStateChange(
 async(
@@ -5439,10 +2593,7 @@ await syncUser();
 
 }
 
-
-/* =========================================================
-   로그인 상태
-========================================================= */
+/* 로그인 상태 */
 
 async function syncUser(){
 
@@ -5453,7 +2604,6 @@ $("guestActions")
   !!currentUser
 );
 
-
 $("userActions")
 .classList
 .toggle(
@@ -5461,25 +2611,19 @@ $("userActions")
   !currentUser
 );
 
-
 if(!currentUser){
 
 currentProfile=null;
-
 currentExpert=null;
-
 currentSubscription=null;
-
 
 $("dashboard")
 .classList
 .add("hidden");
 
-
 return;
 
 }
-
 
 const {
   data:p
@@ -5493,10 +2637,8 @@ await sb
 )
 .maybeSingle();
 
-
 currentProfile=
 p||null;
-
 
 const {
   data:e
@@ -5510,38 +2652,28 @@ await sb
 )
 .maybeSingle();
 
-
 currentExpert=
 e||null;
-
 
 await loadSubscription();
 
 renderProfile();
-
 
 const approved=
 currentExpert?.approval_status
 ===
 "approved";
 
-
 const active=
-
 approved
-
 &&
-
 currentExpert?.subscription_status
 ===
 "active"
-
 &&
-
 currentSubscription?.status
 ===
 "active";
-
 
 $("subscriptionTab")
 .classList
@@ -5550,14 +2682,12 @@ $("subscriptionTab")
   !currentExpert
 );
 
-
 $("leadTab")
 .classList
 .toggle(
   "hidden",
   !active
 );
-
 
 $("myCasesTab")
 .classList
@@ -5566,14 +2696,12 @@ $("myCasesTab")
   !active
 );
 
-
 $("expertStats")
 .classList
 .toggle(
   "hidden",
   !active
 );
-
 
 $("adminTab")
 .classList
@@ -5584,113 +2712,75 @@ $("adminTab")
   true
 );
 
-
 await loadMyRequests();
-
 await loadNotifications();
 
-
 if(currentExpert){
-
-renderSubscription();
-
+  renderSubscription();
 }
-
 
 if(active){
 
 await loadLeadPool();
-
 await loadMyCases();
-
 await loadStats();
 
 }
-
 
 subscribeRealtime();
 
 }
 
-
-/* =========================================================
-   프로필
-========================================================= */
+/* 프로필 */
 
 function renderProfile(){
 
 $("dashWelcome").textContent=
 `${currentProfile?.name||""}님, 반갑습니다.`;
 
-
 $("dash-profile").innerHTML=`
 
-<h3>
-회원 정보
-</h3>
+<h3>회원 정보</h3>
 
 <p>
-<b>이름</b>
-<br>
-${esc(
-  currentProfile?.name||"-"
-)}
+<b>이름</b><br>
+${esc(currentProfile?.name||"-")}
 </p>
 
 <p>
-<b>이메일</b>
-<br>
-${esc(
-  currentUser?.email||"-"
-)}
+<b>이메일</b><br>
+${esc(currentUser?.email||"-")}
 </p>
 
 ${currentExpert?`
 
 <hr>
 
-<h3>
-전문가 정보
-</h3>
+<h3>전문가 정보</h3>
 
 <p>
-<b>전문분야</b>
-<br>
-${esc(
-  currentExpert.expert_type||"-"
-)}
+<b>전문분야</b><br>
+${esc(currentExpert.expert_type||"-")}
 </p>
 
 <p>
-<b>상호명</b>
-<br>
-${esc(
-  currentExpert.business_name||"-"
-)}
+<b>상호명</b><br>
+${esc(currentExpert.business_name||"-")}
 </p>
 
 <p>
-<b>지역</b>
-<br>
-${esc(
-  currentExpert.region||"-"
-)}
+<b>지역</b><br>
+${esc(currentExpert.region||"-")}
 </p>
 
 <p>
-<b>승인 상태</b>
-<br>
-${esc(
-  currentExpert.approval_status||"-"
-)}
+<b>승인 상태</b><br>
+${esc(currentExpert.approval_status||"-")}
 </p>
 
 <p>
-<b>이용권 상태</b>
-<br>
-${esc(
-  currentExpert.subscription_status||"inactive"
-)}
+<b>이용권 상태</b><br>
+${esc(currentExpert.subscription_status||"inactive")}
 </p>
 
 `:""}
@@ -5699,96 +2789,61 @@ ${esc(
 
 }
 
-
-/* =========================================================
-   로그인
-========================================================= */
+/* 로그인 */
 
 function openAuth(mode){
 
-authMode=
-mode;
-
-
-expertLoginMode=
-false;
-
+authMode=mode;
+expertLoginMode=false;
 
 $("authModal")
 .classList
 .remove("hidden");
-
 
 $("expertLoginNotice")
 .classList
 .add("hidden");
 
-
 setupAuthModal();
 
 }
 
-
 function openExpertLogin(){
 
-authMode=
-"login";
-
-
-expertLoginMode=
-true;
-
+authMode="login";
+expertLoginMode=true;
 
 $("authModal")
 .classList
 .remove("hidden");
 
-
 $("expertLoginNotice")
 .classList
 .remove("hidden");
-
 
 setupAuthModal();
 
 }
 
-
 function setupAuthModal(){
 
 $("authTitle").textContent=
-
 expertLoginMode
-
 ?
-
 "전문가 로그인"
-
 :
-
 authMode==="login"
-
 ?
-
 "로그인"
-
 :
-
 "회원가입";
-
 
 $("authSubmit").textContent=
-
 authMode==="login"
-
 ?
-
 "로그인"
-
 :
-
 "회원가입";
-
 
 $("authNameWrap")
 .classList
@@ -5796,7 +2851,6 @@ $("authNameWrap")
   "hidden",
   authMode==="login"
 );
-
 
 $("signupConsentWrap")
 .classList
@@ -5807,7 +2861,6 @@ $("signupConsentWrap")
 
 }
 
-
 function closeAuth(){
 
 $("authModal")
@@ -5815,7 +2868,6 @@ $("authModal")
 .add("hidden");
 
 }
-
 
 $("authSubmit").onclick=
 async()=>{
@@ -5825,24 +2877,17 @@ $("authEmail")
 .value
 .trim();
 
-
 const password=
 $("authPassword")
 .value;
 
-
-if(
-  !email
-  ||
-  !password
-){
+if(!email||!password){
 
 return say(
   "이메일과 비밀번호를 입력하세요."
 );
 
 }
-
 
 if(authMode==="signup"){
 
@@ -5851,7 +2896,6 @@ $("authName")
 .value
 .trim();
 
-
 if(!name){
 
 return say(
@@ -5859,7 +2903,6 @@ return say(
 );
 
 }
-
 
 if(
   !$("agreeTerms").checked
@@ -5872,7 +2915,6 @@ return say(
 );
 
 }
-
 
 const {
   error
@@ -5891,7 +2933,6 @@ options:{
 
 });
 
-
 if(error){
 
 return say(
@@ -5900,19 +2941,15 @@ return say(
 
 }
 
-
 say(
   "회원가입이 완료되었습니다."
 );
 
-
 closeAuth();
-
 
 return;
 
 }
-
 
 const {
   error
@@ -5920,11 +2957,9 @@ const {
 await sb.auth.signInWithPassword({
 
 email,
-
 password
 
 });
-
 
 if(error){
 
@@ -5934,12 +2969,9 @@ return say(
 
 }
 
-
 closeAuth();
 
-
 await syncUser();
-
 
 if(
   expertLoginMode
@@ -5951,20 +2983,16 @@ say(
   "이 계정에는 전문가 정보가 없습니다. 전문가 가입을 먼저 진행해주세요."
 );
 
-
 location.hash=
 "expertJoin";
-
 
 return;
 
 }
 
-
 openDashboard();
 
 };
-
 
 async function logout(){
 
@@ -5972,19 +3000,379 @@ await sb.auth.signOut();
 
 }
 
+/* 상황 기반 전문가 자동분류 */
 
-/* =========================================================
-   전문가 검색
-========================================================= */
+const SMART_MATCH_RULES=[
 
-async function loadExperts(){
+{
+category:"노무사",
+keywords:[
+"퇴직금",
+"임금",
+"월급",
+"급여",
+"해고",
+"부당해고",
+"연차",
+"근로계약",
+"근로시간",
+"야근",
+"연장근로",
+"산재",
+"직장",
+"노동",
+"실업급여",
+"4대보험",
+"체불"
+]
+},
+
+{
+category:"손해사정사",
+keywords:[
+"보험금",
+"보험사",
+"보험회사",
+"손해사정",
+"교통사고",
+"후유장해",
+"후유장애",
+"상해",
+"질병보험",
+"화재보험",
+"배상책임",
+"보험 청구",
+"보험청구"
+]
+},
+
+{
+category:"세무사",
+keywords:[
+"세금",
+"절세",
+"종합소득세",
+"부가세",
+"양도세",
+"양도소득세",
+"상속세",
+"증여세",
+"법인세",
+"세무",
+"세금신고",
+"사업자 세금"
+]
+},
+
+{
+category:"변호사",
+keywords:[
+"소송",
+"고소",
+"고발",
+"형사",
+"민사",
+"이혼",
+"위자료",
+"사기",
+"폭행",
+"법률",
+"분쟁",
+"계약위반",
+"손해배상",
+"내용증명"
+]
+},
+
+{
+category:"법무사",
+keywords:[
+"등기",
+"법인등기",
+"부동산등기",
+"상속등기",
+"개명",
+"공탁",
+"지급명령",
+"경매",
+"개인회생",
+"파산",
+"법인설립"
+]
+},
+
+{
+category:"행정사",
+keywords:[
+"행정",
+"민원",
+"인허가",
+"허가",
+"신고 대행",
+"영업허가",
+"출입국",
+"비자",
+"행정심판",
+"보훈",
+"국가유공자",
+"사실확인"
+]
+},
+
+{
+category:"공인중개사",
+keywords:[
+"부동산",
+"전세",
+"월세",
+"매매",
+"임대차",
+"중개",
+"보증금",
+"상가",
+"아파트",
+"집 계약",
+"부동산 계약"
+]
+}
+
+];
+
+function detectExpertCategory(text){
 
 const q=
-$("searchInput")
-.value
+String(text||"")
 .trim()
 .toLowerCase();
 
+if(!q){
+
+return {
+category:"",
+score:0,
+matched:[]
+};
+
+}
+
+let best={
+category:"기타",
+score:0,
+matched:[]
+};
+
+SMART_MATCH_RULES
+.forEach(
+rule=>{
+
+const matched=
+rule.keywords
+.filter(
+k=>
+q.includes(
+  k.toLowerCase()
+)
+);
+
+const score=
+matched.length;
+
+if(score>best.score){
+
+best={
+category:rule.category,
+score,
+matched
+};
+
+}
+
+});
+
+return best;
+
+}
+
+function quickSituation(text){
+
+$("searchInput").value=
+text;
+
+smartMatchExperts();
+
+}
+
+async function smartMatchExperts(){
+
+const situation=
+$("searchInput")
+.value
+.trim();
+
+if(!situation){
+
+return say(
+  "현재 겪고 있는 상황을 간단히 입력해주세요."
+);
+
+}
+
+const result=
+detectExpertCategory(
+  situation
+);
+
+const box=
+$("smartMatchResult");
+
+if(result.score>0){
+
+box.classList
+.remove("hidden");
+
+box.innerHTML=`
+
+<strong>
+${esc(result.category)} 상담을 먼저 확인해보세요.
+</strong>
+
+<br>
+
+입력하신 상황을 기준으로 가장 관련성이 높은 전문분야를 추천했습니다.
+
+<div class="smart-match-actions">
+
+<button
+  type="button"
+  class="btn primary small"
+  onclick="applySmartMatch('${result.category}')"
+>
+${esc(result.category)} 전문가 보기
+</button>
+
+<button
+  type="button"
+  class="btn outline small"
+  onclick="startSmartConsult('${result.category}')"
+>
+이 내용으로 상담신청
+</button>
+
+</div>
+
+`;
+
+await loadExperts(
+  result.category
+);
+
+$("experts")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+return;
+
+}
+
+box.classList
+.remove("hidden");
+
+box.innerHTML=`
+
+<strong>
+정확한 전문분야를 한 가지로 판단하기 어렵습니다.
+</strong>
+
+<br>
+
+아래 전문가 분야를 직접 선택하거나,
+상담신청에서 ‘기타’를 선택해 내용을 접수해주세요.
+
+<div class="smart-match-actions">
+
+<button
+  type="button"
+  class="btn primary small"
+  onclick="startSmartConsult('기타')"
+>
+상담내용 접수하기
+</button>
+
+</div>
+
+`;
+
+await loadExperts();
+
+}
+
+async function applySmartMatch(category){
+
+$("searchInput").value=
+category;
+
+await loadExperts(
+  category
+);
+
+$("experts")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+function startSmartConsult(category){
+
+const situation=
+$("searchInput")
+.value
+.trim();
+
+clearSelectedExpert();
+
+$("consultCategory").value=
+category||"기타";
+
+if(situation){
+
+$("consultTitle").value=
+situation.length>40
+?
+situation.slice(0,40)+"…"
+:
+situation;
+
+$("consultContent").value=
+situation;
+
+}
+
+$("consult")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+/* 전문가 검색 */
+
+async function loadExperts(
+forcedCategory=""
+){
+
+const q=
+(
+  forcedCategory
+  ||
+  $("searchInput").value
+)
+.trim()
+.toLowerCase();
 
 const {
   data,
@@ -5993,7 +3381,7 @@ const {
 await sb
 .from("experts")
 .select(
-  "id,user_id,expert_type,region,business_name,bio,approval_status,subscription_status,is_visible"
+"id,user_id,expert_type,region,business_name,bio,approval_status,subscription_status,is_visible"
 )
 .eq(
   "approval_status",
@@ -6014,11 +3402,9 @@ await sb
   }
 );
 
-
 if(error){
 
 console.error(error);
-
 
 $("expertList").innerHTML=
 `
@@ -6027,44 +3413,50 @@ $("expertList").innerHTML=
 </div>
 `;
 
-
 return;
 
 }
 
-
 let arr=
 data||[];
-
 
 if(q){
 
 arr=
 arr.filter(
-x=>
+x=>{
 
-[
-  x.expert_type,
-  x.region,
-  x.business_name,
-  x.bio
+if(forcedCategory){
+
+return String(
+  x.expert_type||""
+)
+.toLowerCase()
+===
+q;
+
+}
+
+return [
+x.expert_type,
+x.region,
+x.business_name,
+x.bio
 ]
 .join(" ")
 .toLowerCase()
-.includes(q)
+.includes(q);
 
+}
 );
 
 }
 
-
 $("expertList").innerHTML=
-
 arr.length
-
 ?
-
-arr.map(x=>`
+arr.map(
+x=>`
 
 <div class="card expert-card">
 
@@ -6126,14 +3518,12 @@ ${esc(
 </button>
 
 </div>
-
 </div>
 
-`)
+`
+)
 .join("")
-
 :
-
 `
 <div class="muted">
 현재 조건에 맞는 활동 전문가가 없습니다.
@@ -6142,21 +3532,26 @@ ${esc(
 
 }
 
-
 function pickCategory(category){
 
 $("searchInput").value=
 category;
 
+$("smartMatchResult")
+.classList
+.add("hidden");
 
-loadExperts();
-
+loadExperts(
+  category
+);
 
 $("experts")
-.scrollIntoView();
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
 
 }
-
 
 function selectExpert(
 id,
@@ -6167,17 +3562,14 @@ category
 $("selectedExpertId").value=
 id;
 
-
 $("consultCategory").value=
 decodeURIComponent(
   category
 );
 
-
 $("selectedExpertNotice")
 .classList
 .remove("hidden");
-
 
 $("selectedExpertNotice")
 .innerHTML=
@@ -6193,23 +3585,19 @@ ${esc(
 전문가에게 직접 상담 요청을 보냅니다.
 `;
 
-
 $("consult")
 .scrollIntoView();
 
 }
-
 
 function clearSelectedExpert(){
 
 $("selectedExpertId").value=
 "";
 
-
 $("selectedExpertNotice")
 .classList
 .add("hidden");
-
 
 $("selectedExpertNotice")
 .innerHTML=
@@ -6217,10 +3605,7 @@ $("selectedExpertNotice")
 
 }
 
-
-/* =========================================================
-   상담신청
-========================================================= */
+/* 상담 신청 */
 
 $("consultForm")
 .addEventListener(
@@ -6229,7 +3614,6 @@ async e=>{
 
 e.preventDefault();
 
-
 if(!currentUser){
 
 return openAuth(
@@ -6237,7 +3621,6 @@ return openAuth(
 );
 
 }
-
 
 if(
   !$("consultPrivacy").checked
@@ -6251,13 +3634,11 @@ return say(
 
 }
 
-
 const assignedExpert=
 $("selectedExpertId")
 .value
 ||
 null;
-
 
 const {
   data:r,
@@ -6302,7 +3683,6 @@ assignedExpert
 .select("id")
 .single();
 
-
 if(error){
 
 return say(
@@ -6310,7 +3690,6 @@ return say(
 );
 
 }
-
 
 const {
   error:contactError
@@ -6335,7 +3714,6 @@ $("consultContact").value
 
 });
 
-
 if(contactError){
 
 console.error(
@@ -6344,37 +3722,24 @@ console.error(
 
 }
 
-
 e.target.reset();
-
 
 clearSelectedExpert();
 
-
 say(
-
 assignedExpert
-
 ?
-
 "선택한 전문가에게 상담 요청을 보냈습니다."
-
 :
-
 "상담 신청이 접수되었습니다."
-
 );
-
 
 await loadMyRequests();
 
 }
 );
 
-
-/* =========================================================
-   전문가 가입
-========================================================= */
+/* 전문가 가입 */
 
 $("expertForm")
 .addEventListener(
@@ -6383,7 +3748,6 @@ async e=>{
 
 e.preventDefault();
 
-
 if(!currentUser){
 
 return openAuth(
@@ -6391,7 +3755,6 @@ return openAuth(
 );
 
 }
-
 
 if(
   !$("expertTerms").checked
@@ -6402,7 +3765,6 @@ return say(
 );
 
 }
-
 
 const baseData={
 
@@ -6431,9 +3793,7 @@ $("expertBio")
 
 };
 
-
 let error;
-
 
 if(currentExpert){
 
@@ -6447,7 +3807,6 @@ await sb
   "user_id",
   currentUser.id
 );
-
 
 error=
 result.error;
@@ -6475,12 +3834,10 @@ false
 
 });
 
-
 error=
 result.error;
 
 }
-
 
 if(error){
 
@@ -6490,34 +3847,22 @@ return say(
 
 }
 
-
 say(
-
 currentExpert
-
 ?
-
 "전문가 정보가 수정되었습니다."
-
 :
-
 "전문가 승인 요청이 접수되었습니다."
-
 );
 
-
 await syncUser();
-
 
 openDashboard();
 
 }
 );
 
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
+/* DASHBOARD */
 
 function openDashboard(){
 
@@ -6529,25 +3874,20 @@ return openAuth(
 
 }
 
-
 $("dashboard")
 .classList
 .remove("hidden");
 
-
 $("dashboard")
 .scrollIntoView();
-
 
 refreshDashboard();
 
 }
 
-
 async function refreshDashboard(){
 
 await syncUser();
-
 
 if(
   currentProfile?.is_admin
@@ -6561,59 +3901,45 @@ await loadAdminDashboard();
 
 }
 
-
 function switchDash(
 name,
 button
 ){
 
 [
-  "profile",
-  "customer",
-  "subscription",
-  "leads",
-  "cases",
-  "notifications",
-  "admin"
+"profile",
+"customer",
+"subscription",
+"leads",
+"cases",
+"notifications",
+"admin"
 ]
 .forEach(
 x=>
-
 $("dash-"+x)
 ?.classList
 .add("hidden")
-
 );
-
 
 $("dash-"+name)
 ?.classList
 .remove("hidden");
 
-
 document
 .querySelectorAll(".tab")
 .forEach(
 x=>
-
-x
-.classList
+x.classList
 .remove("active")
-
 );
 
-
-button
-.classList
+button.classList
 .add("active");
 
-
 if(name==="customer"){
-
-loadMyRequests();
-
+  loadMyRequests();
 }
-
 
 if(name==="subscription"){
 
@@ -6624,49 +3950,31 @@ loadSubscription()
 
 }
 
-
 if(name==="leads"){
-
-loadLeadPool();
-
+  loadLeadPool();
 }
-
 
 if(name==="cases"){
-
-loadMyCases();
-
+  loadMyCases();
 }
-
 
 if(name==="notifications"){
-
-loadNotifications();
-
+  loadNotifications();
 }
-
 
 if(name==="admin"){
-
-loadAdminDashboard();
-
+  loadAdminDashboard();
 }
 
 }
 
-
-/* =========================================================
-   고객 상담내역
-========================================================= */
+/* 고객 상담내역 */
 
 async function loadMyRequests(){
 
 if(!currentUser){
-
-return;
-
+  return;
 }
-
 
 const {
   data,
@@ -6686,7 +3994,6 @@ await sb
   }
 );
 
-
 if(error){
 
 console.error(
@@ -6697,30 +4004,21 @@ return;
 
 }
 
-
 const requests=
 data||[];
 
-
 const ids=
-
 [
-  ...new Set(
-    requests
-    .map(
-      x=>
-      x.assigned_expert_id
-    )
-    .filter(
-      Boolean
-    )
-  )
+...new Set(
+requests
+.map(
+x=>x.assigned_expert_id
+)
+.filter(Boolean)
+)
 ];
 
-
-const expertMap=
-{};
-
+const expertMap={};
 
 if(ids.length){
 
@@ -6730,42 +4028,33 @@ const {
 await sb
 .from("experts")
 .select(
-  "id,business_name,expert_type,region"
+"id,business_name,expert_type,region"
 )
 .in(
   "id",
   ids
 );
 
-
 (experts||[])
 .forEach(
 x=>{
 
-expertMap[
-  x.id
-]=x;
+expertMap[x.id]=x;
 
 });
 
 }
 
-
 $("myRequests").innerHTML=
-
 requests.length
-
 ?
-
-requests
-.map(
+requests.map(
 r=>{
 
 const expert=
 expertMap[
   r.assigned_expert_id
 ];
-
 
 return `
 
@@ -6774,14 +4063,10 @@ return `
 <div class="space">
 
 <h4>
-${esc(
-  r.title
-)}
+${esc(r.title)}
 </h4>
 
-<span class="status ${esc(
-  r.status
-)}">
+<span class="status ${esc(r.status)}">
 ${esc(
   statusLabel(
     r.status
@@ -6792,38 +4077,22 @@ ${esc(
 </div>
 
 <div class="meta">
-
-${esc(
-  r.category
-)}
-
+${esc(r.category)}
 ·
-
-${esc(
-  r.region
-)}
-
+${esc(r.region)}
 ·
-
-${fmt(
-  r.created_at
-)}
-
+${fmt(r.created_at)}
 </div>
 
 <p>
-${esc(
-  r.content
-)}
+${esc(r.content)}
 </p>
 
 ${expert?`
 
 <div class="notice good">
 
-<b>
-배정 전문가
-</b>
+<b>배정 전문가</b>
 
 <br>
 
@@ -6848,9 +4117,7 @@ ${esc(
 `:`
 
 <div class="notice">
-
 아직 전문가가 배정되지 않았습니다.
-
 </div>
 
 `}
@@ -6861,38 +4128,24 @@ ${esc(
 
 })
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 아직 상담 신청이 없습니다.
-
 </div>
-
 `;
 
 }
 
-
-/* =========================================================
-   SUBSCRIPTION
-========================================================= */
+/* SUBSCRIPTION */
 
 async function loadSubscription(){
 
-currentSubscription=
-null;
-
+currentSubscription=null;
 
 if(!currentExpert){
-
-return;
-
+  return;
 }
-
 
 const {
   data,
@@ -6907,7 +4160,6 @@ await sb
 )
 .maybeSingle();
 
-
 if(error){
 
 console.error(
@@ -6919,60 +4171,39 @@ return;
 
 }
 
-
 currentSubscription=
 data||null;
 
 }
 
-
 function renderSubscription(){
 
 if(!currentExpert){
-
-return;
-
+  return;
 }
 
-
 const approved=
-
 currentExpert.approval_status
-
 ===
-
 "approved";
 
-
 const active=
-
 approved
-
 &&
-
 currentExpert.subscription_status
-
 ===
-
 "active"
-
 &&
-
 currentSubscription?.status
-
 ===
-
 "active";
-
 
 $("subscriptionStatusBox")
 .innerHTML=`
 
 <div class="info-box">
 
-<small>
-전문가 승인
-</small>
+<small>전문가 승인</small>
 
 <b>
 ${esc(
@@ -6982,12 +4213,9 @@ ${esc(
 
 </div>
 
-
 <div class="info-box">
 
-<small>
-이용권 상태
-</small>
+<small>이용권 상태</small>
 
 <b>
 ${active
@@ -7000,12 +4228,9 @@ ${active
 
 </div>
 
-
 <div class="info-box">
 
-<small>
-최근 결제일
-</small>
+<small>최근 결제일</small>
 
 <b>
 ${currentSubscription?.last_paid_at
@@ -7020,12 +4245,9 @@ fmt(
 
 </div>
 
-
 <div class="info-box">
 
-<small>
-다음 결제일
-</small>
+<small>다음 결제일</small>
 
 <b>
 ${currentSubscription?.next_billing_at
@@ -7042,28 +4264,23 @@ fmt(
 
 `;
 
-
 if(!approved){
 
 $("subscriptionMessage")
 .className=
 "notice warn";
 
-
 $("subscriptionMessage")
 .textContent=
 "관리자 승인 완료 후 이용권을 결제할 수 있습니다.";
-
 
 $("subscriptionPayBtn")
 .classList
 .add("hidden");
 
-
 return;
 
 }
-
 
 if(active){
 
@@ -7071,16 +4288,13 @@ $("subscriptionMessage")
 .className=
 "notice good";
 
-
 $("subscriptionMessage")
 .textContent=
 "프리미엄 이용권이 정상적으로 활성화되어 있습니다.";
 
-
 $("subscriptionPayBtn")
 .classList
 .add("hidden");
-
 
 }else{
 
@@ -7088,11 +4302,9 @@ $("subscriptionMessage")
 .className=
 "notice";
 
-
 $("subscriptionMessage")
 .textContent=
 "이용권 결제 후 신규 상담 확인 및 고객 연결 기능이 활성화됩니다.";
-
 
 $("subscriptionPayBtn")
 .classList
@@ -7102,10 +4314,7 @@ $("subscriptionPayBtn")
 
 }
 
-
-/* =========================================================
-   TOSS
-========================================================= */
+/* TOSS */
 
 async function startSubscriptionPayment(){
 
@@ -7117,7 +4326,6 @@ return openAuth(
 
 }
 
-
 if(!currentExpert){
 
 return say(
@@ -7125,7 +4333,6 @@ return say(
 );
 
 }
-
 
 if(
   currentExpert.approval_status
@@ -7139,14 +4346,12 @@ return say(
 
 }
 
-
 try{
 
 const tossPayments=
 TossPayments(
   TOSS_CLIENT_KEY
 );
-
 
 const payment=
 tossPayments.payment({
@@ -7156,11 +4361,9 @@ currentUser.id
 
 });
 
-
 await payment.requestBillingAuth({
 
-method:
-"CARD",
+method:"CARD",
 
 successUrl:
 window.location.origin
@@ -7188,13 +4391,11 @@ currentProfile?.name
 
 });
 
-
 }catch(error){
 
 console.error(
   error
 );
-
 
 say(
   error.message
@@ -7206,10 +4407,7 @@ say(
 
 }
 
-
-/* =========================================================
-   BILLING RESULT
-========================================================= */
+/* BILLING RESULT */
 
 async function handleBillingResult(){
 
@@ -7217,7 +4415,6 @@ const params=
 new URLSearchParams(
   window.location.search
 );
-
 
 if(
   params.get("billing")
@@ -7230,12 +4427,10 @@ params.get(
   "authKey"
 );
 
-
 const customerKey=
 params.get(
   "customerKey"
 );
-
 
 if(
   !authKey
@@ -7249,7 +4444,6 @@ return say(
 
 }
 
-
 try{
 
 const {
@@ -7259,7 +4453,6 @@ const {
 }=
 await sb.auth.getSession();
 
-
 if(!session){
 
 throw new Error(
@@ -7267,7 +4460,6 @@ throw new Error(
 );
 
 }
-
 
 const {
   data:expert,
@@ -7282,7 +4474,6 @@ await sb
 )
 .maybeSingle();
 
-
 if(
   expertError
   ||
@@ -7295,7 +4486,6 @@ throw new Error(
 
 }
 
-
 const response=
 await fetch(
 
@@ -7305,8 +4495,7 @@ SUPABASE_URL
 
 {
 
-method:
-"POST",
+method:"POST",
 
 headers:{
 
@@ -7324,7 +4513,6 @@ body:
 JSON.stringify({
 
 authKey,
-
 customerKey,
 
 expertId:
@@ -7336,10 +4524,8 @@ expert.id
 
 );
 
-
 const result=
 await response.json();
-
 
 if(!response.ok){
 
@@ -7351,36 +4537,26 @@ throw new Error(
 
 }
 
-
 say(
   "프리미엄 월 이용권 결제가 완료되었습니다."
 );
 
-
 window.history
 .replaceState(
-
 {},
-
 document.title,
-
 window.location.pathname
-
 );
-
 
 await syncUser();
 
-
 openDashboard();
-
 
 }catch(error){
 
 console.error(
   error
 );
-
 
 say(
   error.message
@@ -7391,7 +4567,6 @@ say(
 }
 
 }
-
 
 if(
   params.get("billing")
@@ -7405,70 +4580,47 @@ say(
   "카드 등록 또는 결제가 취소되었습니다."
 );
 
-
 window.history
 .replaceState(
-
 {},
-
 document.title,
-
 window.location.pathname
-
 );
 
 }
 
 }
 
-
-/* =========================================================
-   LEAD POOL
-========================================================= */
+/* LEAD POOL */
 
 async function loadLeadPool(){
 
 if(!currentExpert){
-
-return;
-
+  return;
 }
 
-
 if(
-
 currentExpert.subscription_status
-
 !==
-
 "active"
-
 ||
-
 currentSubscription?.status
-
 !==
-
 "active"
-
 ){
 
 $("leadList")
 .innerHTML=`
 
 <div class="notice warn">
-
 활성 이용권이 필요합니다.
-
 </div>
 
 `;
 
-
 return;
 
 }
-
 
 const {
   data,
@@ -7496,7 +4648,6 @@ await sb
   }
 );
 
-
 if(error){
 
 console.error(
@@ -7507,14 +4658,10 @@ return;
 
 }
 
-
 $("leadList")
 .innerHTML=
-
 (data||[]).length
-
 ?
-
 (data||[])
 .map(
 r=>`
@@ -7557,11 +4704,7 @@ ${esc(
 
 <button
   class="btn primary"
-  onclick="
-    claimRequest(
-      '${r.id}'
-    )
-  "
+  onclick="claimRequest('${r.id}')"
 >
 상담 수락
 </button>
@@ -7571,25 +4714,16 @@ ${esc(
 `
 )
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 현재 신규 상담 요청이 없습니다.
-
 </div>
-
 `;
 
 }
 
-
-/* =========================================================
-   CLAIM
-========================================================= */
+/* CLAIM */
 
 async function claimRequest(id){
 
@@ -7601,12 +4735,10 @@ await sb.rpc(
 "claim_consult_request",
 
 {
-  p_request_id:
-  id
+  p_request_id:id
 }
 
 );
-
 
 if(error){
 
@@ -7616,33 +4748,23 @@ return say(
 
 }
 
-
 say(
   "상담을 수락했습니다."
 );
 
-
 await loadLeadPool();
-
 await loadMyCases();
-
 await loadStats();
 
 }
 
-
-/* =========================================================
-   CASE
-========================================================= */
+/* CASE */
 
 async function loadMyCases(){
 
 if(!currentExpert){
-
-return;
-
+  return;
 }
-
 
 const {
   data,
@@ -7664,65 +4786,46 @@ await sb
   }
 );
 
-
 if(error){
 
 console.error(
   error
 );
 
-
 $("caseList")
 .innerHTML=`
 
 <div class="notice bad">
-
 상담 DB를 불러오지 못했습니다.
-
 </div>
 
 `;
-
 
 return;
 
 }
 
-
 $("caseList")
 .innerHTML=
-
 (data||[]).length
-
 ?
-
 (data||[])
 .map(
 r=>{
 
 const c=
-
 Array.isArray(
   r.consult_contacts
 )
-
 ?
-
 r.consult_contacts[0]
-
 :
-
 r.consult_contacts;
 
-
 const waiting=
-
 r.status
-
 ===
-
 "matched";
-
 
 return `
 
@@ -7748,7 +4851,6 @@ ${esc(
 
 </div>
 
-
 <div class="meta">
 
 ${esc(
@@ -7769,42 +4871,30 @@ ${fmt(
 
 </div>
 
-
 <p>
 ${esc(
   r.content
 )}
 </p>
 
-
 ${waiting?`
 
 <div class="notice">
-
 고객이 이 전문가를 직접 선택한 상담 요청입니다.
-
 </div>
 
 <div class="row">
 
 <button
   class="btn success"
-  onclick="
-    acceptAssignedRequest(
-      '${r.id}'
-    )
-  "
+  onclick="acceptAssignedRequest('${r.id}')"
 >
 상담 수락
 </button>
 
 <button
   class="btn danger"
-  onclick="
-    rejectAssignedRequest(
-      '${r.id}'
-    )
-  "
+  onclick="rejectAssignedRequest('${r.id}')"
 >
 상담 거절
 </button>
@@ -7833,31 +4923,20 @@ ${esc(
 
 </div>
 
-
 ${r.status!=="done"?`
 
 <div class="row">
 
 <button
   class="btn soft small"
-  onclick="
-    changeStatus(
-      '${r.id}',
-      'in_progress'
-    )
-  "
+  onclick="changeStatus('${r.id}','in_progress')"
 >
 상담중
 </button>
 
 <button
   class="btn success small"
-  onclick="
-    changeStatus(
-      '${r.id}',
-      'done'
-    )
-  "
+  onclick="changeStatus('${r.id}','done')"
 >
 완료
 </button>
@@ -7867,9 +4946,7 @@ ${r.status!=="done"?`
 `:`
 
 <div class="notice good">
-
 상담이 완료되었습니다.
-
 </div>
 
 `}
@@ -7882,25 +4959,16 @@ ${r.status!=="done"?`
 
 })
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 아직 배정된 상담이 없습니다.
-
 </div>
-
 `;
 
 }
 
-
-/* =========================================================
-   ACCEPT
-========================================================= */
+/* ACCEPT */
 
 async function acceptAssignedRequest(id){
 
@@ -7910,8 +4978,7 @@ const {
 await sb
 .from("consult_requests")
 .update({
-  status:
-  "in_progress"
+  status:"in_progress"
 })
 .eq(
   "id",
@@ -7922,7 +4989,6 @@ await sb
   currentExpert.id
 );
 
-
 if(error){
 
 return say(
@@ -7931,22 +4997,16 @@ return say(
 
 }
 
-
 say(
   "상담을 수락했습니다. 고객 연락처를 확인할 수 있습니다."
 );
 
-
 await loadMyCases();
-
 await loadStats();
 
 }
 
-
-/* =========================================================
-   REJECT
-========================================================= */
+/* REJECT */
 
 async function rejectAssignedRequest(id){
 
@@ -7955,13 +5015,9 @@ confirm(
   "이 상담 요청을 거절하고 다시 미배정 상태로 돌리시겠습니까?"
 );
 
-
 if(!ok){
-
-return;
-
+  return;
 }
-
 
 const {
   error
@@ -7970,11 +5026,9 @@ await sb
 .from("consult_requests")
 .update({
 
-assigned_expert_id:
-null,
+assigned_expert_id:null,
 
-status:
-"open"
+status:"open"
 
 })
 .eq(
@@ -7986,7 +5040,6 @@ status:
   currentExpert.id
 );
 
-
 if(error){
 
 return say(
@@ -7995,24 +5048,17 @@ return say(
 
 }
 
-
 say(
   "상담 요청을 반환했습니다."
 );
 
-
 await loadMyCases();
-
 await loadLeadPool();
-
 await loadStats();
 
 }
 
-
-/* =========================================================
-   STATUS
-========================================================= */
+/* STATUS */
 
 async function changeStatus(
 id,
@@ -8036,7 +5082,6 @@ await sb
   currentExpert.id
 );
 
-
 if(error){
 
 return say(
@@ -8045,26 +5090,18 @@ return say(
 
 }
 
-
 await loadMyCases();
-
 await loadStats();
 
 }
 
-
-/* =========================================================
-   STATS
-========================================================= */
+/* STATS */
 
 async function loadStats(){
 
 if(!currentExpert){
-
-return;
-
+  return;
 }
-
 
 const {
   data:a
@@ -8085,7 +5122,6 @@ await sb
   "open"
 );
 
-
 const {
   data:b
 }=
@@ -8099,57 +5135,45 @@ await sb
   currentExpert.id
 );
 
-
 $("statNew")
 .textContent=
-(a||[])
-.length;
-
+(a||[]).length;
 
 $("statMine")
 .textContent=
-(b||[])
-.length;
-
+(b||[]).length;
 
 $("statProgress")
 .textContent=
 (b||[])
 .filter(
-  x=>
-  x.status
-  ===
-  "in_progress"
+x=>
+x.status
+===
+"in_progress"
 )
 .length;
-
 
 $("statDone")
 .textContent=
 (b||[])
 .filter(
-  x=>
-  x.status
-  ===
-  "done"
+x=>
+x.status
+===
+"done"
 )
 .length;
 
 }
 
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
+/* NOTIFICATIONS */
 
 async function loadNotifications(){
 
 if(!currentUser){
-
-return;
-
+  return;
 }
-
 
 const {
   data,
@@ -8172,7 +5196,6 @@ await sb
   80
 );
 
-
 if(error){
 
 console.error(
@@ -8183,51 +5206,36 @@ return;
 
 }
 
-
 const notifications=
 data||[];
 
-
 const unread=
-
 notifications
 .filter(
-  n=>
-  !n.is_read
+n=>
+!n.is_read
 )
 .length;
 
-
 const badge=
-
 unread
-
 ?
-
 `<span class="badge">${unread}</span>`
-
 :
-
 "";
-
 
 $("notifyBadge")
 .innerHTML=
 badge;
 
-
 $("dashNotifyBadge")
 .innerHTML=
 badge;
 
-
 $("notifications")
 .innerHTML=
-
 notifications.length
-
 ?
-
 notifications
 .map(
 n=>`
@@ -8257,36 +5265,25 @@ ${fmt(
 `
 )
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 알림이 없습니다.
-
 </div>
-
 `;
 
 }
 
-
 async function markAllRead(){
 
 if(!currentUser){
-
-return;
-
+  return;
 }
-
 
 await sb
 .from("notifications")
 .update({
-  is_read:
-  true
+  is_read:true
 })
 .eq(
   "user_id",
@@ -8297,24 +5294,17 @@ await sb
   false
 );
 
-
 await loadNotifications();
 
 }
 
-
-/* =========================================================
-   REALTIME
-========================================================= */
+/* REALTIME */
 
 function subscribeRealtime(){
 
 if(!currentUser){
-
-return;
-
+  return;
 }
-
 
 if(realtimeChannel){
 
@@ -8324,52 +5314,35 @@ sb.removeChannel(
 
 }
 
-
 realtimeChannel=
-
 sb
 .channel(
   "expertON-"
   +
   currentUser.id
 )
-
 .on(
-
 "postgres_changes",
-
 {
 
-event:
-"INSERT",
-
-schema:
-"public",
-
-table:
-"notifications",
-
+event:"INSERT",
+schema:"public",
+table:"notifications",
 filter:
 `user_id=eq.${currentUser.id}`
 
 },
-
 ()=>{
 
 loadNotifications();
 
 }
-
 )
-
 .subscribe();
 
 }
 
-
-/* =========================================================
-   ADMIN DASHBOARD
-========================================================= */
+/* ADMIN */
 
 async function loadAdminDashboard(){
 
@@ -8378,28 +5351,18 @@ if(
   !==
   true
 ){
-
-return;
-
+  return;
 }
 
-
 await Promise.all([
-
 loadAdminExperts(),
-
 loadAdminConsults(),
-
 loadAdminSubscriptions()
-
 ]);
 
 }
 
-
-/* =========================================================
-   ADMIN EXPERT
-========================================================= */
+/* ADMIN EXPERT */
 
 async function loadAdminExperts(){
 
@@ -8408,11 +5371,8 @@ if(
   !==
   true
 ){
-
-return;
-
+  return;
 }
-
 
 const {
   data,
@@ -8428,7 +5388,6 @@ await sb
   }
 );
 
-
 if(error){
 
 console.error(
@@ -8439,57 +5398,44 @@ return;
 
 }
 
-
 const arr=
 data||[];
-
 
 $("adminTotalExperts")
 .textContent=
 arr.length;
 
-
 $("adminPendingExperts")
 .textContent=
 arr
 .filter(
-  e=>
-  e.approval_status
-  ===
-  "pending"
+e=>
+e.approval_status
+===
+"pending"
 )
 .length;
-
 
 $("adminActiveExperts")
 .textContent=
 arr
 .filter(
-  e=>
-
-  e.approval_status
-  ===
-  "approved"
-
-  &&
-
-  e.subscription_status
-  ===
-  "active"
-
+e=>
+e.approval_status
+===
+"approved"
+&&
+e.subscription_status
+===
+"active"
 )
 .length;
 
-
 $("adminExperts")
 .innerHTML=
-
 arr.length
-
 ?
-
-arr
-.map(
+arr.map(
 e=>`
 
 <div class="card request">
@@ -8541,24 +5487,14 @@ ${esc(
 
 <button
   class="btn success small"
-  onclick="
-    adminSetExpert(
-      '${e.user_id}',
-      'approved'
-    )
-  "
+  onclick="adminSetExpert('${e.user_id}','approved')"
 >
 승인
 </button>
 
 <button
   class="btn danger small"
-  onclick="
-    adminSetExpert(
-      '${e.user_id}',
-      'rejected'
-    )
-  "
+  onclick="adminSetExpert('${e.user_id}','rejected')"
 >
 거절
 </button>
@@ -8570,21 +5506,14 @@ ${esc(
 `
 )
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 전문가가 없습니다.
-
 </div>
-
 `;
 
 }
-
 
 async function adminSetExpert(
 id,
@@ -8592,47 +5521,29 @@ status
 ){
 
 const rpcName=
-
 status==="approved"
-
 ?
-
 "approve_expert"
-
 :
-
 status==="rejected"
-
 ?
-
 "reject_expert"
-
 :
-
 null;
 
-
 if(!rpcName){
-
-return;
-
+  return;
 }
-
 
 const {
   error
 }=
 await sb.rpc(
-
 rpcName,
-
 {
-  target_user_id:
-  id
+  target_user_id:id
 }
-
 );
-
 
 if(error){
 
@@ -8642,30 +5553,19 @@ return say(
 
 }
 
-
 say(
-
 status==="approved"
-
 ?
-
 "전문가 승인이 완료되었습니다."
-
 :
-
 "전문가 신청을 거절했습니다."
-
 );
-
 
 await loadAdminExperts();
 
 }
 
-
-/* =========================================================
-   ADMIN CONSULT
-========================================================= */
+/* ADMIN CONSULT */
 
 async function loadAdminConsults(){
 
@@ -8674,11 +5574,8 @@ if(
   !==
   true
 ){
-
-return;
-
+  return;
 }
-
 
 const {
   data:consultData,
@@ -8694,7 +5591,6 @@ await sb
   }
 );
 
-
 if(error){
 
 console.error(
@@ -8704,7 +5600,6 @@ console.error(
 return;
 
 }
-
 
 const {
   data:expertData
@@ -8719,27 +5614,20 @@ await sb
   "approved"
 );
 
-
 const consults=
 consultData||[];
 
-
 const experts=
 expertData||[];
-
 
 $("adminTotalConsults")
 .textContent=
 consults.length;
 
-
 $("adminConsults")
 .innerHTML=
-
 consults.length
-
 ?
-
 consults
 .map(
 c=>`
@@ -8779,7 +5667,6 @@ ${esc(
   c.content||""
 )}
 </p>
-
 
 <div class="field">
 
@@ -8836,49 +5723,34 @@ ${esc(
 
 </div>
 
-
 <button
   class="btn primary small"
-  onclick="
-    adminAssignExpert(
-      '${c.id}'
-    )
-  "
+  onclick="adminAssignExpert('${c.id}')"
 >
 배정 저장
 </button>
-
 
 </div>
 
 `
 )
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 상담이 없습니다.
-
 </div>
-
 `;
 
 }
-
 
 async function adminAssignExpert(id){
 
 const select=
 $("adminExpertSelect-"+id);
 
-
 const expertId=
 select?.value||null;
-
 
 const {
   error
@@ -8903,7 +5775,6 @@ expertId
   id
 );
 
-
 if(error){
 
 return say(
@@ -8912,20 +5783,15 @@ return say(
 
 }
 
-
 say(
   "전문가 배정이 변경되었습니다."
 );
-
 
 await loadAdminConsults();
 
 }
 
-
-/* =========================================================
-   ADMIN SUBSCRIPTION
-========================================================= */
+/* ADMIN SUBSCRIPTION */
 
 async function loadAdminSubscriptions(){
 
@@ -8934,11 +5800,8 @@ if(
   !==
   true
 ){
-
-return;
-
+  return;
 }
-
 
 const {
   data,
@@ -8947,7 +5810,7 @@ const {
 await sb
 .from("subscriptions")
 .select(
-  "id,expert_id,status,monthly_amount,last_paid_at,next_billing_at,payment_fail_count"
+"id,expert_id,status,monthly_amount,last_paid_at,next_billing_at,payment_fail_count"
 )
 .order(
   "last_paid_at",
@@ -8955,7 +5818,6 @@ await sb
     ascending:false
   }
 );
-
 
 if(error){
 
@@ -8967,30 +5829,21 @@ return;
 
 }
 
-
 const subs=
 data||[];
 
-
 const ids=
-
 [
-  ...new Set(
-    subs
-    .map(
-      x=>
-      x.expert_id
-    )
-    .filter(
-      Boolean
-    )
-  )
+...new Set(
+subs
+.map(
+x=>x.expert_id
+)
+.filter(Boolean)
+)
 ];
 
-
-const expertMap=
-{};
-
+const expertMap={};
 
 if(ids.length){
 
@@ -9007,36 +5860,27 @@ await sb
   ids
 );
 
-
 (experts||[])
 .forEach(
 e=>{
 
-expertMap[
-  e.id
-]=e;
+expertMap[e.id]=e;
 
 });
 
 }
 
-
 $("adminSubscriptions")
 .innerHTML=
-
 subs.length
-
 ?
-
-subs
-.map(
+subs.map(
 s=>{
 
 const e=
 expertMap[
   s.expert_id
 ];
-
 
 return `
 
@@ -9099,35 +5943,22 @@ ${esc(
 
 })
 .join("")
-
 :
-
 `
-
 <div class="muted">
-
 구독 정보가 없습니다.
-
 </div>
-
 `;
 
 }
 
+/* START */
 
-/* =========================================================
-   START
-========================================================= */
-
-window
-.addEventListener(
+window.addEventListener(
   "load",
   init
 );
 
-
 </script>
-
-
 </body>
 </html>
