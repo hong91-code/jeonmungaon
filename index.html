@@ -8920,62 +8920,109 @@ await loadStats();
 
 async function rejectAssignedRequest(id){
 
-const ok=
-confirm(
-  "이 상담 요청을 거절하고 다시 미배정 상태로 돌리시겠습니까?"
-);
+  const ok=
+  confirm(
+    "이 상담 요청을 거절하시겠습니까?\n\n거절하면 고객에게 알림이 전송되고 상담은 다시 매칭 대기 상태로 전환됩니다."
+  );
 
 
-if(!ok){
-
-return;
-
-}
+  if(!ok){
+    return;
+  }
 
 
-const {
-  error
-}=
-await sb
-.from("consult_requests")
-.update({
+  try{
 
-assigned_expert_id:
-null,
+    const {
+      data:pushData,
+      error:pushError
+    }=
+    await sb.functions.invoke(
+      "push-send",
+      {
+        body:{
+          event:
+            "consult_rejected",
 
-status:
-"open"
-
-})
-.eq(
-  "id",
-  id
-)
-.eq(
-  "assigned_expert_id",
-  currentExpert.id
-);
+          resource_id:
+            id
+        }
+      }
+    );
 
 
-if(error){
+    if(pushError){
 
-return say(
-  error.message
-);
-
-}
-
-
-say(
-  "상담 요청을 반환했습니다."
-);
+      console.error(
+        "상담 거절 오류:",
+        pushError
+      );
 
 
-await loadMyCases();
+      return say(
+        pushError.message
+        ||
+        "상담 거절 처리에 실패했습니다."
+      );
 
-await loadLeadPool();
+    }
 
-await loadStats();
+
+    if(
+      !pushData?.success
+    ){
+
+      console.error(
+        "상담 거절 결과:",
+        pushData
+      );
+
+
+      return say(
+        pushData?.error
+        ||
+        "상담 거절 처리에 실패했습니다."
+      );
+
+    }
+
+
+    console.log(
+      "상담 거절 처리 성공:",
+      pushData
+    );
+
+
+    say(
+      "상담 요청을 거절했습니다. 고객에게 알림이 전송되었습니다."
+    );
+
+
+    await loadMyCases();
+
+    await loadLeadPool();
+
+    await loadStats();
+
+    await loadNotifications();
+
+
+  }
+  catch(error){
+
+    console.error(
+      "rejectAssignedRequest 오류:",
+      error
+    );
+
+
+    say(
+      error?.message
+      ||
+      "상담 거절 처리 중 오류가 발생했습니다."
+    );
+
+  }
 
 }
 
