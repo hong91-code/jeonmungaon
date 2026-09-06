@@ -1777,6 +1777,53 @@ nav{
 
 
 /* =========================================================
+   고객센터 1:1 문의
+========================================================= */
+
+$("supportInquiryForm")
+.addEventListener(
+"submit",
+async e=>{
+
+e.preventDefault();
+
+if(!currentUser){
+  return openAuth("login");
+}
+
+if(!$("supportPrivacy").checked){
+  return say("개인정보 수집·이용 동의가 필요합니다.");
+}
+
+const phone=normalizePhone($("supportPhone").value);
+
+if(!/^01\d{8,9}$/.test(콜)){
+  return say("연락처를 정확히 입력하세요.");
+}
+
+const {error}=
+await sb
+.from("support_inquiries")
+.insert({
+  user_id:currentUser.id,
+  phone,
+  subject:$("supportSubject").value.trim(),
+  content:$("supportContent").value.trim()
+});
+
+if(error){
+  return say(error.message);
+}
+
+e.target.reset();
+
+say("문의가 접수되었습니다. 담당자에게 카카오 알림도 함께 전달됩니다.");
+
+}
+);
+
+
+/* =========================================================
    DASHBOARD
 ========================================================= */
 
@@ -4327,6 +4374,70 @@ footer{
 </div>
 
 
+<div class="card panel">
+
+<h3>
+1:1 문의
+</h3>
+
+<p class="muted tiny">
+문의가 접수되면 관리자에게 사이트 알림과 카카오 알림이 전달됩니다.
+</p>
+
+<form id="supportInquiryForm">
+
+<div class="field">
+<label>연락처</label>
+<input
+  id="supportPhone"
+  type="tel"
+  inputmode="tel"
+  placeholder="010-0000-0000"
+  required
+>
+</div>
+
+<div class="field">
+<label>문의 제목</label>
+<input
+  id="supportSubject"
+  placeholder="문의 제목을 입력하세요"
+  required
+>
+</div>
+
+<div class="field">
+<label>문의 내용</label>
+<textarea
+  id="supportContent"
+  placeholder="문의 내용을 입력하세요"
+  required
+></textarea>
+</div>
+
+<label class="check">
+<input
+  id="supportPrivacy"
+  type="checkbox"
+  required
+>
+<span>
+<b>[필수]</b> 문의 처리 및 답변을 위한 개인정보 수집·이용에 동의합니다.
+</span>
+</label>
+
+<button
+  class="btn primary"
+  type="submit"
+>
+문의 보내기
+</button>
+
+</form>
+
+</div>
+
+
 </div>
 
 </div>
@@ -4918,6 +5029,25 @@ footer{
 </div>
 
 
+<div
+  id="authPhoneWrap"
+  class="field hidden"
+>
+
+<label>
+휴대전화 (카카오 알림 수신)
+</label>
+
+<input
+  id="authPhone"
+  type="tel"
+  inputmode="tel"
+  placeholder="010-0000-0000"
+>
+
+</div>
+
+
 <div class="field">
 
 <label>
@@ -5329,6 +5459,28 @@ alert(message);
 }
 
 
+function normalizePhone(value){
+
+return String(value||"")
+.replace(/[^0-9]/g,"");
+
+}
+
+
+function deletionDate(completedAt){
+
+if(!completedAt){
+  return "";
+}
+
+const d=new Date(completedAt);
+d.setDate(d.getDate()+30);
+
+return d.toLocaleDateString("ko-KR");
+
+}
+
+
 function statusLabel(status){
 
 return ({
@@ -5596,6 +5748,11 @@ currentProfile=
 p||null;
 
 
+if($("supportPhone") && currentProfile?.phone){
+  $("supportPhone").value=currentProfile.phone;
+}
+
+
 const {
   data:e
 }=
@@ -5743,6 +5900,29 @@ ${esc(
 )}
 </p>
 
+<div class="field" style="max-width:360px">
+<label>카카오 알림 수신번호</label>
+<input
+  id="profilePhone"
+  type="tel"
+  inputmode="tel"
+  value="${esc(currentProfile?.phone||"")}"
+  placeholder="010-0000-0000"
+>
+</div>
+
+<button
+  type="button"
+  class="btn outline small"
+  onclick="saveNotificationPhone()"
+>
+알림번호 저장
+</button>
+
+<p class="muted tiny">
+상담 요청·수락·완료 및 고객센터 문의 관련 카카오 알림에 사용됩니다.
+</p>
+
 ${currentExpert?`
 
 <hr>
@@ -5794,6 +5974,40 @@ ${esc(
 `:""}
 
 `;
+
+}
+
+
+
+
+async function saveNotificationPhone(){
+
+if(!currentUser){
+  return openAuth("login");
+}
+
+const input=$("profilePhone");
+const phone=normalizePhone(input?.value);
+
+if(!/^01\d{8,9}$/.test(콜)){
+  return say("휴대전화 번호를 정확히 입력하세요.");
+}
+
+const {error}=
+await sb
+.from("profiles")
+.update({phone})
+.eq("id",currentUser.id);
+
+if(error){
+  return say(error.message);
+}
+
+if(currentProfile){
+  currentProfile.phone=phone;
+}
+
+say("카카오 알림 수신번호가 저장되었습니다.");
 
 }
 
@@ -5896,6 +6110,14 @@ $("authNameWrap")
 );
 
 
+$("authPhoneWrap")
+.classList
+.toggle(
+  "hidden",
+  authMode==="login"
+);
+
+
 $("signupConsentWrap")
 .classList
 .toggle(
@@ -5959,6 +6181,22 @@ return say(
 }
 
 
+const phone=
+normalizePhone(
+  $("authPhone")
+  .value
+);
+
+
+if(!/^01\d{8,9}$/.test(콜)){
+
+return say(
+  "카카오 알림을 받을 휴대전화 번호를 정확히 입력하세요."
+);
+
+}
+
+
 if(
   !$("agreeTerms").checked
   ||
@@ -5983,7 +6221,8 @@ password,
 
 options:{
   data:{
-    name
+    name,
+    phone
   }
 }
 
@@ -7436,6 +7675,14 @@ ${esc(
 )}
 </p>
 
+${r.status==="done" && r.completed_at?`
+
+<div class="notice warn">
+상담 완료일로부터 30일 후(${esc(deletionDate(r.completed_at))}) 상담 DB가 자동 삭제됩니다.
+</div>
+
+`:""}
+
 ${expert?`
 
 <div class="notice good">
@@ -8395,6 +8642,14 @@ ${esc(
 )}
 </p>
 
+
+${r.status==="done" && r.completed_at?`
+
+<div class="notice warn">
+이 상담 DB는 완료일로부터 30일 후(${esc(deletionDate(r.completed_at))}) 자동 삭제됩니다.
+</div>
+
+`:""}
 
 ${waiting?`
 
