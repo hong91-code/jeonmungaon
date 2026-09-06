@@ -1,5 +1,6 @@
 /* =========================================================
    전문가ON Firebase Messaging Service Worker
+   백그라운드 푸시 알림 표시
 ========================================================= */
 
 importScripts(
@@ -16,181 +17,215 @@ importScripts(
 ========================================================= */
 
 firebase.initializeApp({
-
-  apiKey:
-  "AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UOOlf8_Y",
-
-  authDomain:
-  "jeonmungaon.firebaseapp.com",
-
-  projectId:
-  "jeonmungaon",
-
-  storageBucket:
-  "jeonmungaon.firebasestorage.app",
-
-  messagingSenderId:
-  "1093664819027",
-
-  appId:
-  "1:1093664819027:web:33ead50b454cbbeb9383a6"
-
+  apiKey: "AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UO0lf8_Y",
+  authDomain: "jeonmungaon.firebaseapp.com",
+  projectId: "jeonmungaon",
+  storageBucket: "jeonmungaon.firebasestorage.app",
+  messagingSenderId: "1093664819027",
+  appId: "1:1093664819027:web:33ead50b454cbbeb9383a6"
 });
 
 
-const messaging =
-firebase.messaging();
+const messaging = firebase.messaging();
 
 
 /* =========================================================
-   백그라운드 PUSH 수신
+   Firebase 백그라운드 메시지 수신
 ========================================================= */
 
-messaging.onBackgroundMessage(
-(payload)=>{
-
+messaging.onBackgroundMessage((payload) => {
 
   console.log(
-    "[전문가ON] 백그라운드 PUSH 수신:",
+    "[전문가ON] 백그라운드 메시지 수신:",
     payload
   );
 
 
+  const data =
+    payload?.data || {};
+
+
+  const notification =
+    payload?.notification || {};
+
+
   const title =
-  payload.notification?.title
-  ||
-  payload.data?.title
-  ||
-  "전문가ON";
+    notification.title ||
+    data.title ||
+    "전문가ON";
 
 
   const body =
-  payload.notification?.body
-  ||
-  payload.data?.body
-  ||
-  "새로운 알림이 도착했습니다.";
+    notification.body ||
+    data.body ||
+    "새로운 알림이 도착했습니다.";
 
 
   const targetUrl =
-  payload.data?.url
-  ||
-  "./";
+    data.url ||
+    "https://hong91-code.github.io/jeonmungaon/";
 
 
-  const notificationOptions = {
+  const options = {
 
-    body:
-    body,
+    body: body,
 
     icon:
-    "./icon-192.png",
+      "https://hong91-code.github.io/jeonmungaon/icon-192.png",
 
     badge:
-    "./icon-192.png",
+      "https://hong91-code.github.io/jeonmungaon/icon-192.png",
+
+    vibrate: [
+      200,
+      100,
+      200
+    ],
+
+    requireInteraction:
+      true,
 
     tag:
-    payload.data?.type
-    ||
-    "jeonmungaon",
+      data.type ||
+      "jeonmungaon-notification",
 
     renotify:
-    true,
+      true,
 
-    data:{
+    data: {
+
       url:
-      targetUrl
+        targetUrl,
+
+      type:
+        data.type || "",
+
+      consult_id:
+        data.consult_id || ""
+
     }
 
   };
 
 
-  return self.registration
-  .showNotification(
+  return self.registration.showNotification(
     title,
-    notificationOptions
+    options
   );
 
+});
 
-}
+
+/* =========================================================
+   알림 클릭
+========================================================= */
+
+self.addEventListener(
+  "notificationclick",
+  (event) => {
+
+    console.log(
+      "[전문가ON] 알림 클릭"
+    );
+
+
+    event.notification.close();
+
+
+    const targetUrl =
+      event.notification?.data?.url ||
+      "https://hong91-code.github.io/jeonmungaon/";
+
+
+    event.waitUntil(
+
+      clients
+        .matchAll({
+          type: "window",
+          includeUncontrolled: true
+        })
+        .then(
+          (clientList) => {
+
+            for (
+              const client
+              of clientList
+            ) {
+
+              if (
+                "focus" in client
+              ) {
+
+                try {
+
+                  client.navigate(
+                    targetUrl
+                  );
+
+                } catch (_) {
+                }
+
+
+                return client.focus();
+
+              }
+
+            }
+
+
+            if (
+              clients.openWindow
+            ) {
+
+              return clients.openWindow(
+                targetUrl
+              );
+
+            }
+
+          }
+        )
+
+    );
+
+  }
 );
 
 
 /* =========================================================
-   PUSH 알림 클릭
+   설치
 ========================================================= */
 
 self.addEventListener(
-"notificationclick",
-(event)=>{
+  "install",
+  () => {
+
+    console.log(
+      "[전문가ON] Service Worker 설치"
+    );
+
+    self.skipWaiting();
+
+  }
+);
 
 
-  event.notification
-  .close();
+/* =========================================================
+   활성화
+========================================================= */
+
+self.addEventListener(
+  "activate",
+  (event) => {
+
+    console.log(
+      "[전문가ON] Service Worker 활성화"
+    );
 
 
-  const targetUrl =
-  event.notification
-  .data
-  ?.url
-  ||
-  "./";
+    event.waitUntil(
+      self.clients.claim()
+    );
 
-
-  event.waitUntil(
-
-    clients
-    .matchAll({
-
-      type:
-      "window",
-
-      includeUncontrolled:
-      true
-
-    })
-    .then(
-    windowClients=>{
-
-
-      for(
-        const client
-        of
-        windowClients
-      ){
-
-        if(
-          "focus"
-          in
-          client
-        ){
-
-          client.navigate(
-            targetUrl
-          );
-
-          return client.focus();
-
-        }
-
-      }
-
-
-      if(
-        clients.openWindow
-      ){
-
-        return clients.openWindow(
-          targetUrl
-        );
-
-      }
-
-
-    })
-
-  );
-
-
-}
+  }
 );
