@@ -8468,46 +8468,128 @@ ${esc(
 
 async function claimRequest(id){
 
-const {
-  error
-}=
-await sb.rpc(
+  try{
 
-"claim_consult_request",
+    /* ================================================
+       1. 상담 수락
+    ================================================ */
 
-{
-  p_request_id:
-  id
-}
-
-);
-
-
-if(error){
-
-return say(
-  error.message
-);
-
-}
+    const {
+      error
+    } = await sb.rpc(
+      "claim_consult_request",
+      {
+        p_request_id: id
+      }
+    );
 
 
-say(
-  "상담을 수락했습니다."
-);
+    if(error){
+
+      console.error(
+        "상담 수락 오류:",
+        error
+      );
+
+      return say(
+        error.message ||
+        "상담 수락에 실패했습니다."
+      );
+
+    }
 
 
-await dispatchPushEvent(
-  "consult_accepted",
-  id
-);
+    /* ================================================
+       2. 고객에게 수락 알림 전송
+    ================================================ */
+
+    try{
+
+      const {
+        data: pushData,
+        error: pushError
+      } = await sb.functions.invoke(
+        "push-send",
+        {
+          body:{
+            event:
+              "consult_accepted",
+
+            resource_id:
+              id
+          }
+        }
+      );
 
 
-await loadLeadPool();
+      if(pushError){
 
-await loadMyCases();
+        console.error(
+          "상담 수락 푸시 오류:",
+          pushError
+        );
 
-await loadStats();
+      }
+      else{
+
+        console.log(
+          "상담 수락 푸시 성공:",
+          pushData
+        );
+
+      }
+
+    }
+    catch(pushException){
+
+      /*
+        푸시가 실패해도
+        이미 완료된 상담 수락 자체는 취소하지 않음
+      */
+
+      console.error(
+        "상담 수락 푸시 예외:",
+        pushException
+      );
+
+    }
+
+
+    /* ================================================
+       3. 완료 안내
+    ================================================ */
+
+    say(
+      "상담을 수락했습니다. 고객에게 알림을 전송했습니다."
+    );
+
+
+    /* ================================================
+       4. 화면 최신화
+    ================================================ */
+
+    setTimeout(
+      ()=>{
+        location.reload();
+      },
+      700
+    );
+
+
+  }
+  catch(error){
+
+    console.error(
+      "claimRequest 오류:",
+      error
+    );
+
+    say(
+      error?.message ||
+      "상담 수락 처리 중 오류가 발생했습니다."
+    );
+
+  }
 
 }
 
