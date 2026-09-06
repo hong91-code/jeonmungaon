@@ -1,11 +1,13 @@
 /* =========================================================
-   전문가ON Firebase Messaging Service Worker
-   백그라운드 푸시 알림 표시
+   전문가ON Firebase Messaging Service Worker - FINAL
+   한 메시지당 알림 1개만 표시
 ========================================================= */
+
 
 importScripts(
   "https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"
 );
+
 
 importScripts(
   "https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging-compat.js"
@@ -13,107 +15,149 @@ importScripts(
 
 
 /* =========================================================
-   Firebase 설정
+   Firebase
 ========================================================= */
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UO0lf8_Y",
-  authDomain: "jeonmungaon.firebaseapp.com",
-  projectId: "jeonmungaon",
-  storageBucket: "jeonmungaon.firebasestorage.app",
-  messagingSenderId: "1093664819027",
-  appId: "1:1093664819027:web:33ead50b454cbbeb9383a6"
+
+  apiKey:
+    "AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UO0lf8_Y",
+
+  authDomain:
+    "jeonmungaon.firebaseapp.com",
+
+  projectId:
+    "jeonmungaon",
+
+  storageBucket:
+    "jeonmungaon.firebasestorage.app",
+
+  messagingSenderId:
+    "1093664819027",
+
+  appId:
+    "1:1093664819027:web:33ead50b454cbbeb9383a6"
+
 });
 
 
-const messaging = firebase.messaging();
+const messaging =
+  firebase.messaging();
 
 
 /* =========================================================
-   Firebase 백그라운드 메시지 수신
+   백그라운드 Push
+
+   Edge Function은 DATA ONLY로 전송하므로
+   실제 알림은 여기서 딱 1번 생성합니다.
 ========================================================= */
 
-messaging.onBackgroundMessage((payload) => {
-
-  console.log(
-    "[전문가ON] 백그라운드 메시지 수신:",
-    payload
-  );
+messaging.onBackgroundMessage(
+  (payload) => {
 
 
-  const data =
-    payload?.data || {};
+    console.log(
+      "[전문가ON] PUSH 수신:",
+      payload
+    );
 
 
-  const notification =
-    payload?.notification || {};
+    const data =
+      payload?.data || {};
 
 
-  const title =
-    notification.title ||
-    data.title ||
-    "전문가ON";
+    const title =
+      data.title ||
+      "전문가ON";
 
 
-  const body =
-    notification.body ||
-    data.body ||
-    "새로운 알림이 도착했습니다.";
+    const body =
+      data.body ||
+      "새로운 알림이 도착했습니다.";
 
 
-  const targetUrl =
-    data.url ||
-    "https://hong91-code.github.io/jeonmungaon/";
+    const targetUrl =
+      data.url ||
+      "https://hong91-code.github.io/jeonmungaon/";
 
 
-  const options = {
+    /*
+     * 동일 상담 + 동일 이벤트는
+     * 같은 tag 사용
+     *
+     * 혹시 같은 메시지가 두 번 호출돼도
+     * 알림 두 개가 쌓이지 않고 교체됩니다.
+     */
 
-    body: body,
-
-    icon:
-      "https://hong91-code.github.io/jeonmungaon/icon-192.png",
-
-    badge:
-      "https://hong91-code.github.io/jeonmungaon/icon-192.png",
-
-    vibrate: [
-      200,
-      100,
-      200
-    ],
-
-    requireInteraction:
-      true,
-
-    tag:
-      data.type ||
-      "jeonmungaon-notification",
-
-    renotify:
-      true,
-
-    data: {
-
-      url:
-        targetUrl,
-
-      type:
-        data.type || "",
-
-      consult_id:
-        data.consult_id || ""
-
-    }
-
-  };
+    const tag =
+      data.tag ||
+      (
+        "jeonmungaon-" +
+        (
+          data.type ||
+          "notification"
+        ) +
+        "-" +
+        (
+          data.consult_id ||
+          "general"
+        )
+      );
 
 
-  return self.registration.showNotification(
-    title,
-    options
-  );
+    const options = {
 
-});
+      body,
+
+      icon:
+        "https://hong91-code.github.io/jeonmungaon/icon-192.png",
+
+      badge:
+        "https://hong91-code.github.io/jeonmungaon/icon-192.png",
+
+
+      vibrate: [
+        200,
+        100,
+        200
+      ],
+
+
+      requireInteraction:
+        true,
+
+
+      tag,
+
+
+      renotify:
+        false,
+
+
+      data: {
+
+        url:
+          targetUrl,
+
+        type:
+          data.type || "",
+
+        consult_id:
+          data.consult_id || ""
+
+      }
+
+    };
+
+
+    return self.registration
+      .showNotification(
+        title,
+        options
+      );
+
+  }
+);
 
 
 /* =========================================================
@@ -124,16 +168,17 @@ self.addEventListener(
   "notificationclick",
   (event) => {
 
-    console.log(
-      "[전문가ON] 알림 클릭"
-    );
-
 
     event.notification.close();
 
 
     const targetUrl =
-      event.notification?.data?.url ||
+      event.notification
+        ?.data
+        ?.url
+
+      ||
+
       "https://hong91-code.github.io/jeonmungaon/";
 
 
@@ -141,37 +186,78 @@ self.addEventListener(
 
       clients
         .matchAll({
-          type: "window",
-          includeUncontrolled: true
+
+          type:
+            "window",
+
+          includeUncontrolled:
+            true
+
         })
+
         .then(
-          (clientList) => {
+
+          async (
+            clientList
+          ) => {
+
+
+            /*
+             * 이미 전문가ON 창이 열려 있으면
+             * 새 창을 만들지 않고 해당 창으로 이동
+             */
 
             for (
               const client
               of clientList
             ) {
 
-              if (
-                "focus" in client
-              ) {
+              try {
 
-                try {
-
-                  client.navigate(
-                    targetUrl
+                const url =
+                  new URL(
+                    client.url
                   );
 
-                } catch (_) {
+
+                if (
+                  url.hostname ===
+                  "hong91-code.github.io"
+                ) {
+
+                  if (
+                    "navigate" in client
+                  ) {
+
+                    await client.navigate(
+                      targetUrl
+                    );
+
+                  }
+
+
+                  if (
+                    "focus" in client
+                  ) {
+
+                    return client.focus();
+
+                  }
+
                 }
 
+              }
 
-                return client.focus();
+              catch (_) {
 
               }
 
             }
 
+
+            /*
+             * 열려 있는 창이 없으면 새 창
+             */
 
             if (
               clients.openWindow
@@ -184,6 +270,7 @@ self.addEventListener(
             }
 
           }
+
         )
 
     );
