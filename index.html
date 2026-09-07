@@ -3132,6 +3132,62 @@ footer{
 
 }
 
+
+
+/* =========================================================
+   전문가ON BUSINESS V2 UX
+   - 고객 중심 탐색
+   - 전문가 비교/찜/상세 프로필
+   - 상담 진행 타임라인
+   - 전문가 CRM형 관리
+   - 관리자 운영 필터/현황
+========================================================= */
+
+.business-trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.business-trust-item{padding:16px 17px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:var(--shadow-sm)}
+.business-trust-item b{display:block;margin-bottom:5px;font-size:14px}
+.business-trust-item span{font-size:12px;color:var(--muted);line-height:1.55}
+.expert-tools{display:grid;grid-template-columns:1.15fr .85fr auto;gap:9px;margin-bottom:16px;padding:12px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-sm)}
+.expert-tools input,.expert-tools select,.ops-toolbar input,.ops-toolbar select{width:100%;min-height:44px;border:1px solid #d7e3ee;border-radius:12px;background:#fff;padding:0 12px;outline:0;color:var(--ink)}
+.expert-card-v2{position:relative}
+.expert-card-v2 .expert-badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.expert-card-v2 .expert-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:8px;margin-top:13px}
+.favorite-btn{position:absolute;right:12px;top:12px;width:38px;height:38px;border:1px solid #dbe6f1;border-radius:50%;background:rgba(255,255,255,.95);font-size:18px;z-index:2}
+.favorite-btn.is-favorite{color:#e14f4f;background:#fff4f4;border-color:#f2cccc}
+.expert-mini-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:11px 0}
+.expert-mini-metrics div{padding:9px 7px;border-radius:11px;background:#f7f9fc;text-align:center;font-size:10px;color:var(--muted)}
+.expert-mini-metrics b{display:block;font-size:12px;color:var(--ink);margin-bottom:2px}
+.profile-sheet .profile-hero{display:flex;gap:15px;align-items:center;padding:16px;border-radius:18px;background:linear-gradient(135deg,#f7fbff,#edf6ff);margin-bottom:15px}
+.profile-sheet .profile-avatar{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;background:#fff;font-size:32px;box-shadow:var(--shadow-sm)}
+.profile-sheet .profile-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.profile-sheet .profile-fact{padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:center;font-size:11px;color:var(--muted)}
+.profile-sheet .profile-fact b{display:block;color:var(--ink);font-size:13px;margin-bottom:3px}
+.consult-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:14px 0 5px}
+.timeline-step{position:relative;padding:9px 5px;border-radius:10px;background:#eef2f6;text-align:center;color:#7b899a;font-size:10px;font-weight:800}
+.timeline-step.on{background:#eaf4ff;color:#0b6fe3}
+.timeline-step.done{background:#eafaf3;color:#0f7d58}
+.request-next-action{margin-top:10px;padding:11px 12px;border-radius:12px;background:#f8fafc;border:1px solid #e7edf4;font-size:12px;color:#52657d}
+.ops-toolbar{display:grid;grid-template-columns:1.2fr .8fr auto;gap:8px;margin:12px 0 16px}
+.crm-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0 16px}
+.crm-summary .mini{padding:14px;border:1px solid var(--line);border-radius:15px;background:#fff}
+.crm-summary .mini b{display:block;font-size:22px;color:var(--blue);margin-bottom:3px}
+.crm-summary .mini span{font-size:11px;color:var(--muted)}
+.admin-v2-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 18px}
+.admin-v2-grid .mini{padding:15px;border:1px solid var(--line);border-radius:15px;background:#fff}
+.admin-v2-grid .mini b{display:block;font-size:22px;color:var(--navy);margin-bottom:3px}.admin-v2-grid .mini span{font-size:11px;color:var(--muted)}
+.empty-cta{padding:24px;border:1px dashed #cfdbe7;border-radius:17px;background:#fbfdff;text-align:center}
+
+@media(max-width:680px){
+  .business-trust-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .business-trust-item{padding:13px}
+  .expert-tools,.ops-toolbar{grid-template-columns:1fr 1fr}.expert-tools .btn,.ops-toolbar .btn{grid-column:1/-1}
+  .expert-card-v2 .expert-actions{grid-template-columns:1fr 1fr}
+  .consult-timeline{grid-template-columns:repeat(5,minmax(66px,1fr));overflow-x:auto;padding-bottom:4px}
+  .profile-sheet .profile-facts{grid-template-columns:1fr 1fr}
+  .crm-summary{grid-template-columns:repeat(3,1fr)}
+  .admin-v2-grid{grid-template-columns:repeat(2,1fr)}
+}
+
 </style>
 </head>
 
@@ -3461,6 +3517,20 @@ footer{
 
 </section>
 
+<!-- =========================================================
+     BUSINESS V2 TRUST STRIP
+========================================================= -->
+<section style="padding:0 0 12px">
+  <div class="wrap">
+    <div class="business-trust-grid">
+      <div class="business-trust-item"><b>✓ 승인 전문가만 노출</b><span>관리자 승인과 활성 이용권을 확인한 전문가만 고객에게 표시합니다.</span></div>
+      <div class="business-trust-item"><b>🔒 연락처 보호</b><span>전문가가 상담을 수락하기 전까지 고객 연락처는 공개하지 않습니다.</span></div>
+      <div class="business-trust-item"><b>🔔 실시간 진행 알림</b><span>상담 요청·수락·거절·완료 상태를 푸시와 사이트 알림으로 안내합니다.</span></div>
+      <div class="business-trust-item"><b>↻ 다시 매칭</b><span>선택 전문가가 진행하기 어려운 경우 상담은 다시 매칭 대기로 전환됩니다.</span></div>
+    </div>
+  </div>
+</section>
+
 
 <!-- =========================================================
      CATEGORY
@@ -3712,6 +3782,15 @@ footer{
 
 </div>
 
+
+<div class="expert-tools">
+  <input id="expertFilterKeyword" placeholder="전문가명·소개·지역 검색" oninput="filterExpertCards()">
+  <select id="expertFilterRegion" onchange="filterExpertCards()">
+    <option value="">전체 지역</option>
+    <option>서울</option><option>경기</option><option>인천</option><option>대전</option><option>대구</option><option>부산</option><option>광주</option><option>울산</option><option>세종</option><option>강원</option><option>충북</option><option>충남</option><option>전북</option><option>전주</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option>
+  </select>
+  <button type="button" class="btn outline" onclick="showFavoriteExpertsOnly()">♡ 찜한 전문가</button>
+</div>
 
 <div
   id="expertList"
@@ -4727,6 +4806,12 @@ footer{
 </div>
 
 
+<div id="expertCrmSummary" class="crm-summary"></div>
+<div class="ops-toolbar">
+  <input id="caseSearch" placeholder="고객 상담 제목·내용 검색" oninput="filterCaseCards()">
+  <select id="caseStatusFilter" onchange="filterCaseCards()"><option value="">전체 상태</option><option value="matched">확인 대기</option><option value="in_progress">상담중</option><option value="done">완료</option></select>
+  <button class="btn outline small" onclick="loadMyCases()">최신화</button>
+</div>
 <div id="caseList"></div>
 
 
@@ -4768,6 +4853,13 @@ footer{
   class="hidden"
 >
 
+
+<div class="admin-v2-grid">
+  <div class="mini"><b id="adminWaitingConsults">0</b><span>매칭/확인 대기</span></div>
+  <div class="mini"><b id="adminProgressConsults">0</b><span>상담 진행중</span></div>
+  <div class="mini"><b id="adminDoneConsults">0</b><span>상담 완료</span></div>
+  <div class="mini"><b id="adminTodayConsults">0</b><span>오늘 신규 상담</span></div>
+</div>
 
 <div class="admin-stats">
 
@@ -4867,6 +4959,11 @@ footer{
 </div>
 
 
+<div class="ops-toolbar">
+  <input id="adminConsultSearch" placeholder="상담 제목·내용·지역 검색" oninput="filterAdminConsultCards()">
+  <select id="adminConsultStatus" onchange="filterAdminConsultCards()"><option value="">전체 상태</option><option value="open">매칭 대기</option><option value="matched">전문가 확인 대기</option><option value="in_progress">상담중</option><option value="done">완료</option></select>
+  <button class="btn outline small" onclick="loadAdminConsults()">최신화</button>
+</div>
 <div id="adminConsults"></div>
 
 
@@ -4909,6 +5006,17 @@ footer{
 
 </main>
 
+
+
+<!-- =========================================================
+     EXPERT PROFILE MODAL - BUSINESS V2
+========================================================= -->
+<div id="expertProfileModal" class="modal hidden">
+  <div class="card modal-card profile-sheet" style="max-width:620px">
+    <div class="space"><h2>전문가 프로필</h2><button class="btn outline small" onclick="closeExpertProfile()">닫기</button></div>
+    <div id="expertProfileContent"></div>
+  </div>
+</div>
 
 <!-- =========================================================
      AUTH MODAL
@@ -5331,7 +5439,7 @@ supabase.createClient(
 ========================================================= */
 
 const FIREBASE_CONFIG={
-  apiKey:"AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UOOlf8_Y",
+  apiKey:"AIzaSyBnX4SFPAUq8uec1TnUxsACi-8UO0lf8_Y",
   authDomain:"jeonmungaon.firebaseapp.com",
   projectId:"jeonmungaon",
   storageBucket:"jeonmungaon.firebasestorage.app",
@@ -6895,7 +7003,12 @@ arr.length
 ?
 arr.map((x,index)=>`
 
-<div class="card expert-card">
+<div class="card expert-card expert-card-v2"
+ data-expert-id="${esc(x.id)}"
+ data-region="${esc(x.region||'')}"
+ data-search="${esc([x.business_name,x.expert_type,x.region,x.bio].join(' ').toLowerCase())}">
+
+<button type="button" class="favorite-btn ${isFavoriteExpert(x.id)?'is-favorite':''}" onclick="toggleFavoriteExpert('${x.id}',this);event.stopPropagation();" aria-label="찜">${isFavoriteExpert(x.id)?'♥':'♡'}</button>
 
 <div class="avatar">
 🧑🏻‍💼
@@ -6942,6 +7055,12 @@ ${esc(x._matchReasons.join(" · "))}
 </div>
 `:""}
 
+<div class="expert-mini-metrics">
+  <div><b>승인</b>자격 확인</div>
+  <div><b>활동중</b>상담 가능</div>
+  <div><b>실시간</b>푸시 연결</div>
+</div>
+
 <p class="tiny">
 ${esc(
   (x.bio||"")
@@ -6952,9 +7071,10 @@ ${esc(
 )}
 </p>
 
+<div class="expert-actions">
+<button type="button" class="btn outline" onclick="openExpertProfile('${x.id}')">프로필 보기</button>
 <button
   class="btn primary"
-  style="width:100%"
   onclick="
     selectExpert(
       '${x.id}',
@@ -6967,8 +7087,9 @@ ${esc(
     )
   "
 >
-이 전문가에게 상담
+상담 요청
 </button>
+</div>
 
 </div>
 
@@ -7683,6 +7804,9 @@ ${esc(
   r.content
 )}
 </p>
+
+${renderConsultTimeline(r.status)}
+${consultNextActionHTML(r,expert)}
 
 ${r.status==="done" && r.completed_at?`
 
@@ -8635,6 +8759,14 @@ console.error(
 );
 
 
+const myCaseRows=data||[];
+if($("expertCrmSummary")){
+  $("expertCrmSummary").innerHTML=`
+    <div class="mini"><b>${myCaseRows.filter(x=>x.status==="matched").length}</b><span>확인 대기</span></div>
+    <div class="mini"><b>${myCaseRows.filter(x=>x.status==="in_progress").length}</b><span>상담중</span></div>
+    <div class="mini"><b>${myCaseRows.filter(x=>x.status==="done").length}</b><span>완료</span></div>`;
+}
+
 $("caseList")
 .innerHTML=`
 
@@ -8689,7 +8821,7 @@ r.status
 
 return `
 
-<div class="card request">
+<div class="card request case-card-v2" data-status="${esc(r.status||'')}" data-search="${esc([r.title,r.content,r.category,r.region].join(' ').toLowerCase())}">
 
 <div class="space">
 
@@ -8738,6 +8870,8 @@ ${esc(
   r.content
 )}
 </p>
+
+<div class="request-next-action">${expertCaseNextAction(r.status)}</div>
 
 
 ${waiting?`
@@ -10189,6 +10323,13 @@ await sb
 const consults=
 consultData||[];
 
+/* Business V2 운영 현황 */
+const todayKey=new Date().toLocaleDateString("ko-KR");
+if($("adminWaitingConsults")) $("adminWaitingConsults").textContent=consults.filter(x=>x.status==="open"||x.status==="matched").length;
+if($("adminProgressConsults")) $("adminProgressConsults").textContent=consults.filter(x=>x.status==="in_progress").length;
+if($("adminDoneConsults")) $("adminDoneConsults").textContent=consults.filter(x=>x.status==="done").length;
+if($("adminTodayConsults")) $("adminTodayConsults").textContent=consults.filter(x=>x.created_at&&new Date(x.created_at).toLocaleDateString("ko-KR")===todayKey).length;
+
 
 const experts=
 expertData||[];
@@ -10210,7 +10351,7 @@ consults
 .map(
 c=>`
 
-<div class="card request">
+<div class="card request admin-consult-card" data-status="${esc(c.status||'')}" data-search="${esc([c.title,c.content,c.category,c.region].join(' ').toLowerCase())}">
 
 <h4>
 ${esc(
@@ -10658,6 +10799,70 @@ say(
 }
 );
 
+}
+
+
+
+
+/* =========================================================
+   BUSINESS V2 HELPERS
+========================================================= */
+
+function getFavoriteExperts(){
+  try{return JSON.parse(localStorage.getItem("jeonmungaon_favorites")||"[]");}catch(_){return [];}
+}
+function isFavoriteExpert(id){return getFavoriteExperts().includes(String(id));}
+function toggleFavoriteExpert(id,button){
+  const key=String(id); let arr=getFavoriteExperts();
+  if(arr.includes(key)) arr=arr.filter(x=>x!==key); else arr.push(key);
+  localStorage.setItem("jeonmungaon_favorites",JSON.stringify(arr));
+  if(button){button.classList.toggle("is-favorite",arr.includes(key));button.textContent=arr.includes(key)?"♥":"♡";}
+}
+let favoriteExpertsOnly=false;
+function showFavoriteExpertsOnly(){favoriteExpertsOnly=!favoriteExpertsOnly;filterExpertCards();say(favoriteExpertsOnly?"찜한 전문가만 표시합니다.":"전체 전문가를 표시합니다.");}
+function filterExpertCards(){
+  const keyword=($("expertFilterKeyword")?.value||"").trim().toLowerCase();
+  const region=($("expertFilterRegion")?.value||"").trim().toLowerCase();
+  const favs=getFavoriteExperts();
+  document.querySelectorAll(".expert-card-v2").forEach(card=>{
+    const text=(card.dataset.search||"").toLowerCase(); const cardRegion=(card.dataset.region||"").toLowerCase();
+    const okKeyword=!keyword||text.includes(keyword); const okRegion=!region||cardRegion.includes(region); const okFav=!favoriteExpertsOnly||favs.includes(card.dataset.expertId);
+    card.style.display=(okKeyword&&okRegion&&okFav)?"":"none";
+  });
+}
+
+async function openExpertProfile(id){
+  const modal=$("expertProfileModal"), box=$("expertProfileContent"); if(!modal||!box)return;
+  modal.classList.remove("hidden"); box.innerHTML='<div class="notice">전문가 정보를 불러오는 중입니다.</div>';
+  const {data:x,error}=await sb.from("experts").select("id,user_id,expert_type,region,business_name,bio,approval_status,subscription_status,is_visible").eq("id",id).maybeSingle();
+  if(error||!x){box.innerHTML='<div class="notice bad">전문가 정보를 불러오지 못했습니다.</div>';return;}
+  box.innerHTML=`
+    <div class="profile-hero"><div class="profile-avatar">🧑🏻‍💼</div><div><span class="pill">✓ 승인 전문가</span><h2 style="margin:8px 0 4px">${esc(x.business_name||"전문가")}</h2><div class="muted tiny">${esc(x.expert_type||"")} · ${esc(x.region||"")}</div></div></div>
+    <div class="profile-facts"><div class="profile-fact"><b>승인 완료</b>자격 확인</div><div class="profile-fact"><b>${x.subscription_status==="active"?"활동중":"확인 필요"}</b>이용 상태</div><div class="profile-fact"><b>연락처 보호</b>수락 후 공개</div></div>
+    <div class="notice"><b>전문가 소개</b><br>${esc(x.bio||"등록된 소개가 없습니다.")}</div>
+    <div class="row"><button class="btn outline" onclick="toggleFavoriteExpert('${x.id}',null)">♡ 전문가 찜하기</button><button class="btn primary" onclick="closeExpertProfile();selectExpert('${x.id}','${encodeURIComponent(x.business_name||"전문가")}','${encodeURIComponent(x.expert_type||"")}')">이 전문가에게 상담 요청</button></div>`;
+}
+function closeExpertProfile(){$("expertProfileModal")?.classList.add("hidden");}
+
+function renderConsultTimeline(status){
+  const steps=["open","matched","in_progress","done"]; const labels=["접수","전문가 확인","상담중","완료"];
+  const current=Math.max(0,steps.indexOf(status));
+  return `<div class="consult-timeline">${labels.map((label,i)=>`<div class="timeline-step ${i<current?'done':i===current?'on':''}">${label}</div>`).join("")}<div class="timeline-step ${status==='cancelled'?'on':''}">종료</div></div>`;
+}
+function consultNextActionHTML(r,expert){
+  const map={open:"전문가 매칭을 기다리고 있습니다. 다른 전문가를 직접 선택해도 됩니다.",matched:"선택한 전문가가 상담 요청을 확인하고 있습니다.",in_progress:"전문가가 상담을 수락했습니다. 등록한 연락방법을 확인해 주세요.",done:"상담이 완료되었습니다. 상담 기록을 확인해 주세요.",cancelled:"종료된 상담입니다."};
+  return `<div class="request-next-action"><b>다음 단계</b><br>${map[r.status]||"상담 상태를 확인해 주세요."}${!expert&&r.status==='open'?'<br><button type="button" class="btn soft small" style="margin-top:8px" onclick="location.hash=\'experts\'">다른 전문가 보기</button>':''}</div>`;
+}
+function expertCaseNextAction(status){
+  return ({matched:"고객이 직접 선택한 요청입니다. 수락 또는 거절을 결정해 주세요.",in_progress:"상담 진행 중입니다. 상담이 끝나면 완료 처리해 주세요.",done:"완료된 상담입니다.",open:"현재 미배정 상태입니다."})[status]||"상담 상태를 확인해 주세요.";
+}
+function filterCaseCards(){
+  const q=($("caseSearch")?.value||"").trim().toLowerCase(); const status=$("caseStatusFilter")?.value||"";
+  document.querySelectorAll(".case-card-v2").forEach(card=>{const okQ=!q||(card.dataset.search||"").includes(q);const okS=!status||card.dataset.status===status;card.style.display=(okQ&&okS)?"":"none";});
+}
+function filterAdminConsultCards(){
+  const q=($("adminConsultSearch")?.value||"").trim().toLowerCase(); const status=$("adminConsultStatus")?.value||"";
+  document.querySelectorAll(".admin-consult-card").forEach(card=>{const okQ=!q||(card.dataset.search||"").includes(q);const okS=!status||card.dataset.status===status;card.style.display=(okQ&&okS)?"":"none";});
 }
 
 
