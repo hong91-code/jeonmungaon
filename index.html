@@ -3132,61 +3132,9 @@ footer{
 
 }
 
-
-
-/* =========================================================
-   전문가ON BUSINESS V2 UX
-   - 고객 중심 탐색
-   - 전문가 비교/찜/상세 프로필
-   - 상담 진행 타임라인
-   - 전문가 CRM형 관리
-   - 관리자 운영 필터/현황
-========================================================= */
-
-.business-trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
-.business-trust-item{padding:16px 17px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:var(--shadow-sm)}
-.business-trust-item b{display:block;margin-bottom:5px;font-size:14px}
-.business-trust-item span{font-size:12px;color:var(--muted);line-height:1.55}
-.expert-tools{display:grid;grid-template-columns:1.15fr .85fr auto;gap:9px;margin-bottom:16px;padding:12px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-sm)}
-.expert-tools input,.expert-tools select,.ops-toolbar input,.ops-toolbar select{width:100%;min-height:44px;border:1px solid #d7e3ee;border-radius:12px;background:#fff;padding:0 12px;outline:0;color:var(--ink)}
-.expert-card-v2{position:relative}
-.expert-card-v2 .expert-badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
-.expert-card-v2 .expert-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:8px;margin-top:13px}
-.favorite-btn{position:absolute;right:12px;top:12px;width:38px;height:38px;border:1px solid #dbe6f1;border-radius:50%;background:rgba(255,255,255,.95);font-size:18px;z-index:2}
-.favorite-btn.is-favorite{color:#e14f4f;background:#fff4f4;border-color:#f2cccc}
-.expert-mini-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:11px 0}
-.expert-mini-metrics div{padding:9px 7px;border-radius:11px;background:#f7f9fc;text-align:center;font-size:10px;color:var(--muted)}
-.expert-mini-metrics b{display:block;font-size:12px;color:var(--ink);margin-bottom:2px}
-.profile-sheet .profile-hero{display:flex;gap:15px;align-items:center;padding:16px;border-radius:18px;background:linear-gradient(135deg,#f7fbff,#edf6ff);margin-bottom:15px}
-.profile-sheet .profile-avatar{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;background:#fff;font-size:32px;box-shadow:var(--shadow-sm)}
-.profile-sheet .profile-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
-.profile-sheet .profile-fact{padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:center;font-size:11px;color:var(--muted)}
-.profile-sheet .profile-fact b{display:block;color:var(--ink);font-size:13px;margin-bottom:3px}
-.consult-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:14px 0 5px}
-.timeline-step{position:relative;padding:9px 5px;border-radius:10px;background:#eef2f6;text-align:center;color:#7b899a;font-size:10px;font-weight:800}
-.timeline-step.on{background:#eaf4ff;color:#0b6fe3}
-.timeline-step.done{background:#eafaf3;color:#0f7d58}
-.request-next-action{margin-top:10px;padding:11px 12px;border-radius:12px;background:#f8fafc;border:1px solid #e7edf4;font-size:12px;color:#52657d}
-.ops-toolbar{display:grid;grid-template-columns:1.2fr .8fr auto;gap:8px;margin:12px 0 16px}
-.crm-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0 16px}
-.crm-summary .mini{padding:14px;border:1px solid var(--line);border-radius:15px;background:#fff}
-.crm-summary .mini b{display:block;font-size:22px;color:var(--blue);margin-bottom:3px}
-.crm-summary .mini span{font-size:11px;color:var(--muted)}
-.admin-v2-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 18px}
-.admin-v2-grid .mini{padding:15px;border:1px solid var(--line);border-radius:15px;background:#fff}
-.admin-v2-grid .mini b{display:block;font-size:22px;color:var(--navy);margin-bottom:3px}.admin-v2-grid .mini span{font-size:11px;color:var(--muted)}
-.empty-cta{padding:24px;border:1px dashed #cfdbe7;border-radius:17px;background:#fbfdff;text-align:center}
-
-@media(max-width:680px){
-  .business-trust-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-  .business-trust-item{padding:13px}
-  .expert-tools,.ops-toolbar{grid-template-columns:1fr 1fr}.expert-tools .btn,.ops-toolbar .btn{grid-column:1/-1}
-  .expert-card-v2 .expert-actions{grid-template-columns:1fr 1fr}
-  .consult-timeline{grid-template-columns:repeat(5,minmax(66px,1fr));overflow-x:auto;padding-bottom:4px}
-  .profile-sheet .profile-facts{grid-template-columns:1fr 1fr}
-  .crm-summary{grid-template-columns:repeat(3,1fr)}
-  .admin-v2-grid{grid-template-columns:repeat(2,1fr)}
-}
+/* ===== 전문가ON BUSINESS V3 ===== */
+.v3-problem-examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.v3-problem-examples button{border:1px solid #dce9f7;background:#fff;border-radius:999px;padding:8px 11px;font-size:12px;color:#425b76;font-weight:750;cursor:pointer}.v3-match-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:13px 0}.v3-match-summary>div{background:#fff;border:1px solid #dceafa;border-radius:13px;padding:11px;text-align:center}.v3-match-summary strong{display:block;color:#1479ed;font-size:18px}.v3-filterbar{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:16px}.v3-filterbar select,.v3-filterbar input{border:1px solid #d7e3ee;border-radius:12px;padding:11px;background:#fff}.v3-expert-avatar{height:150px;background:#edf5ff;display:grid;place-items:center;overflow:hidden}.v3-expert-avatar img{width:100%;height:100%;object-fit:cover}.v3-verified{display:inline-flex;align-items:center;gap:4px;color:#0963cf;background:#eef6ff;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:850}.v3-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}.v3-metrics div{background:#f8fafc;border-radius:11px;padding:8px;text-align:center;font-size:10px;color:#718299}.v3-metrics b{display:block;color:#253a55;font-size:12px;margin-bottom:2px}.v3-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.v3-fav{position:absolute;right:12px;top:12px;z-index:3;border:0;background:#fff;border-radius:50%;width:36px;height:36px;box-shadow:0 4px 16px rgba(0,0,0,.1);font-size:18px}.expert-card{position:relative}.v3-timeline{display:flex;gap:0;margin:15px 0;overflow-x:auto;padding-bottom:5px}.v3-step{min-width:100px;position:relative;text-align:center;color:#93a2b3;font-size:10px;font-weight:800}.v3-step:before{content:"";display:block;width:14px;height:14px;border-radius:50%;background:#dce5ee;margin:0 auto 7px;position:relative;z-index:2}.v3-step:not(:last-child):after{content:"";position:absolute;height:2px;background:#dce5ee;top:6px;left:55%;width:90%}.v3-step.done{color:#1479ed}.v3-step.done:before,.v3-step.done:not(:last-child):after{background:#1479ed}.v3-role-home{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.v3-role-home .card{padding:16px}.v3-role-home strong{font-size:25px;color:#1479ed;display:block}.v3-crm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.v3-plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.v3-plan{padding:20px;position:relative}.v3-plan.recommended{border:2px solid #1479ed}.v3-plan .price{font-size:27px;font-weight:950;color:#1479ed}.v3-admin-kpi{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px}.v3-admin-kpi .card{padding:14px}.v3-admin-kpi strong{display:block;font-size:22px;color:#1479ed}.v3-chat-list{height:320px;overflow:auto;background:#f7f9fc;border-radius:14px;padding:12px}.v3-msg{max-width:78%;padding:9px 11px;border-radius:14px;background:#fff;margin:6px 0;border:1px solid #e5ebf2}.v3-msg.mine{margin-left:auto;background:#eaf4ff;border-color:#cfe4fb}.v3-stars button{border:0;background:transparent;font-size:28px;color:#cbd4dd;padding:2px}.v3-stars button.on{color:#f5a623}.v3-upload-preview{width:90px;height:90px;border-radius:18px;object-fit:cover;background:#eef3f7}.v3-chip{display:inline-flex;padding:5px 8px;border-radius:999px;background:#f0f5fa;margin:2px;font-size:11px}.v3-danger-zone{border:1px solid #f1d0d0;background:#fff8f8;border-radius:16px;padding:14px;margin-top:15px}.v3-table{width:100%;border-collapse:collapse;font-size:12px}.v3-table th,.v3-table td{padding:9px;border-bottom:1px solid #edf1f5;text-align:left}.v3-modal-wide{width:min(760px,100%)}
+@media(max-width:760px){.v3-filterbar{grid-template-columns:1fr 1fr}.v3-filterbar button{grid-column:1/-1}.v3-role-home{grid-template-columns:repeat(2,1fr)}.v3-plan-grid{grid-template-columns:1fr}.v3-admin-kpi{grid-template-columns:repeat(2,1fr)}.v3-crm-grid{grid-template-columns:1fr}.v3-match-summary{grid-template-columns:repeat(3,1fr)}}
 
 </style>
 </head>
@@ -3517,20 +3465,6 @@ footer{
 
 </section>
 
-<!-- =========================================================
-     BUSINESS V2 TRUST STRIP
-========================================================= -->
-<section style="padding:0 0 12px">
-  <div class="wrap">
-    <div class="business-trust-grid">
-      <div class="business-trust-item"><b>✓ 승인 전문가만 노출</b><span>관리자 승인과 활성 이용권을 확인한 전문가만 고객에게 표시합니다.</span></div>
-      <div class="business-trust-item"><b>🔒 연락처 보호</b><span>전문가가 상담을 수락하기 전까지 고객 연락처는 공개하지 않습니다.</span></div>
-      <div class="business-trust-item"><b>🔔 실시간 진행 알림</b><span>상담 요청·수락·거절·완료 상태를 푸시와 사이트 알림으로 안내합니다.</span></div>
-      <div class="business-trust-item"><b>↻ 다시 매칭</b><span>선택 전문가가 진행하기 어려운 경우 상담은 다시 매칭 대기로 전환됩니다.</span></div>
-    </div>
-  </div>
-</section>
-
 
 <!-- =========================================================
      CATEGORY
@@ -3782,15 +3716,6 @@ footer{
 
 </div>
 
-
-<div class="expert-tools">
-  <input id="expertFilterKeyword" placeholder="전문가명·소개·지역 검색" oninput="filterExpertCards()">
-  <select id="expertFilterRegion" onchange="filterExpertCards()">
-    <option value="">전체 지역</option>
-    <option>서울</option><option>경기</option><option>인천</option><option>대전</option><option>대구</option><option>부산</option><option>광주</option><option>울산</option><option>세종</option><option>강원</option><option>충북</option><option>충남</option><option>전북</option><option>전주</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option>
-  </select>
-  <button type="button" class="btn outline" onclick="showFavoriteExpertsOnly()">♡ 찜한 전문가</button>
-</div>
 
 <div
   id="expertList"
@@ -4806,12 +4731,6 @@ footer{
 </div>
 
 
-<div id="expertCrmSummary" class="crm-summary"></div>
-<div class="ops-toolbar">
-  <input id="caseSearch" placeholder="고객 상담 제목·내용 검색" oninput="filterCaseCards()">
-  <select id="caseStatusFilter" onchange="filterCaseCards()"><option value="">전체 상태</option><option value="matched">확인 대기</option><option value="in_progress">상담중</option><option value="done">완료</option></select>
-  <button class="btn outline small" onclick="loadMyCases()">최신화</button>
-</div>
 <div id="caseList"></div>
 
 
@@ -4853,13 +4772,6 @@ footer{
   class="hidden"
 >
 
-
-<div class="admin-v2-grid">
-  <div class="mini"><b id="adminWaitingConsults">0</b><span>매칭/확인 대기</span></div>
-  <div class="mini"><b id="adminProgressConsults">0</b><span>상담 진행중</span></div>
-  <div class="mini"><b id="adminDoneConsults">0</b><span>상담 완료</span></div>
-  <div class="mini"><b id="adminTodayConsults">0</b><span>오늘 신규 상담</span></div>
-</div>
 
 <div class="admin-stats">
 
@@ -4959,11 +4871,6 @@ footer{
 </div>
 
 
-<div class="ops-toolbar">
-  <input id="adminConsultSearch" placeholder="상담 제목·내용·지역 검색" oninput="filterAdminConsultCards()">
-  <select id="adminConsultStatus" onchange="filterAdminConsultCards()"><option value="">전체 상태</option><option value="open">매칭 대기</option><option value="matched">전문가 확인 대기</option><option value="in_progress">상담중</option><option value="done">완료</option></select>
-  <button class="btn outline small" onclick="loadAdminConsults()">최신화</button>
-</div>
 <div id="adminConsults"></div>
 
 
@@ -5006,17 +4913,6 @@ footer{
 
 </main>
 
-
-
-<!-- =========================================================
-     EXPERT PROFILE MODAL - BUSINESS V2
-========================================================= -->
-<div id="expertProfileModal" class="modal hidden">
-  <div class="card modal-card profile-sheet" style="max-width:620px">
-    <div class="space"><h2>전문가 프로필</h2><button class="btn outline small" onclick="closeExpertProfile()">닫기</button></div>
-    <div id="expertProfileContent"></div>
-  </div>
-</div>
 
 <!-- =========================================================
      AUTH MODAL
@@ -7003,12 +6899,7 @@ arr.length
 ?
 arr.map((x,index)=>`
 
-<div class="card expert-card expert-card-v2"
- data-expert-id="${esc(x.id)}"
- data-region="${esc(x.region||'')}"
- data-search="${esc([x.business_name,x.expert_type,x.region,x.bio].join(' ').toLowerCase())}">
-
-<button type="button" class="favorite-btn ${isFavoriteExpert(x.id)?'is-favorite':''}" onclick="toggleFavoriteExpert('${x.id}',this);event.stopPropagation();" aria-label="찜">${isFavoriteExpert(x.id)?'♥':'♡'}</button>
+<div class="card expert-card">
 
 <div class="avatar">
 🧑🏻‍💼
@@ -7055,12 +6946,6 @@ ${esc(x._matchReasons.join(" · "))}
 </div>
 `:""}
 
-<div class="expert-mini-metrics">
-  <div><b>승인</b>자격 확인</div>
-  <div><b>활동중</b>상담 가능</div>
-  <div><b>실시간</b>푸시 연결</div>
-</div>
-
 <p class="tiny">
 ${esc(
   (x.bio||"")
@@ -7071,10 +6956,9 @@ ${esc(
 )}
 </p>
 
-<div class="expert-actions">
-<button type="button" class="btn outline" onclick="openExpertProfile('${x.id}')">프로필 보기</button>
 <button
   class="btn primary"
+  style="width:100%"
   onclick="
     selectExpert(
       '${x.id}',
@@ -7087,9 +6971,8 @@ ${esc(
     )
   "
 >
-상담 요청
+이 전문가에게 상담
 </button>
-</div>
 
 </div>
 
@@ -7805,9 +7688,6 @@ ${esc(
 )}
 </p>
 
-${renderConsultTimeline(r.status)}
-${consultNextActionHTML(r,expert)}
-
 ${r.status==="done" && r.completed_at?`
 
 <div class="notice warn">
@@ -8300,7 +8180,7 @@ await fetch(
 
 SUPABASE_URL
 +
-"/functions/v1/toss-billing",
+"/functions/v1/toss-billing-v3",
 
 {
 
@@ -8327,7 +8207,10 @@ authKey,
 customerKey,
 
 expertId:
-expert.id
+expert.id,
+
+planCode:
+"PREMIUM"
 
 })
 
@@ -8759,14 +8642,6 @@ console.error(
 );
 
 
-const myCaseRows=data||[];
-if($("expertCrmSummary")){
-  $("expertCrmSummary").innerHTML=`
-    <div class="mini"><b>${myCaseRows.filter(x=>x.status==="matched").length}</b><span>확인 대기</span></div>
-    <div class="mini"><b>${myCaseRows.filter(x=>x.status==="in_progress").length}</b><span>상담중</span></div>
-    <div class="mini"><b>${myCaseRows.filter(x=>x.status==="done").length}</b><span>완료</span></div>`;
-}
-
 $("caseList")
 .innerHTML=`
 
@@ -8821,7 +8696,7 @@ r.status
 
 return `
 
-<div class="card request case-card-v2" data-status="${esc(r.status||'')}" data-search="${esc([r.title,r.content,r.category,r.region].join(' ').toLowerCase())}">
+<div class="card request">
 
 <div class="space">
 
@@ -8870,8 +8745,6 @@ ${esc(
   r.content
 )}
 </p>
-
-<div class="request-next-action">${expertCaseNextAction(r.status)}</div>
 
 
 ${waiting?`
@@ -10323,13 +10196,6 @@ await sb
 const consults=
 consultData||[];
 
-/* Business V2 운영 현황 */
-const todayKey=new Date().toLocaleDateString("ko-KR");
-if($("adminWaitingConsults")) $("adminWaitingConsults").textContent=consults.filter(x=>x.status==="open"||x.status==="matched").length;
-if($("adminProgressConsults")) $("adminProgressConsults").textContent=consults.filter(x=>x.status==="in_progress").length;
-if($("adminDoneConsults")) $("adminDoneConsults").textContent=consults.filter(x=>x.status==="done").length;
-if($("adminTodayConsults")) $("adminTodayConsults").textContent=consults.filter(x=>x.created_at&&new Date(x.created_at).toLocaleDateString("ko-KR")===todayKey).length;
-
 
 const experts=
 expertData||[];
@@ -10351,7 +10217,7 @@ consults
 .map(
 c=>`
 
-<div class="card request admin-consult-card" data-status="${esc(c.status||'')}" data-search="${esc([c.title,c.content,c.category,c.region].join(' ').toLowerCase())}">
+<div class="card request">
 
 <h4>
 ${esc(
@@ -10802,68 +10668,155 @@ say(
 }
 
 
-
-
 /* =========================================================
-   BUSINESS V2 HELPERS
+   전문가ON BUSINESS V3 - 기능 확장
 ========================================================= */
+let v3FavoriteIds=new Set();
+let v3RematchRequestId=null;
+let v3ReviewRating=5;
+let v3CurrentChatRequest=null;
+let v3ChatChannel=null;
+let v3SelectedPlan="PREMIUM";
+const V3_PLAN_LABELS={BASIC:"BASIC",PRO:"PRO",PREMIUM:"PREMIUM"};
 
-function getFavoriteExperts(){
-  try{return JSON.parse(localStorage.getItem("jeonmungaon_favorites")||"[]");}catch(_){return [];}
-}
-function isFavoriteExpert(id){return getFavoriteExperts().includes(String(id));}
-function toggleFavoriteExpert(id,button){
-  const key=String(id); let arr=getFavoriteExperts();
-  if(arr.includes(key)) arr=arr.filter(x=>x!==key); else arr.push(key);
-  localStorage.setItem("jeonmungaon_favorites",JSON.stringify(arr));
-  if(button){button.classList.toggle("is-favorite",arr.includes(key));button.textContent=arr.includes(key)?"♥":"♡";}
-}
-let favoriteExpertsOnly=false;
-function showFavoriteExpertsOnly(){favoriteExpertsOnly=!favoriteExpertsOnly;filterExpertCards();say(favoriteExpertsOnly?"찜한 전문가만 표시합니다.":"전체 전문가를 표시합니다.");}
-function filterExpertCards(){
-  const keyword=($("expertFilterKeyword")?.value||"").trim().toLowerCase();
-  const region=($("expertFilterRegion")?.value||"").trim().toLowerCase();
-  const favs=getFavoriteExperts();
-  document.querySelectorAll(".expert-card-v2").forEach(card=>{
-    const text=(card.dataset.search||"").toLowerCase(); const cardRegion=(card.dataset.region||"").toLowerCase();
-    const okKeyword=!keyword||text.includes(keyword); const okRegion=!region||cardRegion.includes(region); const okFav=!favoriteExpertsOnly||favs.includes(card.dataset.expertId);
-    card.style.display=(okKeyword&&okRegion&&okFav)?"":"none";
-  });
+function v3SafeArray(v){return Array.isArray(v)?v:[]}
+function v3Specialties(e){return v3SafeArray(e?.specialties).filter(Boolean).slice(0,3)}
+function v3StatusIndex(status){return ({open:1,matched:2,in_progress:5,done:7,cancelled:0})[status]||0}
+
+function v3InjectUI(){
+  const search=document.querySelector('.hero .search');
+  if(search&&!document.getElementById('v3ProblemExamples')) search.insertAdjacentHTML('afterend',`<div id="v3ProblemExamples" class="v3-problem-examples"><button onclick="quickSituation('교통사고 보험금이 적어요')">교통사고 보험금이 적어요</button><button onclick="quickSituation('퇴직금을 못 받았어요')">퇴직금을 못 받았어요</button><button onclick="quickSituation('상속등기를 해야 해요')">상속등기를 해야 해요</button><button onclick="quickSituation('부가세 신고가 어려워요')">부가세 신고가 어려워요</button></div>`);
+  const list=document.getElementById('expertList');
+  if(list&&!document.getElementById('v3ExpertFilters')) list.insertAdjacentHTML('beforebegin',`<div id="v3ExpertFilters" class="v3-filterbar"><select id="v3RegionFilter" onchange="loadExperts()"><option value="">전체 지역</option><option>서울</option><option>경기</option><option>인천</option><option>대전</option><option>대구</option><option>부산</option><option>광주</option><option>울산</option><option>세종</option><option>강원</option><option>충북</option><option>충남</option><option>전북</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option><option>전주</option></select><select id="v3SortFilter" onchange="loadExperts()"><option value="recommended">추천순</option><option value="rating">평점순</option><option value="response">응답빠른순</option><option value="completed">상담완료순</option></select><button class="btn outline" onclick="v3ShowFavorites()">♥ 찜한 전문가</button></div>`);
+  const tabs=document.querySelector('#dashboard .tabs');
+  if(tabs&&!document.getElementById('v3CrmTab')){
+    tabs.insertAdjacentHTML('beforeend',`<button class="btn tab hidden" id="v3CrmTab" onclick="switchDash('v3crm',this)">CRM</button><button class="btn tab hidden" id="v3AnalyticsTab" onclick="switchDash('v3analytics',this)">성과</button><button class="btn tab hidden" id="v3ExpertProfileTab" onclick="switchDash('v3profile',this)">프로필 관리</button>`);
+    const dash=document.querySelector('#dashboard .wrap');
+    dash.insertAdjacentHTML('beforeend',`<div id="dash-v3crm" class="card panel hidden"><div class="space"><h3>전문가 CRM</h3><button class="btn outline small" onclick="loadV3CrmBoard()">새로고침</button></div><div id="v3CrmBoard"></div></div><div id="dash-v3analytics" class="card panel hidden"><h3>최근 30일 성과</h3><div id="v3Analytics"></div></div><div id="dash-v3profile" class="card panel hidden"><h3>전문가 프로필 관리</h3><div id="v3ExpertProfileEditor"></div></div>`);
+  }
+  if(!document.getElementById('v3ModalHost')) document.body.insertAdjacentHTML('beforeend',`<div id="v3ModalHost"></div>`);
 }
 
-async function openExpertProfile(id){
-  const modal=$("expertProfileModal"), box=$("expertProfileContent"); if(!modal||!box)return;
-  modal.classList.remove("hidden"); box.innerHTML='<div class="notice">전문가 정보를 불러오는 중입니다.</div>';
-  const {data:x,error}=await sb.from("experts").select("id,user_id,expert_type,region,business_name,bio,approval_status,subscription_status,is_visible").eq("id",id).maybeSingle();
-  if(error||!x){box.innerHTML='<div class="notice bad">전문가 정보를 불러오지 못했습니다.</div>';return;}
-  box.innerHTML=`
-    <div class="profile-hero"><div class="profile-avatar">🧑🏻‍💼</div><div><span class="pill">✓ 승인 전문가</span><h2 style="margin:8px 0 4px">${esc(x.business_name||"전문가")}</h2><div class="muted tiny">${esc(x.expert_type||"")} · ${esc(x.region||"")}</div></div></div>
-    <div class="profile-facts"><div class="profile-fact"><b>승인 완료</b>자격 확인</div><div class="profile-fact"><b>${x.subscription_status==="active"?"활동중":"확인 필요"}</b>이용 상태</div><div class="profile-fact"><b>연락처 보호</b>수락 후 공개</div></div>
-    <div class="notice"><b>전문가 소개</b><br>${esc(x.bio||"등록된 소개가 없습니다.")}</div>
-    <div class="row"><button class="btn outline" onclick="toggleFavoriteExpert('${x.id}',null)">♡ 전문가 찜하기</button><button class="btn primary" onclick="closeExpertProfile();selectExpert('${x.id}','${encodeURIComponent(x.business_name||"전문가")}','${encodeURIComponent(x.expert_type||"")}')">이 전문가에게 상담 요청</button></div>`;
-}
-function closeExpertProfile(){$("expertProfileModal")?.classList.add("hidden");}
+const v3OldSwitchDash=switchDash;
+switchDash=function(name,btn){
+  ['v3crm','v3analytics','v3profile'].forEach(n=>{const e=document.getElementById('dash-'+n);if(e)e.classList.toggle('hidden',n!==name)});
+  if(name.startsWith('v3')){
+    document.querySelectorAll('#dashboard .tabs .tab').forEach(x=>x.classList.remove('active')); if(btn)btn.classList.add('active');
+    ['profile','customer','subscription','leads','cases','notifications','admin'].forEach(n=>{const e=document.getElementById('dash-'+n);if(e)e.classList.add('hidden')});
+    if(name==='v3crm')loadV3CrmBoard(); if(name==='v3analytics')loadV3Analytics(); if(name==='v3profile')renderV3ExpertProfileEditor(); return;
+  }
+  v3OldSwitchDash(name,btn);
+};
 
-function renderConsultTimeline(status){
-  const steps=["open","matched","in_progress","done"]; const labels=["접수","전문가 확인","상담중","완료"];
-  const current=Math.max(0,steps.indexOf(status));
-  return `<div class="consult-timeline">${labels.map((label,i)=>`<div class="timeline-step ${i<current?'done':i===current?'on':''}">${label}</div>`).join("")}<div class="timeline-step ${status==='cancelled'?'on':''}">종료</div></div>`;
+async function v3LoadFavorites(){v3FavoriteIds=new Set();if(!currentUser)return;const {data}=await sb.from('expert_favorites').select('expert_id').eq('user_id',currentUser.id);(data||[]).forEach(x=>v3FavoriteIds.add(x.expert_id));}
+async function toggleFavoriteV3(expertId){if(!currentUser)return openAuth('login');if(v3FavoriteIds.has(expertId)){await sb.from('expert_favorites').delete().eq('user_id',currentUser.id).eq('expert_id',expertId);v3FavoriteIds.delete(expertId)}else{await sb.from('expert_favorites').insert({user_id:currentUser.id,expert_id:expertId});v3FavoriteIds.add(expertId)}await loadExperts();}
+async function v3ShowFavorites(){if(!currentUser)return openAuth('login');await v3LoadFavorites();await loadExperts('',{favoritesOnly:true});document.getElementById('experts')?.scrollIntoView({behavior:'smooth'});}
+
+async function smartMatchExpertsV3(){
+ const situation=$('searchInput').value.trim(); if(!situation)return say('현재 겪고 있는 상황을 간단히 입력해주세요.');
+ const result=detectExpertCategory(situation),region=detectRegion(situation),box=$('smartMatchResult'); box.classList.remove('hidden');
+ if(result.score<=0){box.innerHTML=`<strong>정확한 전문분야를 한 가지로 판단하기 어렵습니다.</strong><br>상담 내용을 접수하면 적합한 분야를 함께 찾을 수 있습니다.<div class="smart-match-actions"><button class="btn primary small" onclick="startSmartConsult('기타')">상담내용 접수하기</button></div>`;return loadExperts();}
+ const {data:experts}=await sb.from('experts').select('id,avg_response_minutes').eq('approval_status','approved').eq('subscription_status','active').eq('is_visible',true).eq('expert_type',result.category);
+ const available=(experts||[]).length; const avg=available?Math.max(1,Math.round((experts||[]).reduce((s,e)=>s+Number(e.avg_response_minutes||30),0)/available)):0;
+ box.innerHTML=`<strong>${esc(result.category)} 분야를 추천합니다.</strong>${region?`<br>📍 감지 지역: <b>${esc(region)}</b>`:''}<div class="v3-match-summary"><div><strong>${esc(result.category)}</strong>추천 분야</div><div><strong>${available}명</strong>상담 가능 전문가</div><div><strong>${avg?avg+'분':'-'}</strong>평균 응답시간</div></div><div class="smart-match-actions"><button class="btn primary small" onclick="applySmartMatch('${result.category}')">추천 전문가 보기</button><button class="btn outline small" onclick="startSmartConsult('${result.category}')">바로 상담요청</button></div>`;
+ await loadExperts(result.category,{situation,category:result.category,keywords:result.matched,region,ranked:true}); $('experts').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function consultNextActionHTML(r,expert){
-  const map={open:"전문가 매칭을 기다리고 있습니다. 다른 전문가를 직접 선택해도 됩니다.",matched:"선택한 전문가가 상담 요청을 확인하고 있습니다.",in_progress:"전문가가 상담을 수락했습니다. 등록한 연락방법을 확인해 주세요.",done:"상담이 완료되었습니다. 상담 기록을 확인해 주세요.",cancelled:"종료된 상담입니다."};
-  return `<div class="request-next-action"><b>다음 단계</b><br>${map[r.status]||"상담 상태를 확인해 주세요."}${!expert&&r.status==='open'?'<br><button type="button" class="btn soft small" style="margin-top:8px" onclick="location.hash=\'experts\'">다른 전문가 보기</button>':''}</div>`;
+smartMatchExperts=smartMatchExpertsV3;
+
+async function loadExpertsV3(forcedCategory='',matchContext=null){
+ await v3LoadFavorites(); const q=(forcedCategory||$('searchInput').value).trim().toLowerCase();
+ const {data,error}=await sb.from('experts').select('*').eq('approval_status','approved').eq('subscription_status','active').eq('is_visible',true).is('suspended_at',null).order('created_at',{ascending:false});
+ if(error){console.error(error);$('expertList').innerHTML='<div class="muted">전문가를 불러오지 못했습니다.</div>';return}
+ let arr=data||[]; const region=document.getElementById('v3RegionFilter')?.value||'';
+ if(q)arr=arr.filter(x=>forcedCategory?String(x.expert_type||'').toLowerCase()===q:[x.expert_type,x.region,x.business_name,x.bio,...v3Specialties(x)].join(' ').toLowerCase().includes(q));
+ if(region)arr=arr.filter(x=>String(x.region||'').includes(region));
+ if(matchContext?.favoritesOnly)arr=arr.filter(x=>v3FavoriteIds.has(x.id));
+ let ranked=!!matchContext?.ranked; if(ranked)arr=arr.map(x=>{const m=calculateExpertMatchScore(x,matchContext);return{...x,_matchScore:m.score,_matchReasons:m.reasons}}).sort((a,b)=>b._matchScore-a._matchScore).slice(0,3);
+ const sort=document.getElementById('v3SortFilter')?.value||'recommended'; if(!ranked){if(sort==='rating')arr.sort((a,b)=>Number(b.rating_avg||0)-Number(a.rating_avg||0));if(sort==='response')arr.sort((a,b)=>Number(a.avg_response_minutes||999)-Number(b.avg_response_minutes||999));if(sort==='completed')arr.sort((a,b)=>Number(b.completed_count||0)-Number(a.completed_count||0));}
+ $('expertList').innerHTML=arr.length?arr.map((x,i)=>{
+   const specs=v3Specialties(x); const photo=x.profile_image_url||x.logo_url; const fav=v3FavoriteIds.has(x.id); const cta=v3RematchRequestId?'이 전문가로 재매칭':'상담 요청';
+   return `<div class="card expert-card"><button class="v3-fav" onclick="event.stopPropagation();toggleFavoriteV3('${x.id}')">${fav?'♥':'♡'}</button><div class="v3-expert-avatar">${photo?`<img src="${esc(photo)}" alt="전문가 프로필">`:'🧑🏻‍💼'}</div><div class="expert-body">${ranked?`<div class="row"><span class="pill">추천 ${i+1}위</span><span class="pill">적합도 ${x._matchScore}%</span></div>`:''}<h3>${esc(x.business_name||'전문가')}</h3><div class="row"><span class="v3-verified">✓ 자격 인증</span>${x.is_available!==false?'<span class="pill">지금 상담 가능</span>':''}</div><p class="muted tiny">${esc(x.expert_type||'')} · 📍 ${esc(x.region||'')}</p><div>${specs.map(s=>`<span class="v3-chip">${esc(s)}</span>`).join('')}</div><div class="v3-metrics"><div><b>★ ${Number(x.rating_avg||0).toFixed(1)}</b>${Number(x.review_count||0)}개 후기</div><div><b>${Number(x.response_rate||100).toFixed(0)}%</b>응답률</div><div><b>${Number(x.avg_response_minutes||30)}분</b>평균 응답</div></div><p class="tiny">${esc((x.bio||'').slice(0,110))}</p><div class="meta">상담완료 ${Number(x.completed_count||0).toLocaleString()}건</div><div class="v3-card-actions"><button class="btn outline" onclick="openExpertProfileV3('${x.id}')">프로필 보기</button><button class="btn primary" onclick="${v3RematchRequestId?`rematchRequestV3('${x.id}')`:`selectExpert('${x.id}','${encodeURIComponent(x.business_name||'전문가')}','${encodeURIComponent(x.expert_type||'')}')`}">${cta}</button></div></div></div>`;
+ }).join(''):'<div class="muted">현재 조건에 맞는 활동 전문가가 없습니다.</div>';
 }
-function expertCaseNextAction(status){
-  return ({matched:"고객이 직접 선택한 요청입니다. 수락 또는 거절을 결정해 주세요.",in_progress:"상담 진행 중입니다. 상담이 끝나면 완료 처리해 주세요.",done:"완료된 상담입니다.",open:"현재 미배정 상태입니다."})[status]||"상담 상태를 확인해 주세요.";
+loadExperts=loadExpertsV3;
+
+async function openExpertProfileV3(id){
+ const {data:e}=await sb.from('experts').select('*').eq('id',id).maybeSingle(); if(!e)return;
+ const {data:reviews}=await sb.from('reviews').select('rating,tags,content,created_at').eq('expert_id',id).eq('status','visible').order('created_at',{ascending:false}).limit(20);
+ const specs=v3Specialties(e); const host=$('v3ModalHost'); host.innerHTML=`<div class="modal" id="v3ExpertModal"><div class="card modal-card v3-modal-wide"><div class="space"><h2>${esc(e.business_name||'전문가')}</h2><button class="btn outline small" onclick="closeV3Modal()">닫기</button></div><div class="grid2"><div>${e.profile_image_url?`<img class="v3-upload-preview" style="width:150px;height:150px" src="${esc(e.profile_image_url)}">`:'<div class="v3-expert-avatar">🧑🏻‍💼</div>'}</div><div><div class="v3-verified">✓ 승인 전문가</div><p><b>${esc(e.expert_type||'')}</b><br>${esc(e.region||'')}</p><p>${specs.map(s=>`<span class="v3-chip">${esc(s)}</span>`).join('')}</p><div class="v3-metrics"><div><b>★ ${Number(e.rating_avg||0).toFixed(1)}</b>평점</div><div><b>${Number(e.completed_count||0)}</b>완료</div><div><b>${Number(e.avg_response_minutes||30)}분</b>응답</div></div></div></div><p>${esc(e.bio||'')}</p><hr><h3>고객 후기 ${Number(e.review_count||0)}개</h3>${(reviews||[]).length?(reviews||[]).map(r=>`<div class="request"><b>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</b><div>${v3SafeArray(r.tags).map(t=>`<span class="v3-chip">${esc(t)}</span>`).join('')}</div><p>${esc(r.content||'')}</p><div class="meta">${fmt(r.created_at)}</div></div>`).join(''):'<div class="muted">아직 후기가 없습니다.</div>'}<button class="btn primary" style="width:100%" onclick="closeV3Modal();${v3RematchRequestId?`rematchRequestV3('${e.id}')`:`selectExpert('${e.id}','${encodeURIComponent(e.business_name||'전문가')}','${encodeURIComponent(e.expert_type||'')}')`}">${v3RematchRequestId?'이 전문가로 재매칭':'상담 요청'}</button></div></div>`;
 }
-function filterCaseCards(){
-  const q=($("caseSearch")?.value||"").trim().toLowerCase(); const status=$("caseStatusFilter")?.value||"";
-  document.querySelectorAll(".case-card-v2").forEach(card=>{const okQ=!q||(card.dataset.search||"").includes(q);const okS=!status||card.dataset.status===status;card.style.display=(okQ&&okS)?"":"none";});
+function closeV3Modal(){const h=$('v3ModalHost');if(h)h.innerHTML='';if(v3ChatChannel){sb.removeChannel(v3ChatChannel);v3ChatChannel=null}}
+
+async function loadMyRequestsV3(){
+ if(!currentUser)return; const {data,error}=await sb.from('consult_requests').select('*').eq('customer_id',currentUser.id).order('created_at',{ascending:false}); if(error)return console.error(error); const reqs=data||[];
+ const eids=[...new Set(reqs.map(x=>x.assigned_expert_id).filter(Boolean))],map={}; if(eids.length){const {data:es}=await sb.from('experts').select('id,business_name,expert_type,region,profile_image_url').in('id',eids);(es||[]).forEach(x=>map[x.id]=x)}
+ const ids=reqs.map(x=>x.id); let reviewSet=new Set(); if(ids.length){const {data:rs}=await sb.from('reviews').select('request_id').in('request_id',ids);reviewSet=new Set((rs||[]).map(x=>x.request_id))}
+ $('myRequests').innerHTML=reqs.length?reqs.map(r=>{const e=map[r.assigned_expert_id],idx=v3StatusIndex(r.status);const steps=['접수 완료','전문가 전달','전문가 확인','전문가 수락','연락처 공개','상담 진행','상담 완료','후기 작성'];return `<div class="card request"><div class="space"><h4>${esc(r.title)}</h4><span class="status ${esc(r.status)}">${esc(statusLabel(r.status))}</span></div><div class="meta">${esc(r.category)} · ${esc(r.region)} · ${fmt(r.created_at)}</div><div class="v3-timeline">${steps.map((s,i)=>`<div class="v3-step ${i<=idx?'done':''}">${s}</div>`).join('')}</div><p>${esc(r.content)}</p>${e?`<div class="notice good"><b>${esc(e.business_name||'전문가')}</b> · ${esc(e.expert_type||'')} · ${esc(e.region||'')}</div>`:''}${r.status==='open'&&Number(r.rematch_count||0)>0?`<div class="notice warn"><b>선택한 전문가가 상담 진행이 어렵습니다.</b><br>기존 상담내용 그대로 다른 전문가를 선택할 수 있습니다.<div style="margin-top:8px"><button class="btn primary small" onclick="startRematchV3('${r.id}','${encodeURIComponent(r.category||'')}','${encodeURIComponent(r.region||'')}')">다른 전문가 3명 보기</button></div></div>`:''}<div class="row">${r.status==='in_progress'?`<button class="btn soft small" onclick="openChatV3('${r.id}')">💬 채팅</button><button class="btn outline small" onclick="openReportV3('${r.id}','${r.assigned_expert_id||''}')">신고/문의</button>`:''}${r.status==='done'&&!reviewSet.has(r.id)?`<button class="btn primary small" onclick="openReviewV3('${r.id}','${r.assigned_expert_id}')">후기 작성</button>`:''}${r.status==='done'&&reviewSet.has(r.id)?'<span class="pill">후기 작성 완료</span>':''}</div></div>`}).join(''):'<div class="muted">아직 상담 신청이 없습니다.</div>';
 }
-function filterAdminConsultCards(){
-  const q=($("adminConsultSearch")?.value||"").trim().toLowerCase(); const status=$("adminConsultStatus")?.value||"";
-  document.querySelectorAll(".admin-consult-card").forEach(card=>{const okQ=!q||(card.dataset.search||"").includes(q);const okS=!status||card.dataset.status===status;card.style.display=(okQ&&okS)?"":"none";});
-}
+loadMyRequests=loadMyRequestsV3;
+
+async function startRematchV3(requestId,category,region){v3RematchRequestId=requestId;$('searchInput').value=decodeURIComponent(category);const rf=document.getElementById('v3RegionFilter');if(rf)rf.value=decodeURIComponent(region);await loadExperts(decodeURIComponent(category),{category:decodeURIComponent(category),region:decodeURIComponent(region),ranked:true,situation:''});$('experts').scrollIntoView({behavior:'smooth'});}
+async function rematchRequestV3(expertId){if(!v3RematchRequestId)return;const requestId=v3RematchRequestId;const {error}=await sb.rpc('rematch_consult_request',{p_request_id:requestId,p_expert_id:expertId});if(error)return say(error.message);v3RematchRequestId=null;await dispatchPushEvent('consult_created',requestId);say('새 전문가에게 상담 요청을 다시 보냈습니다.');await loadMyRequests();openDashboard();}
+
+function openReviewV3(requestId,expertId){v3ReviewRating=5;$('v3ModalHost').innerHTML=`<div class="modal"><div class="card modal-card"><div class="space"><h2>상담 후기</h2><button class="btn outline small" onclick="closeV3Modal()">닫기</button></div><p>상담은 어떠셨나요?</p><div id="v3Stars" class="v3-stars">${[1,2,3,4,5].map(n=>`<button class="on" onclick="setReviewRatingV3(${n})">★</button>`).join('')}</div><div class="field"><label>좋았던 점</label><div><label class="check"><input type="checkbox" class="v3ReviewTag" value="설명이 이해하기 쉬웠어요">설명이 이해하기 쉬웠어요</label><label class="check"><input type="checkbox" class="v3ReviewTag" value="응답이 빨랐어요">응답이 빨랐어요</label><label class="check"><input type="checkbox" class="v3ReviewTag" value="친절했어요">친절했어요</label><label class="check"><input type="checkbox" class="v3ReviewTag" value="전문적이었어요">전문적이었어요</label></div></div><div class="field"><label>후기</label><textarea id="v3ReviewContent" placeholder="선택 입력"></textarea></div><button class="btn primary" style="width:100%" onclick="submitReviewV3('${requestId}','${expertId}')">후기 등록</button></div></div>`;}
+function setReviewRatingV3(n){v3ReviewRating=n;document.querySelectorAll('#v3Stars button').forEach((b,i)=>b.classList.toggle('on',i<n))}
+async function submitReviewV3(requestId,expertId){const tags=[...document.querySelectorAll('.v3ReviewTag:checked')].map(x=>x.value),content=$('v3ReviewContent').value.trim();const {error}=await sb.from('reviews').insert({request_id:requestId,customer_id:currentUser.id,expert_id:expertId,rating:v3ReviewRating,tags,content});if(error)return say(error.message);closeV3Modal();say('후기가 등록되었습니다.');await loadMyRequests();}
+
+async function openReportV3(requestId,expertId){$('v3ModalHost').innerHTML=`<div class="modal"><div class="card modal-card"><div class="space"><h2>신고 · 분쟁 접수</h2><button class="btn outline small" onclick="closeV3Modal()">닫기</button></div><div class="field"><label>유형</label><select id="v3ReportType"><option>서비스 이용 문제</option><option>전문가 응대</option><option>개인정보</option><option>부적절한 행위</option><option>기타</option></select></div><div class="field"><label>내용</label><textarea id="v3ReportContent" required></textarea></div><button class="btn danger" style="width:100%" onclick="submitReportV3('${requestId}','${expertId}')">접수하기</button></div></div>`;}
+async function submitReportV3(requestId,expertId){const content=$('v3ReportContent').value.trim();if(!content)return say('내용을 입력하세요.');const {error}=await sb.from('reports').insert({reporter_id:currentUser.id,request_id:requestId||null,expert_id:expertId||null,report_type:$('v3ReportType').value,content});if(error)return say(error.message);closeV3Modal();say('신고/분쟁 접수가 완료되었습니다.');}
+
+async function openChatV3(requestId){v3CurrentChatRequest=requestId;$('v3ModalHost').innerHTML=`<div class="modal"><div class="card modal-card v3-modal-wide"><div class="space"><h2>상담 채팅</h2><button class="btn outline small" onclick="closeV3Modal()">닫기</button></div><div id="v3ChatList" class="v3-chat-list"></div><div class="row" style="margin-top:10px"><input id="v3ChatInput" style="flex:1;border:1px solid #d7e3ee;border-radius:12px;padding:12px" placeholder="메시지를 입력하세요"><button class="btn primary" onclick="sendChatV3()">보내기</button></div></div></div>`;await loadChatV3();if(v3ChatChannel)sb.removeChannel(v3ChatChannel);v3ChatChannel=sb.channel('chat-'+requestId).on('postgres_changes',{event:'INSERT',schema:'public',table:'consult_messages',filter:`request_id=eq.${requestId}`},()=>loadChatV3()).subscribe();}
+async function loadChatV3(){if(!v3CurrentChatRequest)return;const {data}=await sb.from('consult_messages').select('*').eq('request_id',v3CurrentChatRequest).order('created_at');$('v3ChatList').innerHTML=(data||[]).map(m=>`<div class="v3-msg ${m.sender_id===currentUser.id?'mine':''}">${esc(m.message)}<div class="meta">${fmt(m.created_at)}</div></div>`).join('');$('v3ChatList').scrollTop=$('v3ChatList').scrollHeight;}
+async function sendChatV3(){const input=$('v3ChatInput'),message=input.value.trim();if(!message)return;const {error}=await sb.from('consult_messages').insert({request_id:v3CurrentChatRequest,sender_id:currentUser.id,message});if(error)return say(error.message);input.value='';}
+
+const v3OldLoadMyCases=loadMyCases;
+loadMyCases=async function(){
+ if(!currentExpert)return; const {data,error}=await sb.from('consult_requests').select('*,consult_contacts(phone,preferred_contact)').eq('assigned_expert_id',currentExpert.id).order('created_at',{ascending:false});if(error){console.error(error);return v3OldLoadMyCases()};const rows=data||[],ids=rows.map(x=>x.id);let meta={};if(ids.length){const {data:m}=await sb.from('expert_case_meta').select('*').eq('expert_id',currentExpert.id).in('request_id',ids);(m||[]).forEach(x=>meta[x.request_id]=x)}
+ $('caseList').innerHTML=rows.length?rows.map(r=>{const c=Array.isArray(r.consult_contacts)?r.consult_contacts[0]:r.consult_contacts,waiting=r.status==='matched',m=meta[r.id]||{};return `<div class="card request"><div class="space"><h4>${m.is_starred?'★ ':''}${esc(r.title)}</h4><span class="status ${esc(r.status)}">${esc(statusLabel(r.status))}</span></div><div class="meta">${esc(r.category)} · ${esc(r.region)} · ${fmt(r.created_at)}</div><p>${esc(r.content)}</p>${waiting?`<div class="notice">고객이 이 전문가를 직접 선택한 상담 요청입니다.</div><div class="row"><button class="btn success" onclick="acceptAssignedRequest('${r.id}')">상담 수락</button><button class="btn danger" onclick="rejectAssignedRequest('${r.id}')">상담 거절</button></div>`:`<div class="case-contact"><b>고객 연락처</b><br>${esc(c?.phone||'')} · ${esc(c?.preferred_contact||'')}</div><div class="row"><button class="btn soft small" onclick="openChatV3('${r.id}')">💬 채팅</button><button class="btn outline small" onclick="openCrmV3('${r.id}')">CRM 메모</button>${r.status!=='done'?`<button class="btn soft small" onclick="changeStatus('${r.id}','in_progress')">상담중</button><button class="btn success small" onclick="changeStatus('${r.id}','done')">완료</button>`:`<button class="btn primary small" onclick="dispatchPushEvent('review_requested','${r.id}').then(()=>say('고객에게 후기 요청을 보냈습니다.'))">후기 요청</button>`}</div>${m.next_contact_at?`<div class="notice">다음 연락 예정: <b>${fmt(m.next_contact_at)}</b></div>`:''}`}</div>`}).join(''):'<div class="muted">아직 배정된 상담이 없습니다.</div>';
+};
+
+async function openCrmV3(requestId){const {data:m}=await sb.from('expert_case_meta').select('*').eq('request_id',requestId).eq('expert_id',currentExpert.id).maybeSingle();$('v3ModalHost').innerHTML=`<div class="modal"><div class="card modal-card"><div class="space"><h2>CRM 관리</h2><button class="btn outline small" onclick="closeV3Modal()">닫기</button></div><label class="check"><input id="v3CrmStar" type="checkbox" ${m?.is_starred?'checked':''}>중요 상담 즐겨찾기</label><div class="field"><label>진행 단계</label><select id="v3CrmStage"><option value="new">신규</option><option value="accepted">수락</option><option value="contact_due">연락예정</option><option value="in_progress">상담중</option><option value="done">완료</option></select></div><div class="field"><label>다음 연락 예정일</label><input id="v3CrmNext" type="datetime-local"></div><div class="field"><label>상담 메모</label><textarea id="v3CrmMemo"></textarea></div><div class="row"><button class="btn primary" onclick="saveCrmV3('${requestId}',false)">저장</button><button class="btn soft" onclick="saveCrmV3('${requestId}',true)">저장 + 고객 일정알림</button></div></div></div>`;$('v3CrmStage').value=m?.stage||'new';$('v3CrmMemo').value=m?.memo||'';if(m?.next_contact_at)$('v3CrmNext').value=new Date(m.next_contact_at).toISOString().slice(0,16);}
+async function saveCrmV3(requestId,notify){const payload={request_id:requestId,expert_id:currentExpert.id,memo:$('v3CrmMemo').value.trim(),next_contact_at:$('v3CrmNext').value?new Date($('v3CrmNext').value).toISOString():null,is_starred:$('v3CrmStar').checked,stage:$('v3CrmStage').value,updated_at:new Date().toISOString()};const {error}=await sb.from('expert_case_meta').upsert(payload,{onConflict:'request_id,expert_id'});if(error)return say(error.message);if(notify)await dispatchPushEvent('contact_reminder',requestId);closeV3Modal();say('CRM 정보가 저장되었습니다.');await loadMyCases();}
+
+async function loadV3CrmBoard(){if(!currentExpert)return;const {data:cases}=await sb.from('consult_requests').select('id,title,status,region,created_at').eq('assigned_expert_id',currentExpert.id).order('created_at',{ascending:false});const ids=(cases||[]).map(x=>x.id);let meta={};if(ids.length){const {data:m}=await sb.from('expert_case_meta').select('*').eq('expert_id',currentExpert.id).in('request_id',ids);(m||[]).forEach(x=>meta[x.request_id]=x)}$('v3CrmBoard').innerHTML=(cases||[]).map(c=>`<div class="request"><div class="space"><b>${meta[c.id]?.is_starred?'★ ':''}${esc(c.title)}</b><span class="status ${c.status}">${statusLabel(c.status)}</span></div><div class="meta">${esc(c.region)} · ${fmt(c.created_at)}</div><div class="row"><button class="btn outline small" onclick="openCrmV3('${c.id}')">메모/일정</button><button class="btn soft small" onclick="openChatV3('${c.id}')">채팅</button></div></div>`).join('')||'<div class="muted">CRM 상담이 없습니다.</div>';}
+async function loadV3Analytics(){if(!currentExpert)return;const since=new Date(Date.now()-30*86400000).toISOString();const {data:c}=await sb.from('consult_requests').select('status,created_at,category').eq('assigned_expert_id',currentExpert.id).gte('created_at',since);const arr=c||[],done=arr.filter(x=>x.status==='done').length,progress=arr.filter(x=>x.status==='in_progress').length;const cats={};arr.forEach(x=>cats[x.category]=(cats[x.category]||0)+1);const top=Object.entries(cats).sort((a,b)=>b[1]-a[1])[0];$('v3Analytics').innerHTML=`<div class="v3-role-home"><div class="card"><strong>${arr.length}</strong>30일 유입</div><div class="card"><strong>${done}</strong>완료</div><div class="card"><strong>${progress}</strong>진행중</div><div class="card"><strong>${Number(currentExpert.response_rate||100).toFixed(0)}%</strong>응답률</div></div><div class="notice"><b>주요 유입 분야</b><br>${top?`${esc(top[0])} ${top[1]}건`:'데이터 없음'}<br>평점 ${Number(currentExpert.rating_avg||0).toFixed(1)} · 후기 ${Number(currentExpert.review_count||0)}개 · 평균 응답 ${Number(currentExpert.avg_response_minutes||30)}분</div>`;}
+
+const v3OldRenderProfile=renderProfile;
+renderProfile=function(){v3OldRenderProfile();if(!$('dash-profile'))return;const verified=currentUser?.email_confirmed_at?'인증 완료':'인증 필요';$('dash-profile').insertAdjacentHTML('beforeend',`<hr><h3>계정 · 보안</h3><p><b>이메일 인증</b><br>${verified}</p><div class="row"><button class="btn outline small" onclick="sendPasswordResetV3()">비밀번호 재설정</button>${!currentUser?.email_confirmed_at?'<button class="btn soft small" onclick="resendEmailVerificationV3()">인증메일 다시 보내기</button>':''}</div>${currentExpert?'<div style="margin-top:12px"><button class="btn outline small" onclick="switchDash(\'v3profile\',document.getElementById(\'v3ExpertProfileTab\'))">전문가 프로필 편집</button></div>':''}<div class="v3-danger-zone"><b>회원탈퇴</b><p class="tiny muted">탈퇴 시 푸시 토큰과 개인정보가 정리되며 계정은 비활성화됩니다.</p><button class="btn danger small" onclick="deleteAccountV3()">회원탈퇴</button></div>`);};
+async function sendPasswordResetV3(){if(!currentUser?.email)return;const {error}=await sb.auth.resetPasswordForEmail(currentUser.email,{redirectTo:window.location.origin+window.location.pathname});say(error?error.message:'비밀번호 재설정 메일을 보냈습니다.');}
+async function resendEmailVerificationV3(){if(!currentUser?.email)return;const {error}=await sb.auth.resend({type:'signup',email:currentUser.email});say(error?error.message:'인증 메일을 다시 보냈습니다.');}
+async function deleteAccountV3(){if(!confirm('정말 탈퇴하시겠습니까? 이 작업은 되돌리기 어렵습니다.'))return;const {data:{session}}=await sb.auth.getSession();if(!session)return;const r=await fetch(SUPABASE_URL+'/functions/v1/account-delete',{method:'POST',headers:{Authorization:'Bearer '+session.access_token,'Content-Type':'application/json'},body:JSON.stringify({confirm:true})});const j=await r.json();if(!r.ok)return say(j.error||'탈퇴 처리 실패');await sb.auth.signOut();say('회원탈퇴가 처리되었습니다.');location.href=window.location.pathname;}
+
+async function renderV3ExpertProfileEditor(){if(!currentExpert){$('v3ExpertProfileEditor').innerHTML='<div class="muted">전문가 가입 후 이용할 수 있습니다.</div>';return}const specs=v3Specialties(currentExpert).join(', ');$('v3ExpertProfileEditor').innerHTML=`<div class="grid2"><div><img id="v3ProfilePreview" class="v3-upload-preview" src="${esc(currentExpert.profile_image_url||'')}" onerror="this.style.display='none'"><div class="field"><label>프로필 사진</label><input id="v3ProfileFile" type="file" accept="image/*"></div></div><div><label class="check"><input id="v3Available" type="checkbox" ${currentExpert.is_available!==false?'checked':''}>지금 상담 가능</label><div class="field"><label>주요 상담 분야 3개 (쉼표 구분)</label><input id="v3Specialties" value="${esc(specs)}" placeholder="자동차사고, 상해보험, 후유장해"></div></div></div><button class="btn primary" onclick="saveExpertProfileV3()">프로필 저장</button><hr><h3>자격증/증빙 서류</h3><div class="field"><input id="v3LicenseFile" type="file" accept="image/*,.pdf"></div><button class="btn outline" onclick="uploadExpertDocumentV3()">자격서류 업로드</button><div id="v3DocumentList"></div>`;loadExpertDocumentsV3();}
+async function uploadAssetV3(file,prefix){const ext=(file.name.split('.').pop()||'bin').toLowerCase(),path=`${currentUser.id}/${prefix}-${Date.now()}.${ext}`;const {error}=await sb.storage.from('expert-assets').upload(path,file,{upsert:true});if(error)throw error;const {data}=sb.storage.from('expert-assets').getPublicUrl(path);return{path,url:data.publicUrl}}
+async function saveExpertProfileV3(){try{let photo=currentExpert.profile_image_url||null;const f=$('v3ProfileFile').files?.[0];if(f)photo=(await uploadAssetV3(f,'profile')).url;const specs=$('v3Specialties').value.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);const {error}=await sb.from('experts').update({profile_image_url:photo,specialties:specs,is_available:$('v3Available').checked}).eq('id',currentExpert.id);if(error)throw error;say('전문가 프로필이 저장되었습니다.');await syncUser();}catch(e){say(e.message||String(e))}}
+async function uploadExpertDocumentV3(){try{const f=$('v3LicenseFile').files?.[0];if(!f)return say('파일을 선택하세요.');const a=await uploadAssetV3(f,'license');const {error}=await sb.from('expert_documents').insert({expert_id:currentExpert.id,document_type:'license',file_path:a.path});if(error)throw error;say('자격서류가 업로드되었습니다. 관리자 검토를 기다려주세요.');loadExpertDocumentsV3();}catch(e){say(e.message||String(e))}}
+async function loadExpertDocumentsV3(){const {data}=await sb.from('expert_documents').select('*').eq('expert_id',currentExpert.id).order('created_at',{ascending:false});$('v3DocumentList').innerHTML=(data||[]).map(d=>`<div class="request">${esc(d.document_type)} · <b>${esc(d.status)}</b> · ${fmt(d.created_at)}${d.admin_note?`<br>${esc(d.admin_note)}`:''}</div>`).join('')||'<div class="muted">업로드한 서류가 없습니다.</div>';}
+
+const v3OldSyncUser=syncUser;
+syncUser=async function(){await v3OldSyncUser();const show=!!currentExpert;['v3CrmTab','v3AnalyticsTab','v3ExpertProfileTab'].forEach(id=>document.getElementById(id)?.classList.toggle('hidden',!show));updateV3MobileNav();};
+function updateV3MobileNav(){const bar=document.querySelector('.mobile-bottom');if(!bar)return;if(currentProfile?.is_admin===true)bar.innerHTML=`<a href="#"><span class="mi">⌂</span>홈</a><button onclick="openDashboard();setTimeout(()=>switchDash('admin',document.getElementById('adminTab')),50)"><span class="mi">▦</span>운영</button><button onclick="openDashboard();setTimeout(()=>switchDash('notifications',null),50)"><span class="mi">🔔</span>알림</button><button onclick="openDashboard()"><span class="mi">☻</span>마이</button>`;else if(currentExpert)bar.innerHTML=`<a href="#"><span class="mi">⌂</span>홈</a><button onclick="openDashboard();setTimeout(()=>switchDash('leads',document.getElementById('leadTab')),50)"><span class="mi">⚡</span>신규상담</button><button onclick="openDashboard();setTimeout(()=>switchDash('cases',document.getElementById('myCasesTab')),50)"><span class="mi">▤</span>내고객</button><button onclick="openDashboard()"><span class="mi">☻</span>마이</button>`;else bar.innerHTML=`<a href="#"><span class="mi">⌂</span>홈</a><a href="#experts"><span class="mi">⌕</span>전문가</a><a href="#consult"><span class="mi">✎</span>상담</a><button onclick="openDashboard()"><span class="mi">☻</span>마이</button>`;}
+
+renderSubscription=async function(){if(!currentExpert)return;const approved=currentExpert.approval_status==='approved',active=currentSubscription?.status==='active';const {data:plans}=await sb.from('subscription_plans').select('*').eq('is_active',true).order('sort_order');$('subscriptionStatusBox').innerHTML=`<div class="info-box"><small>승인</small><b>${esc(currentExpert.approval_status||'-')}</b></div><div class="info-box"><small>현재 요금제</small><b>${esc(currentSubscription?.plan_code||'-')}</b></div><div class="info-box"><small>상태</small><b>${active?'활성':'비활성'}</b></div><div class="info-box"><small>다음 결제</small><b>${currentSubscription?.next_billing_at?fmt(currentSubscription.next_billing_at):'-'}</b></div>`;$('subscriptionMessage').className=approved?'notice':'notice warn';$('subscriptionMessage').textContent=approved?(active?'이용권이 활성화되어 있습니다. 요금제 변경 또는 해지 요청을 할 수 있습니다.':'원하는 요금제를 선택해 시작하세요.'):'관리자 승인 완료 후 이용권을 결제할 수 있습니다.';$('subscriptionPayBtn').classList.add('hidden');let box=document.getElementById('v3PlanGrid');if(!box){$('subscriptionMessage').insertAdjacentHTML('afterend','<div id="v3PlanGrid" class="v3-plan-grid"></div><div id="v3PaymentHistory" style="margin-top:20px"></div>');box=$('v3PlanGrid')}box.innerHTML=(plans||[]).map(p=>`<div class="card v3-plan ${p.code==='PRO'?'recommended':''}"><span class="pill">${p.code==='PRO'?'추천':''}</span><h3>${esc(p.name)}</h3><div class="price">${Number(p.monthly_amount).toLocaleString()}원</div><p class="tiny">${p.lead_limit?`월 상담 ${p.lead_limit}건`:'상담 무제한'}<br>${p.crm_enabled?'CRM 포함':'기본 프로필'}<br>${p.analytics_enabled?'성과 통계 포함':''}</p><button class="btn primary" style="width:100%" ${!approved||active?'disabled':''} onclick="startSubscriptionPayment('${p.code}')">${active?'이용 중':'선택'}</button></div>`).join('');if(active)$('v3PlanGrid').insertAdjacentHTML('afterend','<div class="row" style="margin-top:12px"><button class="btn outline small" onclick="requestSubscriptionV3(\'cancel\')">해지 요청</button><button class="btn outline small" onclick="requestSubscriptionV3(\'refund\')">환불 문의</button></div>');loadPaymentHistoryV3();};
+startSubscriptionPayment=async function(planCode='PREMIUM'){if(!currentUser)return openAuth('login');if(!currentExpert||currentExpert.approval_status!=='approved')return say('관리자 승인 후 결제할 수 있습니다.');v3SelectedPlan=planCode;try{const tossPayments=TossPayments(TOSS_CLIENT_KEY),payment=tossPayments.payment({customerKey:currentUser.id}),sep=window.location.search?'&':'?';await payment.requestBillingAuth({method:'CARD',successUrl:window.location.origin+window.location.pathname+`?billing=success&plan=${encodeURIComponent(planCode)}`,failUrl:window.location.origin+window.location.pathname+'?billing=fail',customerEmail:currentUser.email||undefined,customerName:currentProfile?.name||'전문가ON 전문가'});}catch(e){say(e.message||'카드 등록 중 오류가 발생했습니다.')}};
+handleBillingResult=async function(){const p=new URLSearchParams(location.search);if(p.get('billing')==='success'){const authKey=p.get('authKey'),customerKey=p.get('customerKey'),planCode=p.get('plan')||'PREMIUM';if(!authKey||!customerKey)return say('카드 인증정보를 확인할 수 없습니다.');try{const {data:{session}}=await sb.auth.getSession();if(!session)throw new Error('로그인이 필요합니다.');const response=await fetch(SUPABASE_URL+'/functions/v1/toss-billing-v3',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+session.access_token},body:JSON.stringify({authKey,customerKey,expertId:currentExpert?.id,planCode})});const result=await response.json();if(!response.ok)throw new Error(result.error||'결제 처리 실패');say(`${planCode} 월 이용권 결제가 완료되었습니다.`);history.replaceState({},document.title,location.pathname);await syncUser();openDashboard();}catch(e){say(e.message||String(e))}}else if(p.get('billing')==='fail'){say(p.get('message')||'카드 등록 또는 결제가 취소되었습니다.');history.replaceState({},document.title,location.pathname)}};
+async function loadPaymentHistoryV3(){if(!currentExpert||!$('v3PaymentHistory'))return;const {data}=await sb.from('payment_history').select('*').eq('expert_id',currentExpert.id).order('created_at',{ascending:false}).limit(20);$('v3PaymentHistory').innerHTML='<h3>결제 내역</h3>'+((data||[]).map(x=>`<div class="request"><b>${esc(x.plan_code||'')} ${Number(x.amount||0).toLocaleString()}원</b> · ${esc(x.status)}<div class="meta">${fmt(x.paid_at||x.created_at)}</div></div>`).join('')||'<div class="muted">결제 내역이 없습니다.</div>');}
+async function requestSubscriptionV3(type){const reason=prompt(type==='cancel'?'해지 사유를 입력해주세요.':'환불 문의 사유를 입력해주세요.');if(reason===null)return;const {error}=await sb.from('subscription_requests').insert({expert_id:currentExpert.id,request_type:type,reason});say(error?error.message:'요청이 접수되었습니다. 관리자가 확인 후 처리합니다.');}
+
+const v3OldAdmin=loadAdminDashboard;
+loadAdminDashboard=async function(){await v3OldAdmin();await loadAdminV3();};
+async function loadAdminV3(){if(currentProfile?.is_admin!==true)return;let root=document.getElementById('v3AdminOps');if(!root){const admin=$('dash-admin');admin.insertAdjacentHTML('afterbegin','<div id="v3AdminOps"></div>');root=$('v3AdminOps')}const today=new Date();today.setHours(0,0,0,0);const month=new Date(today.getFullYear(),today.getMonth(),1).toISOString();const [users,consults,experts,reports,docs,pays,subs]=await Promise.all([sb.from('profiles').select('id',{count:'exact',head:true}).gte('created_at',today.toISOString()),sb.from('consult_requests').select('id,status,created_at',{count:'exact'}).gte('created_at',today.toISOString()),sb.from('experts').select('id,subscription_status',{count:'exact'}),sb.from('reports').select('id,status').eq('status','open'),sb.from('expert_documents').select('id,status').eq('status','pending'),sb.from('payment_history').select('amount,status').eq('status','paid').gte('paid_at',month),sb.from('subscriptions').select('id,status,payment_fail_count,cancel_at_period_end')]);const carr=consults.data||[],earr=experts.data||[],sarr=subs.data||[];const wait=carr.filter(x=>x.status==='open'||x.status==='matched').length,done=carr.filter(x=>x.status==='done').length,active=earr.filter(x=>x.subscription_status==='active').length,revenue=(pays.data||[]).reduce((s,x)=>s+Number(x.amount||0),0),fails=sarr.filter(x=>Number(x.payment_fail_count||0)>0).length,cancels=sarr.filter(x=>x.cancel_at_period_end).length;root.innerHTML=`<h2>운영센터</h2><div class="v3-admin-kpi"><div class="card"><strong>${users.count||0}</strong>오늘 신규회원</div><div class="card"><strong>${carr.length}</strong>오늘 신규상담</div><div class="card"><strong>${wait}</strong>매칭/확인대기</div><div class="card"><strong>${done}</strong>오늘 완료</div><div class="card"><strong>${active}</strong>활성 전문가</div><div class="card"><strong>${revenue.toLocaleString()}</strong>이번달 매출</div></div><div class="grid2"><div class="admin-section"><h3>운영 알림</h3><p>미처리 신고 <b>${(reports.data||[]).length}</b>건</p><p>자격서류 승인대기 <b>${(docs.data||[]).length}</b>건</p><p>결제 실패 <b>${fails}</b>건 · 해지예정 <b>${cancels}</b>건</p><div class="row"><button class="btn outline small" onclick="loadAdminReportsV3()">신고·분쟁</button><button class="btn outline small" onclick="loadAdminDocumentsV3()">자격 검수</button><button class="btn outline small" onclick="loadAdminSubscriptionRequestsV3()">해지·환불</button></div></div><div class="admin-section"><h3>상담 검색</h3><div class="v3-filterbar"><input id="v3AdminSearch" placeholder="제목/지역/분야"><select id="v3AdminStatus"><option value="">전체 상태</option><option value="open">매칭 대기</option><option value="matched">확인 대기</option><option value="in_progress">상담중</option><option value="done">완료</option></select><button class="btn primary" onclick="adminSearchConsultsV3()">검색</button></div><div id="v3AdminSearchResults"></div></div></div><div id="v3AdminDetail"></div>`;}
+async function adminSearchConsultsV3(){let q=sb.from('consult_requests').select('id,title,category,region,status,assigned_expert_id,created_at').order('created_at',{ascending:false}).limit(100);const st=$('v3AdminStatus').value;if(st)q=q.eq('status',st);const {data}=await q;const term=$('v3AdminSearch').value.trim().toLowerCase();const arr=(data||[]).filter(x=>!term||[x.title,x.category,x.region].join(' ').toLowerCase().includes(term));$('v3AdminSearchResults').innerHTML=arr.map(x=>`<div class="request"><b>${esc(x.title)}</b><div class="meta">${esc(x.category)} · ${esc(x.region)} · ${statusLabel(x.status)} · ${fmt(x.created_at)}</div><div class="row"><button class="btn outline small" onclick="adminFlagConsultV3('${x.id}',${!x.problem_flag})">문제상담 표시</button></div></div>`).join('')||'<div class="muted">검색 결과가 없습니다.</div>';}
+async function adminFlagConsultV3(id,flag=true){await sb.from('consult_requests').update({problem_flag:flag}).eq('id',id);say('상담 표시가 변경되었습니다.');adminSearchConsultsV3();}
+async function loadAdminReportsV3(){const {data}=await sb.from('reports').select('*').order('created_at',{ascending:false}).limit(100);$('v3AdminDetail').innerHTML='<div class="admin-section"><h3>신고 · 분쟁</h3>'+((data||[]).map(r=>`<div class="request"><b>${esc(r.report_type)}</b> · ${esc(r.status)}<p>${esc(r.content)}</p><textarea id="note-${r.id}" placeholder="관리자 메모">${esc(r.admin_note||'')}</textarea><div class="row"><button class="btn success small" onclick="adminResolveReportV3('${r.id}','resolved')">처리완료</button><button class="btn outline small" onclick="adminResolveReportV3('${r.id}','reviewing')">검토중</button></div></div>`).join('')||'<div class="muted">신고가 없습니다.</div>')+'</div>';}
+async function adminResolveReportV3(id,status){await sb.from('reports').update({status,admin_note:document.getElementById('note-'+id)?.value||'',assigned_admin_id:currentUser.id,updated_at:new Date().toISOString()}).eq('id',id);loadAdminReportsV3();}
+async function loadAdminDocumentsV3(){const {data}=await sb.from('expert_documents').select('*,experts(business_name)').order('created_at',{ascending:false}).limit(100);$('v3AdminDetail').innerHTML='<div class="admin-section"><h3>자격서류 검수</h3>'+((data||[]).map(d=>{const {data:u}=sb.storage.from('expert-assets').getPublicUrl(d.file_path);return `<div class="request"><b>${esc(d.experts?.business_name||'전문가')}</b> · ${esc(d.status)}<br><a class="btn outline small" target="_blank" href="${u.publicUrl}">서류 보기</a><div class="row"><button class="btn success small" onclick="adminDocumentV3('${d.id}','approved')">승인</button><button class="btn danger small" onclick="adminDocumentV3('${d.id}','rejected')">반려</button></div></div>`}).join('')||'<div class="muted">서류가 없습니다.</div>')+'</div>';}
+async function adminDocumentV3(id,status){const note=status==='rejected'?(prompt('반려 사유')||''):'';await sb.from('expert_documents').update({status,admin_note:note,reviewed_at:new Date().toISOString()}).eq('id',id);loadAdminDocumentsV3();}
+async function loadAdminSubscriptionRequestsV3(){const {data}=await sb.from('subscription_requests').select('*,experts(business_name)').order('created_at',{ascending:false}).limit(100);$('v3AdminDetail').innerHTML='<div class="admin-section"><h3>해지 · 환불 · 요금제 변경 요청</h3>'+((data||[]).map(r=>`<div class="request"><b>${esc(r.experts?.business_name||'전문가')}</b> · ${esc(r.request_type)} · ${esc(r.status)}<p>${esc(r.reason||'')}</p><button class="btn success small" onclick="adminSubRequestV3('${r.id}','completed')">처리완료</button></div>`).join('')||'<div class="muted">요청이 없습니다.</div>')+'</div>';}
+async function adminSubRequestV3(id,status){await sb.from('subscription_requests').update({status,updated_at:new Date().toISOString()}).eq('id',id);loadAdminSubscriptionRequestsV3();}
+
+function v3Init(){v3InjectUI();updateV3MobileNav();}
+window.addEventListener('load',v3Init);
 
 
 /* =========================================================
